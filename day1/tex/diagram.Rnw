@@ -1,0 +1,41 @@
+\documentclass{article}
+
+% tikz stuff
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows, shapes}
+
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\begin{figure}%[ht] % ’ht’ tells LaTeX to place the figure ’here’ or at the top of the page
+\centering
+\tikzset{rectangle state/.style={draw,rectangle}} % make rectangles available
+\begin{tikzpicture}[scale=0.2]
+  \node[state, minimum size=1.5cm] (y1) {$y_{1}$};
+  \node[state, minimum size=1.5cm] (y2) [right= of y1] {$y_{2}$};
+  \node[rectangle state,minimum size=1.5cm] (x1) [below= of y1] {$x_{1}$};
+  \node[rectangle state, minimum size=1.5cm] (x2) [right= of x1] {$x_{2}$};
+  \node[state, draw=none, minimum size=1.5cm] (ykdots) [right= of y2] {$\cdots$};
+  \node[state, draw=none, minimum size=1.5cm] (xkdots) [right= of x2] {$\cdots$};
+  \node[state, minimum size=1.5cm] (ynm1) [right= of ykdots] {$y_{n-1}$};
+  \node[state, minimum size=1.5cm] (yn) [right= of ynm1] {$y_{n}$};
+  \node[rectangle state, minimum size=1.5cm] (xnm1) [below= of ynm1] {$x_{n-1}$};
+  \node[rectangle state, minimum size=1.5cm] (xn) [below= of yn] {$x_{n}$};
+  \draw[->] 
+    (x1) edge[left] (y1)
+    (x2) edge[left] (y2)
+    (xkdots) edge[left] (ykdots)
+    (xnm1) edge[left] (ynm1)
+    (xn) edge[left] (yn)
+    (x1) edge[left] (x2)
+    (x2) edge[left] (xkdots)
+    (xkdots) edge[left] (xnm1)
+    (xnm1) edge[left] (xn);
+\end{tikzpicture}
+\caption{A state space model}
+\label{fig:msvol_diagram}
+\end{figure}
+
+
+\end{document}

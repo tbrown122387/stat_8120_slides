@@ -1,0 +1,129 @@
+---
+title: "Day 4"
+author: "Taylor R. Brown"
+date: "11/6/2019"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## The likelihood
+
+In simplified notation (that is only appropriate sometimes), the likelihood is 
+\begin{align*}
+p(y_{0:n} \mid \theta) &= p(y_{0:n}) \\
+&= \int\cdots\int p(y_{0:n}, x_{0:n}) dx_{0:n} \\
+&= \int\cdots\int p(y_{0:n} \mid x_{0:n})p( x_{0:n}) dx_{0:n}
+\end{align*}
+
+## The likelihood
+
+Assumes only partially dominated: 
+
+\begin{align*}
+L_{\nu}(y_{0:n}) &= \int \cdots \int \nu(dx_0)g(x_0, y_0) Q(x_0,dx_1)g(x_1, y_1) \cdots \\
+&\hspace{40mm}Q(x_{n-1},dx_{n})g(x_n,y_n)
+\end{align*}
+
+## Smoothing, Filtering, Prediction
+
+- main goal: get a distribution for the hidden states, and condition on the observations you know
+
+- key questions:
+
+  * do you want to have a distribution for states at multiple time periods
+  * do you want to have a distribution for states before, during, or after the most recent time point?
+
+- for me, it helps to think about which of these different cases are useful for different practical tasks
+
+
+## Joint Smoothing
+
+- eventually we will focus mostly on "filtering." One way to write the filtering distribution is:
+
+$$
+p(x_t  \mid y_{0:t})
+$$
+and you you could get probabilities or expectations by integrating with respect to Lebesgue/counting measure.
+
+Better notation
+$$
+P(X_t \in A \mid y_{0:t}) = \phi_{\nu, t \mid 0:t}(y_{0:t}, A) = \int_A \phi_{\nu, t \mid 0:t}(y_{0:t}, dx_t)
+$$
+
+
+## Joint Smoothing
+
+For now, let's do the joint smoothing thing, so we don't have to worry about which states to integrate out (see equation 3.9 and end of Remark 3.1.5).
+
+We'll work on proving Proposition 3.1.4, but first, let's get some intuition going.
+
+## Joint Smoothing
+
+
+It's just conditional probabilities.
+
+$$
+p(x_{0:t} \mid y_{0:t}) = \frac{p(y_{0:t} , x_{0:t})  }{ p(y_{0:t}) }
+$$
+
+or $\phi_{\nu,0:t|t} (y_{0:t}, f) =$
+
+$$
+L_{\nu}(y_{0:t})^{-1} \int \cdots \int f(X_{0:t}) \nu(dx_0) g(x_0, y_0) Q(x_0, dx_1)g(x_1, y_1) \cdots Q(x_{t-1}, dx_t)g(x_t, y_t )
+$$
+
+
+## Joint Smoothing
+
+Also, because we will be focusing on recursive algorithms, it's handy to be able to write new distributions in terms of old distributions.
+
+
+Compare
+$$
+p(x_{0:n+p} | y_{0:n}) = p(x_{n+1:n+p} \mid x_{0:n})p(x_{0:n} | y_{0:n}) = p(x_{0:n} | y_{0:n})\prod_{i=n+1}^{n+p}q(x_{i} \mid x_{i-1})
+$$
+with
+
+$$
+\phi_{\nu,0:n+p|n} (y_{0:n}, f) = \int\cdots\int \phi_{\nu,0:n|n} (y_{0:n}, dx_{0:n}) \prod_{i=n+1}^{n+p}Q(x_{i-1}, dx_i)f(X_{0:n+p})
+$$
+
+where $f$ is any bounded, measurable function.
+
+## Proposition 3.1.4. proof hints
+
+- there are two parts to both of 3.5 and 3.6:
+  * verify the kernel properties (replace $f$ with $\mathbb{1}(A)$), and 
+  * verify the conditional expectation formula is valid using the same techniques we used in the previous proof
+  
+  
+## Section 3.1.4
+
+This section merely defines a notational adjustment. 
+
+$$
+\phi_{\nu,0:t|t} (y_{0:t}, f)
+$$
+
+turns into
+
+$$
+\phi_{\nu,0:t|t} ( f)
+$$
+
+## Section 3.1.4
+
+and
+
+$$
+L_{\nu}(y_{0:t})^{-1} \int \cdots \int f(X_{0:t}) \nu(dx_0) g(x_0, y_0) Q(x_0, dx_1)g(x_1, y_1) \cdots Q(x_{t-1}, dx_t)g(x_t, y_t )
+$$
+
+turns into
+
+$$
+L_{\nu}(y_{0:t})^{-1} \int \cdots \int f(X_{0:t}) \nu(dx_0) g(x_0) Q(x_0, dx_1)g(x_1) \cdots Q(x_{t-1}, dx_t)g(x_t)
+$$
