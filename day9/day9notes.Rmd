@@ -15,15 +15,17 @@ knitr::opts_chunk$set(echo = FALSE)
 Resampling:
 
 -  is a computational bottleneck. 
-  * it prevents parallelization, and 
-  * it is more computationally intensive than sampling
+    * it prevents parallelization, and 
+  
+    * it is more computationally intensive than sampling
 
 - pretty much takes care of weight degeneracy, but it adds noise to our approximations
 
+
+- resampling, also causes **sample impoverishment** (but we won't discuss this)
+
+
 That's why a lot of work has gone into alternative ways to resample. Alternatives will usually address one of these two issues.
-
-
-- resampling, also causes sample impoverishment (but we won't discuss this)
 
 
 ## Multinomial Resampling
@@ -49,11 +51,12 @@ $$
 
 Common confusion:
 
-sometimes people talk about drawing indexes
+- sometimes people talk about drawing indexes
 
-sometimes people talk about drawing counts
+- sometimes people talk about drawing counts
 
-both could be considered multinomial random variables.
+Both could be considered multinomial random variables, but we are referring to indexes now.
+
 
 ## Programming
 
@@ -104,12 +107,12 @@ If you're going for speed, you're probably going to go down the resampling rabbi
 
 Section 7.4.1 describes some of the lower-level details of turning uniform random numbers into indexes.
 
-In math stats, we learned the math behind the **inversion method**. If $U \sim \text{Uniform}(0,1]$, then 
+In our mathematical statistics courses, we usually discuss the **inversion method**. If $U \sim \text{Uniform}(0,1]$, then 
 $$
 X \overset{\text{def}}{=} F_X^{-1}(U) \sim F_X
 $$
 
-
+Many (most?) pseudo-random number generator functions use this approach!
 
 ## Optional: section 7.4.1
 
@@ -135,6 +138,9 @@ where $\tilde{\omega}$ are the **normalized** weights.
 
 They talk about some cool strategies for reducing the number of steps it takes to figure out the $I$ from the previous slide. 
 
-On the one hand, pre-sorting your uniform samples will allow you to perform fewer comparisons, but sorting is also computationally demanding. They use some really old theorems to generated sorted uniform random variables with having to sort at all!
+- pre-sorting your uniform samples will allow you to perform fewer comparisons, but 
+- sorting is also computationally demanding. 
 
-Note, even in c++, you [don't have to get into this](https://en.cppreference.com/w/cpp/numeric/random/discrete_distribution). My implementation is [here](https://github.com/tbrown122387/pf/blob/515cb7f94fcd5ca13a12095af35bdee8412320a5/include/resamplers.h#L105).
+Summary: the book discusses some old theorems to help generate **ordered** uniform random variables with having to use a traditional sorting algorithm at all!
+
+Note, even in low-level compiled languages like c++, you [don't have to get into this](https://en.cppreference.com/w/cpp/numeric/random/discrete_distribution) ([my implementation](https://github.com/tbrown122387/pf/blob/515cb7f94fcd5ca13a12095af35bdee8412320a5/include/resamplers.h#L105).)
