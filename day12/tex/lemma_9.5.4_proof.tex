@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{url}
+\usepackage{bbm} %for bold indicator func
+
+\title{A More Detailed Proof of Lemma 9.5.4}
+
+\begin{document}
+\maketitle
+
+Assume
+$$
+|U_N| \le \eta V_N + W_N(\eta).
+$$
+Then, for any $\delta > 0$ and $\eta > 0$
+\[
+\{ |U_N| < \delta \} \supset \{ V_N < \delta/2\eta \}  \cap \{ W_N(\eta) < \delta/2\}.
+\]
+Look at the contrapositive:
+\[
+\{ |U_N| \ge \delta \} \subset \{ V_N \ge \delta/2\eta \}  \cup \{ W_N(\eta) \ge \delta/2\}.
+\]
+That means
+\begin{align*}
+P(|U_N| \ge \delta) &\le P(\{ V_N \ge \delta/2\eta \}  \cup \{ W_N(\eta) \ge \delta/2\}) \\
+&\le P( V_N \ge \delta/2\eta ) + P( W_N(\eta) \ge \delta/2) \tag{sub-additivity}
+\end{align*}
+which is the first equation of the authors' proof. 
+\newline
+
+
+Taking the $\limsup_{N \to \infty}$ on both sides we have
+\begin{align*}
+\limsup_N P(|U_N| \ge \delta) &\le \limsup_N \{ P( V_N \ge \delta/2\eta ) + P( W_N(\eta) \ge \delta/2) \}\\
+&\le \limsup_N P(V_N \ge \delta/2\eta) + \limsup_N P( W_N(\eta) \ge \delta/2 ) \tag{properties of sup} \\
+&= \limsup_N P(V_N \ge \delta/2\eta) + \lim_N P( W_N(\eta) \ge \delta/2 ) \tag{assumption}\\
+&= \limsup_N P(V_N \ge \delta/2\eta) + 0 \tag{assumption}\\
+&\le \sup_N P(V_N \ge \delta/2\eta).
+\end{align*}
+
+As $\eta \to 0$, $\delta/ 2\eta \to \infty$, and $\sup_N P(V_N \ge \delta/2\eta) \to 0$ by $\{V_N\}$'s boundedness in probability.
+
+
+\end{document}

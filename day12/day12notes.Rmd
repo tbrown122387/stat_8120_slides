@@ -1,0 +1,228 @@
+---
+title: "Day 12"
+author: "Taylor R. Brown"
+date: "12/19/2019"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Proposition 9.5.5
+
+This is basically the same consequent as Proposition 9.5.1 from yesterday, but it has weaker conditions.
+
+These weaker conditions involve a notion called **bounded in probability,** which is also sometimes called **tightness**, **uniform tightness** or **asymptotically tight**
+
+
+## Bounded in Probability
+
+A sequence of random variables $\{Z_N\}$ is **bounded in probability** if 
+$$
+\sup_{N \ge 0} P(|Z_N| \ge C) \to 0 
+$$
+as $C \to \infty$.
+
+## Lemma 9.5.3
+
+Fact 1:
+
+If $U_N \overset{\mathcal{D}}{\to} U$ then $\{U_N\}$ is bounded in probability.
+
+Proof hints:
+
+- $P(|U_N| > C) = P(|U_N| > C) - P(|U| > C) + P(|U| > C)$, and
+- $P(|U| > C) \downarrow 0$ as $C \to \infty$
+
+
+
+## Lemma 9.5.3
+
+Fact 2:
+
+If $\{V_N\}$ is bounded in probability, and $|U_N| \le |V_N|$ for all $N$, then $\{U_N\}$ is bounded in probability.
+
+Proof hints:
+
+- $P(|U_N| > C) \le P(|V_N| > C)$
+
+
+## Lemma 9.5.3
+
+Fact 3:
+
+If $\{U_N\}$ is bounded in probability, and $|V_N| \overset{\text{p}}{\to} 0$, then $U_N V_N \overset{\text{p}}{\to} 0$
+
+Proof hints:
+
+- $P(|U_N V_N| > \epsilon) = P(|U_N V_N| > \epsilon,  |U_N| \le C ) + P(|U_N V_N| > \epsilon, |U_N| > C )$
+
+
+## Lemma 9.5.3
+
+Fact 4:
+
+Let $M_N \uparrow \infty$ be a nonrandom sequence. If  $\{U_N\}$ is bounded in probability, then $\mathbb{1}(U_N \ge M_N) \overset{\text{p}}{\to} 0$.
+
+Proof hints:
+
+- for $1 > \epsilon > 0$, $P(\mathbb{1}(U_N \ge M_N) > \epsilon) = P(U_N \ge M_N) \le P(|U_N| \ge M_N)$
+
+## Lemma 9.5.4
+
+Let $\{V_N\}$ be bounded in probability, and assume that for any (small) $\eta > 0$ there exists a sequence of random variables $\{W_N(\eta)\}$ such that $W_N(\eta) \overset{\text{p}}{\to} 0$ as $N \to \infty$. If 
+$$
+|U_N| \le \eta V_N + W_N(\eta)
+$$
+then $U_N \overset{\text{p}}{\to} 0$.
+
+
+## Lemma 9.5.4
+
+
+$$
+|U_N| \le \eta V_N + W_N(\eta)
+$$
+
+In the upcoming theorem, the right hand side's components are what we make assumptions about, and the left hand side is what we want to show converges to $0$.
+
+
+Proof details can be found in attached pdf.
+
+
+
+## Proposition 9.5.5
+
+Let $\{U_{N,i}\}$ be a triangular array of random variables, and let $\{\mathcal{F}^N\}$ be a sequence of sub-$\sigma$-fields of $\mathcal{F}$. Then $\sum_{i=1}^{M_N} U_{N,i} \overset{\text{p}}{\to} 0$ if 
+
+1. the triangular array is conditionally independent given $\{\mathcal{F}^N\}$, and for any $N$, $i=1, \ldots, M_N$
+    - $E[|U_{N,i}| \mid \mathcal{F}^N] < \infty$, and 
+    - $E[U_{N,i} \mid \mathcal{F}^N] = 0$, and
+
+2. the sequence of random variables
+$$
+\left\{ \sum_{i=1}^{M_N} E[|U_{N,i}| \mid \mathcal{F}^N]  \right\}_N
+$$
+is bounded in probability, and 
+
+3. for any $\eta > 0$, 
+$$
+\sum_{i=1}^{M_N} E[|U_{N,i}| \mathbb{1}(|U_{N,i}| \ge \eta ) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0.
+$$
+
+## c.f. Proposition 9.5.1
+
+Recall the old proposition 9.5.1 and compare the assumptions:
+
+1. The triangular array is conditionally independent given $\mathcal{F}^N$, and for any $N$, $i=1,\ldots,M_N$,
+    - $E[|U_{N,i}| \mid \mathcal{F}^N] < \infty$, and
+    - $E[U_{N,i} \mid \mathcal{F}^N ] = 0$;
+2. for some $\epsilon > 0$ that
+    - $\sum_{i=1}^{M_N}E[U_{N,i}^2 \mathbb{1}( |U_{N,i}| < \epsilon) \mid \mathcal{F}^N ] \overset{\text{p}}{\to} 0$,
+    - $\sum_{i=1}^{M_N}E[ |U_{N,i}| \mathbb{1}( |U_{N,i}| \ge \epsilon) \mid \mathcal{F}^N ] \overset{\text{p}}{\to} 0$,
+
+
+
+## Proposition 9.5.5
+
+
+In assumption (3) 
+$$
+\sum_{i=1}^{M_N} E[|U_{N,i}| \mathbb{1}(|U_{N,i}| \ge \eta ) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0.
+$$
+you might be wondering how a sum of more and more positive things can go to $0$...
+
+$U_{N,i}$ will be a bunch of random variables that are demeaned, and then scaled by $1/N$. Think of a sum as a sample average. 
+
+As $N \to \infty$, $U_{N,i}$ will all get so close to $0$ and all the indicator functions will eventually be turned off.
+
+
+## Proposition 9.5.5
+
+
+To elaborate on (2), if
+$$
+\left\{ \sum_{i=1}^{M_N} E[|U_{N,i}| \mid \mathcal{F}^N]  \right\}_N
+$$
+is bounded in probability, then that is saying that, as you go from iteration to iteration, from row to row, the average total "error" has to be "stable." 
+
+
+
+## Proposition 9.5.5: proof
+
+All, we have to do is show how these new assumptions imply the assumptions of 9.5.1. 
+
+All the assumptions are the same except for the boundedness in probability part. 
+
+See attached pdf.
+
+
+## Proposition 9.5.7
+
+Proposition 9.5.7 is a statement about the non-demeaned random variables $V_{N,i}$, where
+$$
+U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N].
+$$
+Its proof uses the proof of Proposition 9.5.5.
+
+
+## Proposition 9.5.7
+
+Let $\{V_{N,i}\}$ be a triangular array of random variables and let $\mathcal{F}^N$ be a sequence of sub-$\sigma$-fields of $\mathcal{F}$. Then $\sum_{i=1}^{M_N} \left( V_{N,i} - E[V_{N,i}  \mid \mathcal{F}^N] \right) \overset{\text{p}}{\to} 0$ if
+
+1. the triangular array is conditionally independent given $\{\mathcal{F}^N\}$, and for any $N$, $i=1,\ldots,M_N$ we have that $E[|V_{N,i}| \mid \mathcal{F}^N] < \infty$, and 
+
+2. the sequence 
+$$
+\left\{ \sum_{i=1}^{M_N} E[|V_{N,i}|  \mid \mathcal{F}^N]  \right\}_N
+$$
+is bounded in probability, and
+
+3. for any $\epsilon > 0$
+$$
+\sum_{i=1}^{M_N} E[|V_{N,i}| \mathbb{1}( |V_{N,i}| \ge \epsilon ) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0
+$$
+as $N \to \infty$.
+
+
+## Proposition 9.5.7: part 1 of proof
+
+Using $U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N]$ and
+
+1(9.5.7). the triangular array $\{V_{N,i}\}$ is conditionally independent given $\{\mathcal{F}^N\}$, and for any $N$, $i=1,\ldots,M_N$ 
+
+- $E[|V_{N,i}| \mid \mathcal{F}^N] < \infty$
+
+verify
+
+1(9.5.5) the triangular array $\{U_{N,i}\}$ is conditionally independent given $\{\mathcal{F}^N\}$, and for any $N$, $i=1, \ldots, M_N$
+
+- $E[|U_{N,i}| \mid \mathcal{F}^N] < \infty$, and 
+- $E[U_{N,i} \mid \mathcal{F}^N] = 0$, and
+    
+    
+
+## Proposition 9.5.7: part 2 of proof
+
+Using $U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N]$ and
+
+2(9.5.7) $\left\{ \sum_{i=1}^{M_N} E[|V_{N,i}|  \mid \mathcal{F}^N]  \right\}_N$ is bounded in probability
+
+to verify that 
+
+2(9.5.5) $\left\{ \sum_{i=1}^{M_N} E[|U_{N,i}| \mid \mathcal{F}^N]  \right\}_N$ is bounded in probability.
+
+
+## Proposition 9.5.7: part 3 of proof
+
+Using $U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N]$ and
+
+3(9.5.7) $\sum_{i=1}^{M_N} E[|V_{N,i}| \mathbb{1}( |V_{N,i}| \ge \epsilon ) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0$
+
+to verify that 
+
+3(9.5.5) $\sum_{i=1}^{M_N} E[|U_{N,i}| \mathbb{1}(|U_{N,i}| \ge \eta ) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0.$
+
+This part is the hardest. Details for the entire proof can be found in the attached pdf.

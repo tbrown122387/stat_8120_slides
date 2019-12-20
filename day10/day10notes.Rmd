@@ -27,7 +27,7 @@ But first, we'll start with 9.2.2 to get some definitions.
 
 ## Triangular Array
 
-A **triangular array** $\{U^{N,i}\}_{1\le i \le M_N}$ is just a collection of random variables on a common probability space. The number of "columns" may change, but generally increases with the row number $N$.
+A **triangular array** $\{U_{N,i}\}_{1\le i \le M_N}$ is just a collection of random variables on a common probability space. The number of "columns" may change, but generally increases with the row number $N$.
 
 The row $N$ goes from $1,2,3\ldots$, and the column index is nested in the row in the sense that $i=1,\ldots,M_N$.
 
@@ -82,15 +82,15 @@ Also, when we are only referring to the samples without the weights, we will tal
 
 Let $\{\mathcal{G}^N\}_{N=1}^{\infty}$ be a sequence of sub-$\sigma$-fields of $\mathcal{F}$. 
 
-1. A triangular array $\{U^{N,i}\}_{1 \le i \le M_N}$ is **measurable with respect to $\{\mathcal{G}^N\}_{N=1}^{\infty}$** if, for any $N$, all of $U^{N,1}, \ldots, U^{N,M_N}$ are all $\mathcal{G}^N$-measurable.
+1. A triangular array $\{U_{N,i}\}_{1 \le i \le M_N}$ is **measurable with respect to $\{\mathcal{G}^N\}_{N=1}^{\infty}$** if, for any $N$, all of $U^{N,1}, \ldots, U^{N,M_N}$ are all $\mathcal{G}^N$-measurable.
 
-2. A triangular array $\{U^{N,i}\}_{1 \le i \le M_N}$ is **conditionally-independent given** $\{\mathcal{G}^N\}_{N=1}^{\infty}$ if, for any $N$, $U^{N,1}, \ldots, U^{N,M_N}$ are all conditionally independent given $\mathcal{G}^N$.
+2. A triangular array $\{U_{N,i}\}_{1 \le i \le M_N}$ is **conditionally-independent given** $\{\mathcal{G}^N\}_{N=1}^{\infty}$ if, for any $N$, $U^{N,1}, \ldots, U^{N,M_N}$ are all conditionally independent given $\mathcal{G}^N$.
 
-3. A triangular array $\{U^{N,i}\}_{1 \le i \le M_N}$ is **conditionally-iid given** $\{\mathcal{G}^N\}_{N=1}^{\infty}$ if, for any $N$, $U^{N,1}, \ldots, U^{N,M_N}$ are all conditionally iid given $\mathcal{G}^N$.
+3. A triangular array $\{U_{N,i}\}_{1 \le i \le M_N}$ is **conditionally-iid given** $\{\mathcal{G}^N\}_{N=1}^{\infty}$ if, for any $N$, $U^{N,1}, \ldots, U^{N,M_N}$ are all conditionally iid given $\mathcal{G}^N$.
 
 ## Weighted-Samples
 
-Now pretend each $U^{N,i}$ is a pair $(\xi^{N,i}, \omega^{N,i})$.
+Now pretend each $U_{N,i}$ is a pair $(\xi^{N,i}, \omega^{N,i})$.
 
 A triangular array of random variables $\{(\xi^{N,i}, \omega^{N,i})\}_{1 \le i \le M_N}$ is a **weighted sample** if for any $N$, $\omega^{N,i} \ge 0$ for the entire row (all $i$), and $\sum_{i=1}^{M_N} \omega^{N,i} > 0$ almost surely.
 

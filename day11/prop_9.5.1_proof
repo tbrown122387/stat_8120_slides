@@ -1,0 +1,74 @@
+---
+title: "prop_9.5.1"
+output: pdf_document
+---
+
+\subsubsection{Part 1}
+
+We have
+\[
+0 = E[U_{N,i} \mid \mathcal{F}^N] = E[U_{N,i}1(U_{N,i} \ge \epsilon) \mid \mathcal{F}^N] + E[\bar{U}_{N,i}\mid \mathcal{F}^N ]
+\]
+summing both sides
+\[
+0 = \sum_{i=1}^{M_N} E[U_{N,i}1(U_{N,i} \ge \epsilon) \mid \mathcal{F}^N] + \sum_{i=1}^{M_N} E[\bar{U}_{N,i}\mid \mathcal{F}^N ]
+\]
+which gives us 
+\[
+\left|\sum_{i=1}^{M_N} E[\bar{U}_{N,i}\mid \mathcal{F}^N ] \right| = \left| \sum_{i=1}^{M_N} E[U_{N,i}1(U_{N,i} \ge \epsilon) \mid \mathcal{F}^N] \right| \le \sum_{i=1}^{M_N} E[|U_{N,i}|1(U_{N,i} \ge \epsilon) \mid \mathcal{F}^N] 
+\]
+if we use the triangle inequality, and Jensen's inequality. 
+
+Then, taking the limit on both sides and using assumption 9.6.3,
+\[
+0 = \text{plim}_N \sum_{i=1}^{M_N} E[\bar{U}_{N,i}\mid \mathcal{F}^N ] \tag{1} .
+\]
+
+\subsubsection{Part 2}
+
+Expanding a little on the Chebyshev's thing at the top of page 334:
+\begin{align*}
+0 &\le A_N(\delta) \\
+&= P\left(\left| \sum_{i=1}^{M_N} \bar{U}_{N,i} - \sum_{i=1}^{M_N} E\left[\bar{U}_{N,i} \mid \mathcal{F}^N \right] \right| \ge \delta \bigg| \mathcal{F}^N \right) \tag{defn.} \\
+&\le \delta^{-2} \text{Var}\left( \sum_i^{M_N} \bar{U}_{N,i} \mid \mathcal{F}^N \right) \tag{Chebyshev's} \\
+&= \delta^{-2} \sum_i \sum_j \text{Cov}\left(\bar{U}_{N,i},\bar{U}_{N,j}  \mid \mathcal{F}^N  \right) \\
+&= \delta^{-2}  \sum_i \text{Var}\left(\bar{U}_{N,i}  \mid \mathcal{F}^N  \right) \tag{independence} \\
+&= \delta^{-2}  \sum_i \left\{  E\left(\bar{U}_{N,i}^2  \mid \mathcal{F}^N  \right) - [E\left(\bar{U}_{N,i}  \mid \mathcal{F}^N  \right) ]^2 \right\} \\
+&\le \delta^{-2}  \sum_i E\left(\bar{U}_{N,i}^2  \mid \mathcal{F}^N  \right)  \\
+&\overset{p}{\to} 0 \tag{9.62}.
+\end{align*}
+So this is where 9.6.2 applies, giving us $A_N(\delta) \to 0$ in probability.
+
+Because $A_N(\delta) \le 1$ (it's a probability), we have by dominated convergence
+\[
+ \lim_N E[A_N(\delta)] = E[\lim_N A_N(\delta)] = 0.
+\]
+This is equivalent to (9.65) on page 334. If you're thinking that we don't need dominated convergence, notice that this last statement is about unconditional expectations, not conditional expectations, which is what $ A_N(\delta)$ is.
+
+\subsubsection{Part 3}
+
+
+\begin{align*}
+P\left(\left| \sum_i U_{N,i} - \sum_i \bar{U}_{N,i} \right| \ge \delta \bigg\rvert \mathcal{F}^N \right) 
+&= P\left(\left| \sum_i U_{N,i}1(U_{N,i} \ge \epsilon ) \right| \ge \delta \bigg\rvert \mathcal{F}^N \right) \\
+&\le P\left( \sum_i\left| U_{N,i}\right| 1(U_{N,i} \ge \epsilon )   \ge \delta \bigg\rvert \mathcal{F}^N \right) \tag{tri-ineq} \\
+&\le \delta^{-1} \sum_i E\left[\left| U_{N,i}\right| 1(U_{N,i} \ge \epsilon )  \bigg\rvert \mathcal{F}^N \right] \tag{Markov's and linearity} \\
+&\to 0 \tag{9.63}.
+\end{align*}
+
+So the *conditional* probailities go to $0$. To show that the unconditional ones do, as well, we need to iterate the expectations, and use the same argument of dominated convergence as before:
+\begin{align*}
+\lim_N P\left(\left| \sum_i U_{N,i} - \sum_i \bar{U}_{N,i} \right| \ge \delta  \right) 
+&= \lim_N E\left[ 1 \left(\left| \sum_i U_{N,i} - \sum_i \bar{U}_{N,i} \right| \ge \delta  \right) \right] \\
+&= \lim_N E\left[ E\left\{ 1\left( \left| \sum_i U_{N,i} - \sum_i \bar{U}_{N,i} \right| \ge \delta \right)  \mid \mathcal{F}^N \right\}    \right] \tag{law total expec.} \\
+&=  E\left[  \lim_N E1\left( \left| \sum_i U_{N,i} - \sum_i \bar{U}_{N,i} \right| \ge \delta  \mid \mathcal{F}^N  \right)  \right] \tag{DCT}\\
+&= 0.
+\end{align*}
+
+
+Tying the three parts together, we have:
+\begin{align*}
+\sum_i U_{N,i} &= \left(\sum_i U_{N,i} - \sum_i \bar{U}_{N,i}\right) + \left(\sum_i \bar{U}_{N,i} - \sum_i E[ \bar{U}_{N,i}  \mid \mathcal{F}^N] \right) +  \sum_i E[ \bar{U}_{N,i}  \mid \mathcal{F}^N].
+\end{align*}
+
+The three terms on the right hand side all go to $0$ in probability by the most recent result, by (9.65), and by (9.64), respectively. 

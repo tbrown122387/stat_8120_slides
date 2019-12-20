@@ -1,0 +1,111 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts, bbm}
+\usepackage{url}
+\usepackage{bbm} %for bold indicator func
+
+\title{A More Detailed Proof of Proposition 9.5.7}
+
+\begin{document}
+\maketitle
+
+The idea is we set $U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N]$ and check conditons 1-3 of Proposition 9.5.5.
+\newline
+
+Condition 1: 
+The conditional independence thing is obvious. Regarding the conditional expectations, first
+\begin{align*}
+E[|U_{N,i}| \mid \mathcal{F}^N] &= E[| V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N] | \mid \mathcal{F}^N] \\
+&\le E[| V_{N,i} | \mid \mathcal{F}^N] + E[ | E[V_{N,i} \mid \mathcal{F}^N]) | \mid \mathcal{F}^N] \tag{tri- ineq and linearity} \\
+&= E[| V_{N,i} | \mid \mathcal{F}^N] + | E[V_{N,i} \mid \mathcal{F}^N]  | \\
+&\le E[| V_{N,i} | \mid \mathcal{F}^N] +  E[ | V_{N,i}| \mid \mathcal{F}^N] \tag{Jensen's} \\
+&< \infty \tag{assumption i}.
+\end{align*}
+
+Secondly,
+\begin{eqnarray}
+E[U_{N,i} \mid \mathcal{F}^N] = E[ V_{N,i} \mid \mathcal{F}^N] - E[V_{N,i} \mid \mathcal{F}^N] =0.
+\end{eqnarray}
+
+Condition 2: \\
+We showed in conditon 1 that $E[|U_{N,i}| \mid \mathcal{F}^N] \le 2E[| V_{N,i} | \mid \mathcal{F}^N]$, so
+\begin{eqnarray}
+\sum_i E[|U_{N,i}| \mid \mathcal{F}^N] \le 2 \sum_i E[| V_{N,i} | \mid \mathcal{F}^N].
+\end{eqnarray}
+The right hand side is bounded in probability, so the left hand side is as well.
+\newline
+
+
+Condition 3: 
+
+First, a little about the two tools used in this part, the verification of condition 3 in 9.5.5. The first trick is similar in spirit to that one used in 9.5.4. Recall that the triangle inequality gives us
+\[
+|U_{N,i}| \le |V_{N,i}| + E[|V_{N,i}| \mid \mathcal{F}^N]
+\]
+which implies (check contrapositive) that 
+\[
+\{ |U_{N,i}| \ge \epsilon\} \subset \{ |V_{N,i}| \ge \epsilon/2  \} \cup \{ E[|V_{N,i}| \mid \mathcal{F}^N] \ge \epsilon/2 \},
+\]
+which implies further that
+\[
+\mathbbm{1}_{\{ |U_{N,i}| \ge \epsilon\}} \le \mathbbm{1}_{\{ |V_{N,i}| \ge \epsilon/2  \} \cup \{ E[|V_{N,i}| \mid \mathcal{F}^N] \ge \epsilon/2 \}} \le \mathbbm{1}_{ \{ |V_{N,i}| \ge \epsilon/2  \}  } + \mathbbm{1}_{  \{ E[|V_{N,i}| \mid \mathcal{F}^N] \ge \epsilon/2 \}  }.
+\]
+
+The second trick is a way to bound the maximum. 
+\begin{align*}
+\max_{i} |V_{N,i}| &\le \max_{i} |V_{N,i}| \mathbbm{1}_{\{ |V_{N,i}| \ge \epsilon / 2 \} } + \max_{i} |V_{N,i}| \mathbbm{1}_{\{ |V_{N,i}| < \epsilon / 2 \} } \\
+&\le \max_{i} |V_{N,i}| \mathbbm{1}_{\{ |V_{N,i}| \ge \epsilon / 2 \} } + \epsilon / 2 \\
+&\le \sum_{i} |V_{N,i}| \mathbbm{1}_{\{ |V_{N,i}| \ge \epsilon / 2 \} } + \epsilon / 2.
+\end{align*}
+
+This will be used to say things like
+$$
+\{ \max_{i} |V_{N,i}|  \ge \epsilon \} \subseteq \left\{ \sum_{i} |V_{N,i}| \mathbbm{1}_{\{ |V_{N,i}| \ge \epsilon / 2 \} } \ge \epsilon/2 \right\}.
+$$
+
+Going back to the proof, we want to show that $\sum_i |U_{N,i}| \mathbbm{1}_{ \{|U_{N,i}| \ge \epsilon \} } $ converges to $0$ in probability:
+
+\begin{align*}
+&\sum_i E[ | U_{N,i} |  \mathbbm{1}(|U_{N,i}| \ge \epsilon) \mid \mathcal{F}^N] \\
+&= \sum_i E[ | V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N] |  \mathbbm{1}(|U_{N,i}| \ge \epsilon) \mid \mathcal{F}^N] \tag{defn.} \\
+&\le \sum_i E[ | V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N] |  \mathbbm{1}_{ \{ |V_{N,i}| \ge \epsilon/2  \}  } + \mathbbm{1}_{  \{ E[|V_{N,i}| \mid \mathcal{F}^N] \ge \epsilon/2 \}  } \mid \mathcal{F}^N] \tag{first trick} \\
+&\le \sum_i E[ \left\{ | V_{N,i}| + |E[V_{N,i} \mid \mathcal{F}^N] | \right\} \left\{  \mathbbm{1}_{ \{ |V_{N,i}| \ge \epsilon/2  \}  } + \mathbbm{1}_{  \{ E[|V_{N,i}| \mid \mathcal{F}^N] \ge \epsilon/2 \}  } \right\} \mid \mathcal{F}^N]  \tag{tri-neq} \\
+&\le \sum_i E[  | V_{N,i}|   \mathbbm{1}_{ \{ |V_{N,i}| \ge \epsilon/2  \}  } \mid \mathcal{F}^N] +
+  2 \sum_i E[ | V_{N,i}| \mid \mathcal{F}^N] \mathbbm{1}_{  \{ E[|V_{N,i}| \mid \mathcal{F}^N] \ge \epsilon/2 \}  } \\
+&\hspace{10mm} + \sum_i E[ | V_{N,i}|  \mid \mathcal{F}^N] P(|V_{N,i}| \ge \epsilon \mid \mathcal{F}^N) \\
+&= \sum_i E[ | V_{N,i}|   \mathbbm{1}_{ \{ |V_{N,i}| \ge \epsilon/2  \}  } \mid \mathcal{F}^N] +  2B_N + A_N. \tag{defns in 9.69 and 9.70} \\
+\end{align*}
+
+The first term goes to $0$ by eqn. 9.6.8 in assumption (iii). This explains why we are to focus on proving 9.69 and 9.70. 
+\newline
+
+To proving $A_N \overset{p}{\to} 0$: 
+
+\begin{align*}
+A_n &= \sum_i E[ | V_{N,i}|  \mid \mathcal{F}^N] P(|V_{N,i}| \ge \epsilon/2 \mid \mathcal{F}^N ) \\
+&\le P(\max_j |V_{N,j}| \ge \epsilon/2 \mid \mathcal{F}^N ) \sum_i E[ | V_{N,i}|  \mid \mathcal{F}^N] \tag{max} \\
+&\le P\left( \left\{ \epsilon/4 + \sum_{j=1}^{M_N} |V_{N,j}| \mathbbm{1}(|V_{N,j}| \ge \epsilon/4) \right\}  \ge \epsilon/2 \bigg\rvert \mathcal{F}^N \right) \sum_i E[ | V_{N,i}|  \mid \mathcal{F}^N]  \tag{second trick} \\
+&= P\left( \sum_{j=1}^{M_N} |V_{N,j}| \mathbbm{1}(|V_{N,j}| \ge \epsilon/4)   \ge \epsilon/4 \bigg\rvert \mathcal{F}^N \right) \sum_i E[ | V_{N,i}|  \mid \mathcal{F}^N]   \\
+&\le (4/ \epsilon) \sum_j E\left[ |V_{N,j}| \mathbbm{1}(|V_{N,j}| \ge \epsilon/4) \mid \mathcal{F}^N \right]  \sum_i E[ | V_{N,i}|  \mid \mathcal{F}^N]  \tag{Markov's}.
+\end{align*}
+$\sum_i E\left[ |V_{N,i}| \mathbbm{1}(|V_{N,i}| \ge \epsilon/4) \mid \mathcal{F}^N \right]$ goes to $0$ by hypothesis. The other term is bounded in probability by hypothesis. Thus, the whole thing goes to $0$ by Lemma 9.5.3 (3).
+
+Proving $B_N \overset{p}{\to} 0$: 
+\newline
+
+This uses the second inequality trick again:
+\begin{align*}
+B_N &=   \sum_i E[ | V_{N,i}|  \mid \mathcal{F}^N]  \mathbbm{1}( E[|V_{N,i}| \mid \mathcal{F}^N ] \ge \epsilon/2) \\
+&\le  \mathbbm{1}( \max_i E[|V_{N,i}| \mid \mathcal{F}^N ] \ge \epsilon/2) \sum_i E[ | V_{N,i}|  \mid \mathcal{F}^N] \tag{max} \\
+&\le  \mathbbm{1} \left\{ \sum_i E[|V_{N,i}| \mathbbm{1}(| V_{N,i} |\ge \epsilon/4) \mid \mathcal{F}^N ] \ge \epsilon/4 \right\}\sum_i E[ | V_{N,i}|  \mid \mathcal{F}^N]  \tag{second trick} \\
+&\le (4/\epsilon) \sum_i E[|V_{N,i}| \mathbbm{1}(| V_{N,i} |\ge \epsilon/4) \mid \mathcal{F}^N ]  \sum_i E[ | V_{N,i}|  \mid \mathcal{F}^N] \tag{logic} \\
+&\overset{p}{\to} 0
+\end{align*}
+where the last line follows because $\sum_i E[|V_{N,i}| \mathbbm{1}(| V_{N,i} |\ge \epsilon/4) \mid \mathcal{F}^N ]$ goes to $0$ by hypothesis, and the second is bounded in probability by hypothesis, which allows us to use Lemma 9.5.3(3) again. 
+
+In the second to last line, I say ``logic" because this sum is nonnegative, and either it is bigger than $\epsilon/4$, or it isn't--verify the inequality holds in these two cases. 
+
+
+
+\end{document}

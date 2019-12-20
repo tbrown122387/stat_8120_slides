@@ -1,0 +1,61 @@
+---
+title: "Day 11"
+author: "Taylor R. Brown"
+date: "12/19/2019"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Proposition 9.5.1
+
+Let $\{U_{N,i}\}$ be a triangular array of random variables, and let $\{\mathcal{F}^N\}$ be a sequence of sub-$\sigma$-fields of $\mathcal{F}$. Assume
+
+1. The triangular array is conditionally independent given $\mathcal{F}^N$, and for any $N$, $i=1,\ldots,M_N$,
+    - $E[|U_{N,i}| \mid \mathcal{F}^N] < \infty$, and
+    - $E[U_{N,i} \mid \mathcal{F}^N ] = 0$;
+2. For some $\epsilon > 0$ that
+    - $\sum_{i=1}^{M_N}E[U_{N,i}^2 \mathbb{1}( |U_{N,i}| < \epsilon) \mid \mathcal{F}^N ] \overset{\text{p}}{\to} 0$,
+    - $\sum_{i=1}^{M_N}E[ |U_{N,i}| \mathbb{1}( |U_{N,i}| \ge \epsilon) \mid \mathcal{F}^N ] \overset{\text{p}}{\to} 0$,
+
+then
+$$
+\sum_{i=1}^{M_N} U_{N,i} \overset{\text{p}}{\to} 0
+$$
+
+## Proposition 9.5.1
+
+In words, this proposition shows the sum of zero mean random variables converges to $0$. 
+
+There is no requirement that the second moment exists!
+
+One must only assue that 
+
+- the first moment exists, 
+- the expectation of the sum of **truncated** squares converges to $0$, and 
+- the sum of the expected tails go to $0$.
+
+
+## Proposition 9.5.1: Proof 
+
+
+For convenience, we'll abbreviate the truncated squares as follows:
+$$
+U_{N,i}^2 \mathbb{1}( |U_{N,i}| < \epsilon) \overset{\text{def}}{=} \bar{U}_{N,i}^2
+$$
+
+
+The proof outline is as follows: 
+
+1. $\sum_{i=1}^{M_N} U_{N,i}$ is "close to" $\sum_i \bar{U}_{N,i}$
+2. $\sum_{i=1}^{M_N} \bar{U}_{N,i}$ is "close to" $\sum_{i=1}^{M_N} E[\bar{U}_{N,i}\mid \mathcal{F}^N ]$
+
+
+We know $\sum_{i=1}^{M_N} E[\bar{U}_{N,i}\mid \mathcal{F}^N ]$ is "close to" $0$ by assumption, so all that's left to do is to use the triangle inequality to tie everything together.
+
+## Proposition 9.5.1: Proof 
+
+see attached pdf
