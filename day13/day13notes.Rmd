@@ -1,0 +1,99 @@
+---
+title: "Day 13"
+author: "Taylor R. Brown"
+date: "12/24/2019"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## a Central Limit Theorem
+
+We also need to discuss a few new definitions such as what it means for a weighted sample to be **asymptotically normal**.
+
+This definition will apply for a specific 
+
+- class of functions,
+
+- rate of convergence, and 
+
+- an asymptotic variance.
+
+
+To get a central limit theorem, we need to use the law of large numbers we have. We'll use that on characteristic functions!
+
+## a Central Limit Theorem
+
+
+Let 
+
+- $\mathsf{A}$ be a class of real-valued measurable functions on $\mathsf{X}$, 
+
+- $\sigma$ be a real nonnegative function on $\mathsf{A}$,
+
+- $\{a_N\}$ be a non-decreasing real sequence $\uparrow \infty$ (usually $\sqrt{M_N}$)
+
+
+
+## Definition 9.2.4
+
+A weighted sample $\{ \xi^{N,i}, \omega^{N,i} \}_{1 \le i \le N}$ **is asymptotically normal for $(\nu, \mathsf{A}, \sigma, \{a_N\})$** if for any $f \in \mathsf{A}$ it holds that 
+
+- $\nu(|f|) < \infty$
+
+- $\sigma^2(f) < \infty$ and
+
+-
+$$
+a_N \sum_{i=1}^{M_N} \frac{ \omega^{N,i} }{ \sum_{j=1}^{M_N} \omega^{N,j} } [ f(\xi^{N,i}) - \nu(f) ] \overset{\mathcal{D}}{\to} N(0, \sigma^2(f))
+$$
+
+as $N \to \infty$
+
+
+## Lemma 9.5.8
+
+Let $z_1, \ldots, z_m, z_1', \ldots, z_m'$ be complex numbers of modulus at most $1$. Then 
+$$
+| z_1 \cdots z_m - z_1' \cdots z_m'| \le  \sum_{i=1}^m |z_i - z_i'|.
+$$
+
+## Lemma 9.5.8: Proof
+
+Clearly the proposition in question is true for $m=1$. Now assume it's true for $m-1$.
+
+\begin{align*}
+&|z_1 \cdots z_m - z_1' \cdots z_m'| \\
+&= |(z_1 \cdots z_{m-1}) z_m - (z_1 \cdots z_{m-1})z_m' + (z_1 \cdots z_{m-1})z_m'  - (z_1' \cdots z_{m-1}')z_m'| \\
+&= |(z_1 \cdots z_{m-1})(z_m - z_m') + (z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}') z_m'| \\
+&\le |(z_1 \cdots z_{m-1})(z_m - z_m')| + |(z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}') z_m'| \tag{tri-ineq} \\
+&\le |(z_m - z_m')| + |(z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}')|  \tag{each modulus less than $1$} \\
+&\le |(z_m - z_m')| + \sum_{i=1}^{m-1}|z_i - z_i'|  \tag{induction hypothesis}. 
+\end{align*}
+
+## Proposition 9.5.9
+
+Let $\{U_{N,i}\}_{1 \le i \le M_N}$ be a triangular array of random variables and let $\{\mathcal{F}^N\}$ and, for any $N$ and $i=1,\ldots,M_N$,  $E[U_{N,i}^2 \mid \mathcal{F}^N] < \infty$, and $E[U_{N,i} \mid \mathcal{F}^N] = 0$.
+
+Then for any real $u$, $E\left[ \exp\left( i u  \sum_{i=1}^{M_N} U_{N,i} \right) \Biggr\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left( - u^2\sigma^2/2 \right)$ if
+    
+1. there exists a positive constant $\sigma^2$ such that, with $\sigma^2_{N,i} = E[U_{N,i}^2 \mid \mathcal{F}^N]$, 
+$$
+\sum_{i=1}^{M_N} \sigma^2_{N,i}  \overset{\text{p}}{\to} \sigma^2,
+$$  and
+
+2. for all $\epsilon > 0$, the **Lindeberg Condition** holds, that is
+
+$$
+\sum_{i=1}^{M_N} E[U_{N,i}^2 \mathbb{1}\left( |U_{N,i}| \ge \epsilon \right) \mid \mathcal{F}^N]  \overset{\text{p}}{\to} 0.
+$$
+
+
+## The Lindeberg Condition and Uniform Smallness
+
+todo: mention typo
+
+

@@ -6,8 +6,8 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Taylor R. Brown" />
-  <meta name="date" content="2019-12-19" />
-  <title>Day 12</title>
+  <meta name="date" content="2019-12-24" />
+  <title>Day 13</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 body
@@ -363,174 +363,79 @@ list-style-type: none;
 </head>
 <body>
 <div class="slide titlepage">
-  <h1 class="title">Day 12</h1>
+  <h1 class="title">Day 13</h1>
   <p class="author">
 Taylor R. Brown
   </p>
-  <p class="date">12/19/2019</p>
+  <p class="date">12/24/2019</p>
 </div>
-<div id="proposition-9.5.5" class="slide section level2">
-<h1>Proposition 9.5.5</h1>
-<p>This is basically the same consequent as Proposition 9.5.1 from yesterday, but it has weaker conditions.</p>
-<p>These weaker conditions involve a notion called <strong>bounded in probability,</strong> which is also sometimes called <strong>tightness</strong>, <strong>uniform tightness</strong> or <strong>asymptotically tight</strong></p>
-</div>
-<div id="bounded-in-probability" class="slide section level2">
-<h1>Bounded in Probability</h1>
-<p>A sequence of random variables <span class="math inline">\(\{Z_N\}\)</span> is <strong>bounded in probability</strong> if <span class="math display">\[
-\sup_{N \ge 0} P(|Z_N| \ge C) \to 0 
-\]</span> as <span class="math inline">\(C \to \infty\)</span>.</p>
-</div>
-<div id="lemma-9.5.3" class="slide section level2">
-<h1>Lemma 9.5.3</h1>
-<p>Fact 1:</p>
-<p>If <span class="math inline">\(U_N \overset{\mathcal{D}}{\to} U\)</span> then <span class="math inline">\(\{U_N\}\)</span> is bounded in probability.</p>
-<p>Proof hints:</p>
+<div id="a-central-limit-theorem" class="slide section level2">
+<h1>a Central Limit Theorem</h1>
+<p>We also need to discuss a few new definitions such as what it means for a weighted sample to be <strong>asymptotically normal</strong>.</p>
+<p>This definition will apply for a specific</p>
 <ul>
-<li><span class="math inline">\(P(|U_N| &gt; C) = P(|U_N| &gt; C) - P(|U| &gt; C) + P(|U| &gt; C)\)</span>, and</li>
-<li><span class="math inline">\(P(|U| &gt; C) \downarrow 0\)</span> as <span class="math inline">\(C \to \infty\)</span></li>
+<li><p>class of functions,</p></li>
+<li><p>rate of convergence, and</p></li>
+<li><p>an asymptotic variance.</p></li>
+</ul>
+<p>To get a central limit theorem, we need to use the law of large numbers we have. We’ll use that on characteristic functions!</p>
+</div>
+<div id="a-central-limit-theorem-1" class="slide section level2">
+<h1>a Central Limit Theorem</h1>
+<p>Let</p>
+<ul>
+<li><p><span class="math inline">\(\mathsf{A}\)</span> be a class of real-valued measurable functions on <span class="math inline">\(\mathsf{X}\)</span>,</p></li>
+<li><p><span class="math inline">\(\sigma\)</span> be a real nonnegative function on <span class="math inline">\(\mathsf{A}\)</span>,</p></li>
+<li><p><span class="math inline">\(\{a_N\}\)</span> be a non-decreasing real sequence <span class="math inline">\(\uparrow \infty\)</span> (usually <span class="math inline">\(\sqrt{M_N}\)</span>)</p></li>
 </ul>
 </div>
-<div id="lemma-9.5.3-1" class="slide section level2">
-<h1>Lemma 9.5.3</h1>
-<p>Fact 2:</p>
-<p>If <span class="math inline">\(\{V_N\}\)</span> is bounded in probability, and <span class="math inline">\(|U_N| \le |V_N|\)</span> for all <span class="math inline">\(N\)</span>, then <span class="math inline">\(\{U_N\}\)</span> is bounded in probability.</p>
-<p>Proof hints:</p>
+<div id="definition-9.2.4" class="slide section level2">
+<h1>Definition 9.2.4</h1>
+<p>A weighted sample <span class="math inline">\(\{ \xi^{N,i}, \omega^{N,i} \}_{1 \le i \le N}\)</span> <strong>is asymptotically normal for <span class="math inline">\((\nu, \mathsf{A}, \sigma, \{a_N\})\)</span></strong> if for any <span class="math inline">\(f \in \mathsf{A}\)</span> it holds that</p>
 <ul>
-<li><span class="math inline">\(P(|U_N| &gt; C) \le P(|V_N| &gt; C)\)</span></li>
-</ul>
-</div>
-<div id="lemma-9.5.3-2" class="slide section level2">
-<h1>Lemma 9.5.3</h1>
-<p>Fact 3:</p>
-<p>If <span class="math inline">\(\{U_N\}\)</span> is bounded in probability, and <span class="math inline">\(|V_N| \overset{\text{p}}{\to} 0\)</span>, then <span class="math inline">\(U_N V_N \overset{\text{p}}{\to} 0\)</span></p>
-<p>Proof hints:</p>
-<ul>
-<li><span class="math inline">\(P(|U_N V_N| &gt; \epsilon) = P(|U_N V_N| &gt; \epsilon, |U_N| \le C ) + P(|U_N V_N| &gt; \epsilon, |U_N| &gt; C )\)</span></li>
-</ul>
-</div>
-<div id="lemma-9.5.3-3" class="slide section level2">
-<h1>Lemma 9.5.3</h1>
-<p>Fact 4:</p>
-<p>Let <span class="math inline">\(M_N \uparrow \infty\)</span> be a nonrandom sequence. If <span class="math inline">\(\{U_N\}\)</span> is bounded in probability, then <span class="math inline">\(\mathbb{1}(U_N \ge M_N) \overset{\text{p}}{\to} 0\)</span>.</p>
-<p>Proof hints:</p>
-<ul>
-<li>for <span class="math inline">\(1 &gt; \epsilon &gt; 0\)</span>, <span class="math inline">\(P(\mathbb{1}(U_N \ge M_N) &gt; \epsilon) = P(U_N \ge M_N) \le P(|U_N| \ge M_N)\)</span></li>
-</ul>
-</div>
-<div id="lemma-9.5.4" class="slide section level2">
-<h1>Lemma 9.5.4</h1>
-<p>Let <span class="math inline">\(\{V_N\}\)</span> be bounded in probability, and assume that for any (small) <span class="math inline">\(\eta &gt; 0\)</span> there exists a sequence of random variables <span class="math inline">\(\{W_N(\eta)\}\)</span> such that <span class="math inline">\(W_N(\eta) \overset{\text{p}}{\to} 0\)</span> as <span class="math inline">\(N \to \infty\)</span>. If <span class="math display">\[
-|U_N| \le \eta V_N + W_N(\eta)
-\]</span> then <span class="math inline">\(U_N \overset{\text{p}}{\to} 0\)</span>.</p>
-</div>
-<div id="lemma-9.5.4-1" class="slide section level2">
-<h1>Lemma 9.5.4</h1>
-<p><span class="math display">\[
-|U_N| \le \eta V_N + W_N(\eta)
-\]</span></p>
-<p>In the upcoming theorem, the right hand side’s components are what we make assumptions about, and the left hand side is what we want to show converges to <span class="math inline">\(0\)</span>.</p>
-<p>Proof details can be found in attached pdf.</p>
-</div>
-<div id="proposition-9.5.5-1" class="slide section level2">
-<h1>Proposition 9.5.5</h1>
-<p>Let <span class="math inline">\(\{U_{N,i}\}\)</span> be a triangular array of random variables, and let <span class="math inline">\(\{\mathcal{F}^N\}\)</span> be a sequence of sub-<span class="math inline">\(\sigma\)</span>-fields of <span class="math inline">\(\mathcal{F}\)</span>. Then <span class="math inline">\(\sum_{i=1}^{M_N} U_{N,i} \overset{\text{p}}{\to} 0\)</span> if</p>
-<ol style="list-style-type: decimal">
-<li>the triangular array is conditionally independent given <span class="math inline">\(\{\mathcal{F}^N\}\)</span>, and for any <span class="math inline">\(N\)</span>, <span class="math inline">\(i=1, \ldots, M_N\)</span>
-<ul>
-<li><span class="math inline">\(E[|U_{N,i}| \mid \mathcal{F}^N] &lt; \infty\)</span>, and</li>
-<li><span class="math inline">\(E[U_{N,i} \mid \mathcal{F}^N] = 0\)</span>, and</li>
-</ul></li>
-<li><p>the sequence of random variables <span class="math display">\[
-\left\{ \sum_{i=1}^{M_N} E[|U_{N,i}| \mid \mathcal{F}^N]  \right\}_N
-\]</span> is bounded in probability, and</p></li>
-<li><p>for any <span class="math inline">\(\eta &gt; 0\)</span>, <span class="math display">\[
-\sum_{i=1}^{M_N} E[|U_{N,i}| \mathbb{1}(|U_{N,i}| \ge \eta ) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0.
+<li><p><span class="math inline">\(\nu(|f|) &lt; \infty\)</span></p></li>
+<li><p><span class="math inline">\(\sigma^2(f) &lt; \infty\)</span> and</p></li>
+<li><p><span class="math display">\[
+a_N \sum_{i=1}^{M_N} \frac{ \omega^{N,i} }{ \sum_{j=1}^{M_N} \omega^{N,j} } [ f(\xi^{N,i}) - \nu(f) ] \overset{\mathcal{D}}{\to} N(0, \sigma^2(f))
 \]</span></p></li>
-</ol>
-</div>
-<div id="c.f.-proposition-9.5.1" class="slide section level2">
-<h1>c.f. Proposition 9.5.1</h1>
-<p>Recall the old proposition 9.5.1 and compare the assumptions:</p>
-<ol style="list-style-type: decimal">
-<li>The triangular array is conditionally independent given <span class="math inline">\(\mathcal{F}^N\)</span>, and for any <span class="math inline">\(N\)</span>, <span class="math inline">\(i=1,\ldots,M_N\)</span>,
-<ul>
-<li><span class="math inline">\(E[|U_{N,i}| \mid \mathcal{F}^N] &lt; \infty\)</span>, and</li>
-<li><span class="math inline">\(E[U_{N,i} \mid \mathcal{F}^N ] = 0\)</span>;</li>
-</ul></li>
-<li>for some <span class="math inline">\(\epsilon &gt; 0\)</span> that
-<ul>
-<li><span class="math inline">\(\sum_{i=1}^{M_N}E[U_{N,i}^2 \mathbb{1}( |U_{N,i}| &lt; \epsilon) \mid \mathcal{F}^N ] \overset{\text{p}}{\to} 0\)</span>,</li>
-<li><span class="math inline">\(\sum_{i=1}^{M_N}E[ |U_{N,i}| \mathbb{1}( |U_{N,i}| \ge \epsilon) \mid \mathcal{F}^N ] \overset{\text{p}}{\to} 0\)</span>,</li>
-</ul></li>
-</ol>
-</div>
-<div id="proposition-9.5.5-2" class="slide section level2">
-<h1>Proposition 9.5.5</h1>
-<p>In assumption (3) <span class="math display">\[
-\sum_{i=1}^{M_N} E[|U_{N,i}| \mathbb{1}(|U_{N,i}| \ge \eta ) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0.
-\]</span> you might be wondering how a sum of more and more positive things can go to <span class="math inline">\(0\)</span>…</p>
-<p><span class="math inline">\(U_{N,i}\)</span> will be a bunch of random variables that are demeaned, and then scaled by <span class="math inline">\(1/N\)</span>. Think of a sum as a sample average.</p>
-<p>As <span class="math inline">\(N \to \infty\)</span>, <span class="math inline">\(U_{N,i}\)</span> will all get so close to <span class="math inline">\(0\)</span> and all the indicator functions will eventually be turned off.</p>
-</div>
-<div id="proposition-9.5.5-3" class="slide section level2">
-<h1>Proposition 9.5.5</h1>
-<p>To elaborate on (2), if <span class="math display">\[
-\left\{ \sum_{i=1}^{M_N} E[|U_{N,i}| \mid \mathcal{F}^N]  \right\}_N
-\]</span> is bounded in probability, then that is saying that, as you go from iteration to iteration, from row to row, the average total “error” has to be “stable.”</p>
-</div>
-<div id="proposition-9.5.5-proof" class="slide section level2">
-<h1>Proposition 9.5.5: proof</h1>
-<p>All, we have to do is show how these new assumptions imply the assumptions of 9.5.1.</p>
-<p>All the assumptions are the same except for the boundedness in probability part.</p>
-<p>See attached pdf.</p>
-</div>
-<div id="proposition-9.5.7" class="slide section level2">
-<h1>Proposition 9.5.7</h1>
-<p>Proposition 9.5.7 is a statement about the non-demeaned random variables <span class="math inline">\(V_{N,i}\)</span>, where <span class="math display">\[
-U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N].
-\]</span> Its proof uses the proof of Proposition 9.5.5.</p>
-</div>
-<div id="proposition-9.5.7-1" class="slide section level2">
-<h1>Proposition 9.5.7</h1>
-<p>Let <span class="math inline">\(\{V_{N,i}\}\)</span> be a triangular array of random variables and let <span class="math inline">\(\mathcal{F}^N\)</span> be a sequence of sub-<span class="math inline">\(\sigma\)</span>-fields of <span class="math inline">\(\mathcal{F}\)</span>. Then <span class="math inline">\(\sum_{i=1}^{M_N} \left( V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N] \right) \overset{\text{p}}{\to} 0\)</span> if</p>
-<ol style="list-style-type: decimal">
-<li><p>the triangular array is conditionally independent given <span class="math inline">\(\{\mathcal{F}^N\}\)</span>, and for any <span class="math inline">\(N\)</span>, <span class="math inline">\(i=1,\ldots,M_N\)</span> we have that <span class="math inline">\(E[|V_{N,i}| \mid \mathcal{F}^N] &lt; \infty\)</span>, and</p></li>
-<li><p>the sequence <span class="math display">\[
-\left\{ \sum_{i=1}^{M_N} E[|V_{N,i}|  \mid \mathcal{F}^N]  \right\}_N
-\]</span> is bounded in probability, and</p></li>
-<li><p>for any <span class="math inline">\(\epsilon &gt; 0\)</span> <span class="math display">\[
-\sum_{i=1}^{M_N} E[|V_{N,i}| \mathbb{1}( |V_{N,i}| \ge \epsilon ) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0
-\]</span> as <span class="math inline">\(N \to \infty\)</span>.</p></li>
-</ol>
-</div>
-<div id="proposition-9.5.7-part-1-of-proof" class="slide section level2">
-<h1>Proposition 9.5.7: part 1 of proof</h1>
-<p>Using <span class="math inline">\(U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N]\)</span> and</p>
-<p>1(9.5.7). the triangular array <span class="math inline">\(\{V_{N,i}\}\)</span> is conditionally independent given <span class="math inline">\(\{\mathcal{F}^N\}\)</span>, and for any <span class="math inline">\(N\)</span>, <span class="math inline">\(i=1,\ldots,M_N\)</span></p>
-<ul>
-<li><span class="math inline">\(E[|V_{N,i}| \mid \mathcal{F}^N] &lt; \infty\)</span></li>
 </ul>
-<p>verify</p>
-<p>1(9.5.5) the triangular array <span class="math inline">\(\{U_{N,i}\}\)</span> is conditionally independent given <span class="math inline">\(\{\mathcal{F}^N\}\)</span>, and for any <span class="math inline">\(N\)</span>, <span class="math inline">\(i=1, \ldots, M_N\)</span></p>
-<ul>
-<li><span class="math inline">\(E[|U_{N,i}| \mid \mathcal{F}^N] &lt; \infty\)</span>, and</li>
-<li><span class="math inline">\(E[U_{N,i} \mid \mathcal{F}^N] = 0\)</span>, and</li>
-</ul>
+<p>as <span class="math inline">\(N \to \infty\)</span></p>
 </div>
-<div id="proposition-9.5.7-part-2-of-proof" class="slide section level2">
-<h1>Proposition 9.5.7: part 2 of proof</h1>
-<p>Using <span class="math inline">\(U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N]\)</span> and</p>
-<p>2(9.5.7) <span class="math inline">\(\left\{ \sum_{i=1}^{M_N} E[|V_{N,i}| \mid \mathcal{F}^N] \right\}_N\)</span> is bounded in probability</p>
-<p>to verify that</p>
-<p>2(9.5.5) <span class="math inline">\(\left\{ \sum_{i=1}^{M_N} E[|U_{N,i}| \mid \mathcal{F}^N] \right\}_N\)</span> is bounded in probability.</p>
+<div id="lemma-9.5.8" class="slide section level2">
+<h1>Lemma 9.5.8</h1>
+<p>Let <span class="math inline">\(z_1, \ldots, z_m, z_1', \ldots, z_m'\)</span> be complex numbers of modulus at most <span class="math inline">\(1\)</span>. Then <span class="math display">\[
+| z_1 \cdots z_m - z_1' \cdots z_m'| \le  \sum_{i=1}^m |z_i - z_i'|.
+\]</span></p>
 </div>
-<div id="proposition-9.5.7-part-3-of-proof" class="slide section level2">
-<h1>Proposition 9.5.7: part 3 of proof</h1>
-<p>Using <span class="math inline">\(U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N]\)</span> and</p>
-<p>3(9.5.7) <span class="math inline">\(\sum_{i=1}^{M_N} E[|V_{N,i}| \mathbb{1}( |V_{N,i}| \ge \epsilon ) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0\)</span></p>
-<p>to verify that</p>
-<p>3(9.5.5) <span class="math inline">\(\sum_{i=1}^{M_N} E[|U_{N,i}| \mathbb{1}(|U_{N,i}| \ge \eta ) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0.\)</span></p>
-<p>This part is the hardest. Details for the entire proof can be found in the attached pdf.</p>
+<div id="lemma-9.5.8-proof" class="slide section level2">
+<h1>Lemma 9.5.8: Proof</h1>
+<p>Clearly the proposition in question is true for <span class="math inline">\(m=1\)</span>. Now assume it’s true for <span class="math inline">\(m-1\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+&amp;|z_1 \cdots z_m - z_1' \cdots z_m'| \\
+&amp;= |(z_1 \cdots z_{m-1}) z_m - (z_1 \cdots z_{m-1})z_m' + (z_1 \cdots z_{m-1})z_m'  - (z_1' \cdots z_{m-1}')z_m'| \\
+&amp;= |(z_1 \cdots z_{m-1})(z_m - z_m') + (z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}') z_m'| \\
+&amp;\le |(z_1 \cdots z_{m-1})(z_m - z_m')| + |(z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}') z_m'| \tag{tri-ineq} \\
+&amp;\le |(z_m - z_m')| + |(z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}')|  \tag{each modulus less than $1$} \\
+&amp;\le |(z_m - z_m')| + \sum_{i=1}^{m-1}|z_i - z_i'|  \tag{induction hypothesis}. 
+\end{align*}\]</span></p>
+</div>
+<div id="proposition-9.5.9" class="slide section level2">
+<h1>Proposition 9.5.9</h1>
+<p>Let <span class="math inline">\(\{U_{N,i}\}_{1 \le i \le M_N}\)</span> be a triangular array of random variables and let <span class="math inline">\(\{\mathcal{F}^N\}\)</span> and, for any <span class="math inline">\(N\)</span> and <span class="math inline">\(i=1,\ldots,M_N\)</span>, <span class="math inline">\(E[U_{N,i}^2 \mid \mathcal{F}^N] &lt; \infty\)</span>, and <span class="math inline">\(E[U_{N,i} \mid \mathcal{F}^N] = 0\)</span>.</p>
+<p>Then for any real <span class="math inline">\(u\)</span>, <span class="math inline">\(E\left[ \exp\left( i u \sum_{i=1}^{M_N} U_{N,i} \right) \Biggr\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left( - u^2\sigma^2/2 \right)\)</span> if</p>
+<ol style="list-style-type: decimal">
+<li><p>there exists a positive constant <span class="math inline">\(\sigma^2\)</span> such that, with <span class="math inline">\(\sigma^2_{N,i} = E[U_{N,i}^2 \mid \mathcal{F}^N]\)</span>, <span class="math display">\[
+\sum_{i=1}^{M_N} \sigma^2_{N,i}  \overset{\text{p}}{\to} \sigma^2,
+\]</span> and</p></li>
+<li><p>for all <span class="math inline">\(\epsilon &gt; 0\)</span>, the <strong>Lindeberg Condition</strong> holds, that is</p></li>
+</ol>
+<p><span class="math display">\[
+\sum_{i=1}^{M_N} E[U_{N,i}^2 \mathbb{1}\left( |U_{N,i}| \ge \epsilon \right) \mid \mathcal{F}^N]  \overset{\text{p}}{\to} 0.
+\]</span></p>
+</div>
+<div id="the-lindeberg-condition-and-uniform-smallness" class="slide section level2">
+<h1>The Lindeberg Condition and Uniform Smallness</h1>
+<p>todo: mention typo</p>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
