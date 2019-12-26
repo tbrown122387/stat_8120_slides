@@ -1,0 +1,83 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{url}
+\usepackage{bbm} %for bold indicator func
+
+\title{A More Detailed Proof of Taylor's Inequality (page 340 in IHMM)}
+
+\begin{document}
+\maketitle
+
+
+IHMM's ``Taylor's Inequality" is a special case of the following, which is from page 343 of Billingsley: 
+\[
+\left|e^{ix} - \sum_{k=0}^n\frac{(ix)^k}{k!}\right| \le \min\left\{\frac{|x|^{n+1} }{(n+1)!}, \frac{2|x|^n}{n!} \right\}.
+\]
+
+The main tool we use to prove this inequality is the following result that comes from integration by parts. To reiterate what Billingsley says,
+\begin{align*}
+\int_0^x (x-s)^n e^{is}ds &= -\frac{(x-s)^{n+1} }{n+1} e^{is} \bigg\rvert_{s=0}^{s=x} + \int_0^x  \frac{i(x-s)^{n+1} }{n+1} e^{is} ds  \\
+&= \left[0+ \frac{x^{n+1} }{n+1}\right] + \int_0^x  \frac{i(x-s)^{n+1} }{n+1} e^{is} ds  \\
+&=  \frac{x^{n+1} }{n+1} + \frac{i}{n+1}  \int_0^x  (x-s)^{n+1}e^{is} ds.
+\end{align*}
+To prove this statement is true for any $n \ge 0$, use induction. Start at $n=0$ and then go up. To illustrate that induction, consider the following:
+\begin{align*}
+i^{-1}(e^{ix}-1) &= \int_0^x  e^{is}ds \\
+&= x + i  \int_0^x  (x-s) e^{is} ds \tag{IBP}\\
+&= x + i  \left(\frac{x^2}{2} + \frac{i}{2} \int_0^x  (x-s)^2 e^{is} \right) ds \tag{IBP} \\
+&= x + i\frac{x^2}{2} - \frac{1}{2} \int_0^x  (x-s)^2 e^{is}  ds  \\
+&= x + i\frac{x^2}{2} - \frac{1}{2} \left(  \frac{x^3}{3} +\frac{i}{3} \int_0^x (x-s)^3 e^{is}  ds \right) \tag{IBP}\\
+&= x + i\frac{x^2}{2} - \frac{x^3}{3!} - \frac{i}{3!} \int_0^x (x-s)^3 e^{is}  ds \\
+&= i^0 x + i^1 \frac{x^2}{2}  + i^2 \frac{x^3}{3!} +  \frac{i^3}{3!} \int_0^x (x-s)^3 e^{is}  ds \\
+&\vdots \\
+&= \sum_{k=1}^{n} \frac{ i^{k-1}x^k }{k!} + \frac{i^n}{n!}\int_0^x (x-s)^n e^{is}  ds.
+\end{align*}
+
+Equation (26.2) in Billingsley comes from the above after solving for $e^{ix}$:
+
+\begin{align*}
+e^{ix} &= 1 + \sum_{k=1}^{n} \frac{ i^{k}x^k }{k!} + \frac{i^{n+1} }{n!}\int_0^x (x-s)^n e^{is}  ds \\
+&= \sum_{k=0}^{n} \frac{ i^{k}x^k }{k!} + \frac{i^{n+1} }{n!}\int_0^x (x-s)^n e^{is}  ds \tag{1}.
+\end{align*}
+
+We also need a variant of this equation:
+
+\begin{align*}
+e^{ix} &= \sum_{k=0}^{n-1} \frac{ i^{k}x^k }{k!} + \frac{i^{n} }{(n-1)!}\int_0^x (x-s)^{n-1} (e^{is} -1 + 1)  ds \tag{replace $n$ with $n-1$} \\
+&= \sum_{k=0}^{n-1} \frac{ i^{k}x^k }{k!} + \frac{i^{n} }{(n-1)!}\int_0^x (x-s)^{n-1} (e^{is} -1)  ds + \frac{i^{n} }{(n-1)!}\int_0^x (x-s)^{n-1}ds \\
+&= \sum_{k=0}^{n-1} \frac{ i^{k}x^k }{k!} + \frac{i^{n} }{(n-1)!}\int_0^x (x-s)^{n-1} (e^{is} -1)  ds + \frac{i^{n} }{(n-1)!}\frac{x^n}{n} \tag{substitution} \\
+&= \sum_{k=0}^{n} \frac{ i^{k}x^k }{k!} + \frac{i^{n} }{(n-1)!}\int_0^x (x-s)^{n-1} (e^{is} -1)  ds. \tag{2}
+\end{align*}
+
+We use (1) when $x \ge 0$, and we use (2) when $x < 0$. When $x \ge 0$:
+\begin{align*}
+\left| e^{ix} - \sum_{k=0}^{n} \frac{ i^{k}x^k }{k!} \right| &= \left| \frac{i^{n+1} }{n!}\int_0^x (x-s)^n e^{is}  ds \right| \\
+&\le \frac{1 }{n!}\int_0^x |(x-s)^n e^{is}|  ds \tag{Jensen's} \\
+&\le \frac{1 }{n!}\int_0^x (x-s)^n   ds \\
+&= \frac{x^{n+1}}{(n+1)!} \tag{substitution}.
+\end{align*}
+
+When $x < 0$, 
+\begin{align*}
+\left| e^{ix} - \sum_{k=0}^{n} \frac{ i^{k}x^k }{k!} \right| &\le \frac{1 }{(n-1)!}\int_0^x |(x-s)^{n-1}| |e^{is} -1|  ds \tag{Jensen's}  \\
+&= \frac{1 }{(n-1)!}\int_0^x ( s - x)^{n-1} |e^{is} -1|  ds \tag{ $x < 0$ } \\
+&\le \frac{2 }{(n-1)!}\int_0^x (s-x)^{n-1}   ds \tag{tri-ineq} \\
+&= -\frac{2 }{(n-1)!}\int_x^0 (s-x)^{n-1}   ds \\
+&= \frac{2 |x|^n}{n!}\tag{substitution}
+\end{align*}
+
+Since they are both true
+\[
+\left| e^{ix} - \sum_{k=0}^{n} \frac{ i^{k}x^k }{k!} \right| \le \min \left\{\frac{|x|^{n+1}}{(n+1)!}  , \frac{2 |x|^n}{n!} \right\}
+\]
+and in the case of when $n=2$
+\[
+\left| e^{ix} - (1 + ix -x^2/2)  \right| \le \min \left\{ \frac{|x|^{3}}{(3)!}  ,  |x|^2 \right\}\le \min \left\{ |x|^{3}  ,  |x|^2 \right\}.
+\]
+
+This inequality will be used on each random variable in a row of the array. We will replace $x$ with particular $u U_{N,j}$.
+
+
+\end{document}

@@ -6,8 +6,8 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Taylor R. Brown" />
-  <meta name="date" content="2019-12-24" />
-  <title>Day 13</title>
+  <meta name="date" content="2019-12-26" />
+  <title>Day 14</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 body
@@ -363,135 +363,28 @@ list-style-type: none;
 </head>
 <body>
 <div class="slide titlepage">
-  <h1 class="title">Day 13</h1>
+  <h1 class="title">Day 14</h1>
   <p class="author">
 Taylor R. Brown
   </p>
-  <p class="date">12/24/2019</p>
+  <p class="date">12/26/2019</p>
 </div>
-<div id="a-central-limit-theorem" class="slide section level2">
-<h1>a Central Limit Theorem</h1>
-<p>We also need to discuss a few new definitions such as what it means for a weighted sample to be <strong>asymptotically normal</strong>.</p>
-<p>This definition will apply for a specific</p>
+<div id="todo" class="slide section level2">
+<h1>TODO</h1>
+<p>Last class:</p>
 <ul>
-<li><p>class of functions,</p></li>
-<li><p>rate of convergence, and</p></li>
-<li><p>an asymptotic variance.</p></li>
+<li>9.5.9</li>
 </ul>
-<p>To get a central limit theorem, we need to use the law of large numbers we have. We’ll use that on characteristic functions!</p>
-</div>
-<div id="a-central-limit-theorem-1" class="slide section level2">
-<h1>a Central Limit Theorem</h1>
-<p>Let</p>
+<p>This class:</p>
 <ul>
-<li><p><span class="math inline">\(\mathsf{A}\)</span> be a class of real-valued measurable functions on <span class="math inline">\(\mathsf{X}\)</span>,</p></li>
-<li><p><span class="math inline">\(\sigma\)</span> be a real, nonnegative function on <span class="math inline">\(\mathsf{A}\)</span>,</p></li>
-<li><p><span class="math inline">\(\{a_N\}\)</span> be a non-decreasing real sequence <span class="math inline">\(\uparrow \infty\)</span> (usually <span class="math inline">\(\sqrt{M_N}\)</span>)</p></li>
+<li><p>9.5.12 (apply 9.5.9 to centered version)</p></li>
+<li><p>9.5.13 (final theorem applied to particles!)</p></li>
 </ul>
-</div>
-<div id="definition-9.2.4" class="slide section level2">
-<h1>Definition 9.2.4</h1>
-<p>A weighted sample <span class="math inline">\(\{ \xi^{N,i}, \omega^{N,i} \}_{1 \le i \le N}\)</span> <strong>is asymptotically normal for <span class="math inline">\((\nu, \mathsf{A}, \sigma, \{a_N\})\)</span></strong> if for any <span class="math inline">\(f \in \mathsf{A}\)</span> it holds that</p>
+<p>Skipping:</p>
 <ul>
-<li><p><span class="math inline">\(\nu(|f|) &lt; \infty\)</span></p></li>
-<li><p><span class="math inline">\(\sigma^2(f) &lt; \infty\)</span> and</p></li>
-<li><p><span class="math display">\[
-a_N \sum_{i=1}^{M_N} \frac{ \omega^{N,i} }{ \sum_{j=1}^{M_N} \omega^{N,j} } [ f(\xi^{N,i}) - \nu(f) ] \overset{\mathcal{D}}{\to} N(0, \sigma^2(f))
-\]</span></p></li>
+<li>Corollary 9.5.11 (assuming identicalness as an extra)</li>
+<li>(TODO, figure out what <span class="math inline">\(V_{N,i}\)</span> applies to)</li>
 </ul>
-<p>as <span class="math inline">\(N \to \infty\)</span></p>
-</div>
-<div id="roadmap" class="slide section level2">
-<h1>Roadmap</h1>
-<ol style="list-style-type: decimal">
-<li><p>Lemma 9.5.8 (proof is easy)</p></li>
-<li><p>Taylor’s Inequality (proof is involved and optional, from another book)</p></li>
-<li><p>Statement of Prop. 9.5.9</p></li>
-<li><p>Discussion of conditions</p></li>
-<li><p>Proof of Proposition 9.5.9</p></li>
-</ol>
-</div>
-<div id="lemma-9.5.8" class="slide section level2">
-<h1>Lemma 9.5.8</h1>
-<p>Let <span class="math inline">\(z_1, \ldots, z_m, z_1', \ldots, z_m'\)</span> be complex numbers of modulus at most <span class="math inline">\(1\)</span>. Then <span class="math display">\[
-| z_1 \cdots z_m - z_1' \cdots z_m'| \le  \sum_{i=1}^m |z_i - z_i'|.
-\]</span></p>
-</div>
-<div id="lemma-9.5.8-proof" class="slide section level2">
-<h1>Lemma 9.5.8: Proof</h1>
-<p>Clearly the proposition in question is true for <span class="math inline">\(m=1\)</span>. Now assume it’s true for <span class="math inline">\(m-1\)</span>.</p>
-<p><span class="math display">\[\begin{align*}
-&amp;|z_1 \cdots z_m - z_1' \cdots z_mp'| \\
-&amp;= |(z_1 \cdots z_{m-1}) z_m - (z_1 \cdots z_{m-1})z_m' + (z_1 \cdots z_{m-1})z_m'  - (z_1' \cdots z_{m-1}')z_m'| \\
-&amp;= |(z_1 \cdots z_{m-1})(z_m - z_m') + (z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}') z_m'| \\
-&amp;\le |(z_1 \cdots z_{m-1})(z_m - z_m')| + |(z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}') z_m'| \tag{tri-ineq} \\
-&amp;\le |(z_m - z_m')| + |(z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}')|  \tag{each modulus less than $1$} \\
-&amp;\le |(z_m - z_m')| + \sum_{i=1}^{m-1}|z_i - z_i'|  \tag{induction hypothesis}. 
-\end{align*}\]</span></p>
-</div>
-<div id="taylors-inequality" class="slide section level2">
-<h1>Taylor’s Inequality</h1>
-<p>The book takes this as given: <span class="math display">\[
-\left| \exp[i t x] - \left(1 + itx - \frac{1}{2} t^2 x^2 \right) \right| \le \min \left\{ |tx|^2, |tx|^3  \right\}.
-\]</span></p>
-<p>I provide more information in <code>taylor_ineq.pdf</code> (TODO double check proof)|.</p>
-</div>
-<div id="proposition-9.5.9" class="slide section level2">
-<h1>Proposition 9.5.9</h1>
-<p>Let <span class="math inline">\(\{U_{N,i}\}_{1 \le i \le M_N}\)</span> be a triangular array of random variables and let <span class="math inline">\(\{\mathcal{F}^N\}\)</span> and, for any <span class="math inline">\(N\)</span> and <span class="math inline">\(i=1,\ldots,M_N\)</span>, <span class="math inline">\(E[U_{N,i}^2 \mid \mathcal{F}^N] &lt; \infty\)</span>, and <span class="math inline">\(E[U_{N,i} \mid \mathcal{F}^N] = 0\)</span>.</p>
-<p>Then for any real <span class="math inline">\(u\)</span>, <span class="math display">\[
-E\left[ \exp\left( i u  \sum_{i=1}^{M_N} U_{N,i} \right) \Biggr\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left( - u^2\sigma^2/2 \right)
-\]</span> if two conditions hold…</p>
-</div>
-<div id="proposition-9.5.9-continued" class="slide section level2">
-<h1>Proposition 9.5.9 (continued)</h1>
-<ol style="list-style-type: decimal">
-<li><p>there exists a positive constant <span class="math inline">\(\sigma^2\)</span> such that, <span class="math display">\[
-\sum_{i=1}^{M_N} \sigma^2_{N,i}  \overset{\text{p}}{\to} \sigma^2,
-\]</span><br />
-with <span class="math inline">\(\sigma^2_{N,i} = E[U_{N,i}^2 \mid \mathcal{F}^N]\)</span>, and</p></li>
-<li><p>for all <span class="math inline">\(\epsilon &gt; 0\)</span>, the <strong>Lindeberg Condition</strong> holds, that is</p></li>
-</ol>
-<p><span class="math display">\[
-\sum_{i=1}^{M_N} E[U_{N,i}^2 \mathbb{1}\left( |U_{N,i}| \ge \epsilon \right) \mid \mathcal{F}^N]  \overset{\text{p}}{\to} 0.
-\]</span></p>
-</div>
-<div id="condition-1-a-consistent-variance-estimator" class="slide section level2">
-<h1>Condition 1: a consistent variance estimator</h1>
-<p>When we say <span class="math display">\[
-\sum_{i=1}^{M_N} \sigma^2_{N,i}  \overset{\text{p}}{\to} \sigma^2,
-\]</span><br />
-with <span class="math inline">\(\sigma^2_{N,i} = E[U_{N,i}^2 \mid \mathcal{F}^N]\)</span>, we are thinking of <span class="math display">\[
-U_{N,i} = \frac{ f(\xi^{i}) - E[f(\xi^{i}) \mid \mathcal{F}^N] }{\sqrt{M_N}} =\sqrt{M_N} \left( \frac{ f(\xi^{i}) - E[f(\xi^{i}) \mid \mathcal{F}^N] }{M_N} \right).
-\]</span></p>
-</div>
-<div id="condition-2-the-lindeberg-condition" class="slide section level2">
-<h1>Condition 2: The Lindeberg Condition</h1>
-<p>The <strong>The Lindeberg Condition</strong> is <span class="math display">\[
-\sum_{i=1}^{M_N} E[U_{N,i}^2 \mathbb{1}\left( |U_{N,i}| \ge \epsilon \right) \mid \mathcal{F}^N]  \overset{\text{p}}{\to} 0.
-\]</span></p>
-<p>The only way the entire sum can go to <span class="math inline">\(0\)</span> is if <strong>all</strong> nonnegative summands goes to <span class="math inline">\(0\)</span>. The <strong>uniform smallness</strong> condition is actually weaker:</p>
-<p><span class="math display">\[
-\max_{1 \le i \le M_N} E[U_{N,i}^2  \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0.
-\]</span></p>
-</div>
-<div id="condition-2-the-lindeberg-condition-continued" class="slide section level2">
-<h1>Condition 2: The Lindeberg Condition (continued)</h1>
-<p>The proof for LC implying US. Let <span class="math inline">\(\epsilon &gt; 0\)</span>. Then</p>
-<p><span class="math display">\[\begin{align*}
-\sigma^2_{N,i} &amp;= E[U_{N,i}^2 \mathbb{1}( U_{N,i} &lt; \epsilon) \mid \mathcal{F}^N ] + E[U_{N,i}^2 \mathbb{1}( U_{N,i} \ge \epsilon) \mid \mathcal{F}^N ] \\
-&amp;\le \epsilon^2 + E[U_{N,i}^2 \mathbb{1}( U_{N,i} \ge \epsilon) \mid \mathcal{F}^N ]
-\end{align*}\]</span> implies <span class="math display">\[\begin{align*}
-\max_{1 \le i \le M_N} \sigma^2_{N,i} 
-&amp;\le \epsilon^2 +  \max_{1 \le i \le M_N} E[U_{N,i}^2 \mathbb{1}( U_{N,i} \ge \epsilon) \mid \mathcal{F}^N ] \\
-&amp;\le \epsilon^2 +  \sum_{1 \le i \le M_N} E[U_{N,i}^2 \mathbb{1}( U_{N,i} \ge \epsilon) \mid \mathcal{F}^N ]
-\end{align*}\]</span></p>
-<p>LC implies the last term goes to <span class="math inline">\(0\)</span>, and <span class="math inline">\(\epsilon\)</span> was arbitrary.</p>
-</div>
-<div id="proposition-9.5.9-proof" class="slide section level2">
-<h1>Proposition 9.5.9 (proof)</h1>
-<p>Details can be found in <code>prop_9.5.9.pdf</code>.</p>
-<p>This does not assume conditional identicalness (but it does assume independence).</p>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->

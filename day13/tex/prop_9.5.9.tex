@@ -1,0 +1,96 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{url}
+\usepackage{bbm} %for bold indicator func
+
+\title{A More Detailed Proof of Prop. 9.5.9}
+
+\begin{document}
+\maketitle
+
+Take care to realize that the book has two $i$'s. One represents the complex number $i = \sqrt{-1}$, and the other represents the index of the sum. To prevent confusion, the book changed the font for the complex number. However, I choose a different path, and I use $j$ as the index of the sum. 
+\newline
+
+The goal is to show that 
+\[
+E\left[ \exp\left( i u \sum_j U_{N,j} \right) \bigg\rvert \mathcal{F}^N \right] - \exp(- \sigma^2 u^2/2) \overset{p}{\to} 0.
+\]
+However, the continuous mapping theorem, together with assumption (ii), implies that 
+\[
+\exp\left( -(u^2/2) \sum_j \sigma^2_{N,j}  \right) - \exp(- \sigma^2 u^2/2)\overset{p}{\to} 0,
+\]
+so this explains why it suffices to prove 9.74. 
+
+We provded Lemma 9.5.8 for complex numbers with modulus less than $1$. Real numbers are complex numbers, too, though.
+
+
+\begin{align*}
+&  \left| E\left[\exp\left( i u \sum_j U_{N,j} \right) -  \exp\left( -(u^2/2) \sum_j \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right| \\
+&=  \left| E\left[ \prod_j \exp\left( i u  U_{N,j} \right) -  \prod_j \exp\left( -(u^2/2) \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right| \tag{algebra}\\
+&=  \left|  \prod_j E\left[ \exp\left( i u  U_{N,j} \right)\bigg\rvert \mathcal{F}^N \right] -  \prod_j E\left[\exp\left( -(u^2/2) \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right| \tag{independence, linearity} \\
+&\le  \sum_j \left| E\left[  \exp\left( i u  U_{N,j} \right) - \exp\left( -(u^2/2) \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right| \tag{Lemma 9.5.8}\\
+&=  \sum_j \left| E\left[  \exp\left( i u  U_{N,j} \right) - (1 - u^2 \sigma^2_{N,j}/2) + (1 - u^2 \sigma^2_{N,j}/2) -\exp\left( -(u^2/2) \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right|  \tag{algebra}\\
+&\le \sum_j \left| E\left[   \exp\left( i u U_{N,j} \right)  - (1 - u^2 \sigma^2_{N,j}/2) \mid \mathcal{F}^N \right] \right|  \\
+&\hspace{10mm} + \sum_j  \left|E\left[  \exp\left( -(u^2/2) \sigma^2_{N,j}  \right) - (1 - u^2 \sigma^2_{N,j}/2)   \mid \mathcal{F}^N \right] \right| \tag{linearity, tri-ineq} \\
+&= A_N + B_N. \tag{defn}
+\end{align*}
+
+So, the overall goal is to show these two terms converge to $0$. 
+Focusing on $A_N$ first, we will use the inequality we proved in the last section, namely 
+
+\[
+-\min\{| u U_{N,j}|^2, | u U_{N,j}|^3 \} \le e^{i u U_{N,j}} - (1 +i u U_{N,j} - \frac{1}{2} u^2 U_{N,j}^2) \le \min\{| u U_{N,j}|^2, | u U_{N,j}|^3 \}.
+\]
+
+Take conditional expectations on all sides, then take the absolute value (in that order). 
+
+This gives you the book's inequality (the third one, unnumbered, on page 340):
+
+\begin{align*}
+\left| E\left[e^{i u U_{N,j}} - (1 +i u U_{N,j} - \frac{1}{2} u^2 U_{N,j}^2) \mid \mathcal{F}^N \right]  \right| 
+&= \left| E\left[e^{i u U_{N,j}}\mid \mathcal{F}^N \right] - (1  - \frac{1}{2} u^2 \sigma^2_{N,j})   \right|\\
+&\le E\left[ \min\{| u U_{N,j}|^2, | u U_{N,j}|^3 \} \mid \mathcal{F}^N \right] \\
+&\le E\left[ | u U_{N,j}|^2 \mid \mathcal{F}^N \right] \\
+&<\infty \tag{assumption}.
+\end{align*}
+
+We are using the fact that the mean of each $U_{N,j}$ is zero. The absolute value sign has to be on the outside.
+
+Another trick we need is the following inequality. Let $\epsilon > 0$. Then
+\begin{align*}
+&\min\{|uU_{N,j} |^2, |uU_{N,j}|^3 \} \\
+&=\min\{|uU_{N,j} |^2, |uU_{N,j}|^3 \}  1(|U_{N,j}| > \epsilon) + \min\{|uU_{N,j} |^2, |uU_{N,j}|^3 \}  1(|U_{N,j}| \le \epsilon) \\
+&\le |uU_{N,j} |^2 1(|U_{N,j}| > \epsilon) + \epsilon|u|^3 |U_{N,j}|^2  \mathbbm{1}(|U_{N,j}| \le \epsilon) \\
+&\le |uU_{N,j} |^2 1(|U_{N,j}| > \epsilon) + \epsilon|u|^3 |U_{N,j}|^2. 
+\end{align*}
+
+
+This let's us take care of the first part:
+\begin{align*}
+A_N &= \sum_j \left| E\left[   \exp\left( i u U_{N,j} \right)  - (1 - u^2 \sigma^2_{N,j}/2) \mid \mathcal{F}^N \right] \right| \tag{defn.} \\
+&\le \sum_{j=1}^{M_N} E[ \min\{|uU_{N,j} |^2, |uU_{N,i}|^3 \} \mid \mathcal{F}^N ] \tag{Taylor's ineq} \\
+&\le u^2 \sum_{j=1}^{M_N} E[ U_{N,j}^2 \mathbbm{1}(|U_{N,j}| > \epsilon) \mid \mathcal{F}^N ] + \epsilon |u|^3 \sum_{j=1}^{M_N} \sigma^2_{N,j} \tag{above inequality} \\
+&\to 0 + \epsilon |u|^3 \sigma^2. \tag{assumption ii. and iii.}
+\end{align*}
+
+Now we look at $B_n$. The real-valued version of Taylor's Inequality states
+\[
+\bigg\rvert e^{-x} - \sum_{i=0}^n \frac{x^i}{i!}\bigg\rvert \le \frac{M}{(n+1)!} | x-a|^{n+1}
+\]
+as long as $|f^{(n+1)}(x)| \le M$. Set $n=1$, $a=0$, and looking at $x \ge 0$, which means $|f^{(n+1)}(x)| = |f^{(2)}(x)| = |e^{-x}| \le 1$. This gives us, 
+\[
+|e^{-x} - 1 + x  | \le x^2/2.
+\]
+What does this mean for $B_N$? Well,
+\begin{align*}
+B_N &= \sum_{i=1}^{M_N} |\exp(-u^2 \sigma^2_{N,i}/2) - (1-u^2 \sigma^2_{N,i}/2)| \tag{defn.} \\
+&\le \sum_{i=1}^{M_N} \left(u^2 \sigma^2_{N,i}/2 \right)^2/2 \tag{real-valued Taylor's}\\
+&= \frac{u^4}{8} \sum_{i=1}^{M_N} \sigma^4_{N,i} \\
+&\le \frac{u^4}{8} \left(\max_i \sigma^2_{N,i} \right)\sum_{i=1}^{M_N} \sigma^2_{N,i} \tag{see below} \\
+&\to \frac{u^4}{8} \times 0 \times \sigma^2.
+\end{align*}
+The last line follows because of assumption 2 and the Uniform Smallness Condition (Remark 9.5.10.) 
+
+\end{document}

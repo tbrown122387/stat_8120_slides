@@ -1,0 +1,28 @@
+---
+title: "Day 14"
+author: "Taylor R. Brown"
+date: "12/26/2019"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## TODO
+
+Last class:
+
+- 9.5.9
+
+This class:
+
+- 9.5.12 (apply 9.5.9 to centered version)
+
+- 9.5.13 (final theorem applied to particles!)
+
+Skipping:
+
+- Corollary 9.5.11 (assuming identicalness as an extra)
+- (TODO, figure out what $V_{N,i}$ applies to)

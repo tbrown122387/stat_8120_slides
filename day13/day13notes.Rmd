@@ -32,7 +32,7 @@ Let
 
 - $\mathsf{A}$ be a class of real-valued measurable functions on $\mathsf{X}$, 
 
-- $\sigma$ be a real nonnegative function on $\mathsf{A}$,
+- $\sigma$ be a real, nonnegative function on $\mathsf{A}$,
 
 - $\{a_N\}$ be a non-decreasing real sequence $\uparrow \infty$ (usually $\sqrt{M_N}$)
 
@@ -53,6 +53,19 @@ $$
 
 as $N \to \infty$
 
+## Roadmap
+
+1. Lemma 9.5.8 (proof is easy)
+
+2. Taylor's Inequality (proof is involved and optional, from another book)
+
+3. Statement of Prop. 9.5.9
+
+4. Discussion of conditions
+
+5. Proof of Proposition 9.5.9
+
+
 
 ## Lemma 9.5.8
 
@@ -66,7 +79,7 @@ $$
 Clearly the proposition in question is true for $m=1$. Now assume it's true for $m-1$.
 
 \begin{align*}
-&|z_1 \cdots z_m - z_1' \cdots z_m'| \\
+&|z_1 \cdots z_m - z_1' \cdots z_mp'| \\
 &= |(z_1 \cdots z_{m-1}) z_m - (z_1 \cdots z_{m-1})z_m' + (z_1 \cdots z_{m-1})z_m'  - (z_1' \cdots z_{m-1}')z_m'| \\
 &= |(z_1 \cdots z_{m-1})(z_m - z_m') + (z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}') z_m'| \\
 &\le |(z_1 \cdots z_{m-1})(z_m - z_m')| + |(z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}') z_m'| \tag{tri-ineq} \\
@@ -74,16 +87,32 @@ Clearly the proposition in question is true for $m=1$. Now assume it's true for 
 &\le |(z_m - z_m')| + \sum_{i=1}^{m-1}|z_i - z_i'|  \tag{induction hypothesis}. 
 \end{align*}
 
+## Taylor's Inequality
+
+The book takes this as given:
+$$
+\left| \exp[i t x] - \left(1 + itx - \frac{1}{2} t^2 x^2 \right) \right| \le \min \left\{ |tx|^2, |tx|^3  \right\}.
+$$
+
+I provide more information in `taylor_ineq.pdf` (TODO double check proof)|.
+
 ## Proposition 9.5.9
 
 Let $\{U_{N,i}\}_{1 \le i \le M_N}$ be a triangular array of random variables and let $\{\mathcal{F}^N\}$ and, for any $N$ and $i=1,\ldots,M_N$,  $E[U_{N,i}^2 \mid \mathcal{F}^N] < \infty$, and $E[U_{N,i} \mid \mathcal{F}^N] = 0$.
 
-Then for any real $u$, $E\left[ \exp\left( i u  \sum_{i=1}^{M_N} U_{N,i} \right) \Biggr\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left( - u^2\sigma^2/2 \right)$ if
+Then for any real $u$, 
+$$
+E\left[ \exp\left( i u  \sum_{i=1}^{M_N} U_{N,i} \right) \Biggr\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left( - u^2\sigma^2/2 \right)
+$$ 
+if two conditions hold...
     
-1. there exists a positive constant $\sigma^2$ such that, with $\sigma^2_{N,i} = E[U_{N,i}^2 \mid \mathcal{F}^N]$, 
+## Proposition 9.5.9 (continued)    
+    
+1. there exists a positive constant $\sigma^2$ such that, 
 $$
 \sum_{i=1}^{M_N} \sigma^2_{N,i}  \overset{\text{p}}{\to} \sigma^2,
-$$  and
+$$  
+with $\sigma^2_{N,i} = E[U_{N,i}^2 \mid \mathcal{F}^N]$, and
 
 2. for all $\epsilon > 0$, the **Lindeberg Condition** holds, that is
 
@@ -92,8 +121,52 @@ $$
 $$
 
 
-## The Lindeberg Condition and Uniform Smallness
+## Condition 1: a consistent variance estimator
 
-todo: mention typo
+When we say 
+$$
+\sum_{i=1}^{M_N} \sigma^2_{N,i}  \overset{\text{p}}{\to} \sigma^2,
+$$  
+with $\sigma^2_{N,i} = E[U_{N,i}^2 \mid \mathcal{F}^N]$, we are thinking of 
+$$
+U_{N,i} = \frac{ f(\xi^{i}) - E[f(\xi^{i}) \mid \mathcal{F}^N] }{\sqrt{M_N}} =\sqrt{M_N} \left( \frac{ f(\xi^{i}) - E[f(\xi^{i}) \mid \mathcal{F}^N] }{M_N} \right).
+$$
 
+## Condition 2: The Lindeberg Condition 
+
+The **The Lindeberg Condition** is
+$$
+\sum_{i=1}^{M_N} E[U_{N,i}^2 \mathbb{1}\left( |U_{N,i}| \ge \epsilon \right) \mid \mathcal{F}^N]  \overset{\text{p}}{\to} 0.
+$$
+
+The only way the entire sum can go to $0$ is if **all** nonnegative summands goes to $0$. The **uniform smallness** condition is actually weaker:
+
+$$
+\max_{1 \le i \le M_N} E[U_{N,i}^2  \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0.
+$$
+
+## Condition 2: The Lindeberg Condition (continued)
+
+The proof for LC implying US. Let $\epsilon > 0$. Then
+
+\begin{align*}
+\sigma^2_{N,i} &= E[U_{N,i}^2 \mathbb{1}( U_{N,i} < \epsilon) \mid \mathcal{F}^N ] + E[U_{N,i}^2 \mathbb{1}( U_{N,i} \ge \epsilon) \mid \mathcal{F}^N ] \\
+&\le \epsilon^2 + E[U_{N,i}^2 \mathbb{1}( U_{N,i} \ge \epsilon) \mid \mathcal{F}^N ]
+\end{align*}
+implies
+\begin{align*}
+\max_{1 \le i \le M_N} \sigma^2_{N,i} 
+&\le \epsilon^2 +  \max_{1 \le i \le M_N} E[U_{N,i}^2 \mathbb{1}( U_{N,i} \ge \epsilon) \mid \mathcal{F}^N ] \\
+&\le \epsilon^2 +  \sum_{1 \le i \le M_N} E[U_{N,i}^2 \mathbb{1}( U_{N,i} \ge \epsilon) \mid \mathcal{F}^N ]
+\end{align*}
+
+LC implies the last term goes to $0$, and $\epsilon$ was arbitrary.
+
+
+
+## Proposition 9.5.9 (proof)
+
+Details can be found in `prop_9.5.9.pdf`.
+
+This does not assume conditional identicalness (but it does assume independence).
 
