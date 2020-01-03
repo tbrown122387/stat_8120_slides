@@ -377,7 +377,7 @@ Taylor R. Brown
 </ul>
 <p>This class:</p>
 <ul>
-<li><p>9.5.12 (apply 9.5.9 to centered version)</p></li>
+<li><p>9.5.12 (apply 9.5.9 to centered random variable)</p></li>
 <li><p>9.5.13 (final theorem applied to particles!)</p></li>
 </ul>
 <p>Skipping:</p>
@@ -385,6 +385,62 @@ Taylor R. Brown
 <li>Corollary 9.5.11 (assuming identicalness as an extra)</li>
 <li>(TODO, figure out what <span class="math inline">\(V_{N,i}\)</span> applies to)</li>
 </ul>
+</div>
+<div id="proposition-9.5.12" class="slide section level2">
+<h1>Proposition 9.5.12</h1>
+<p>Let <span class="math inline">\(\{V_{N,i}\}_{1 \le i \le M_N}\)</span> be a triangular array of random variables and let <span class="math inline">\(\{\mathcal{F}^N \}_{N \ge 0}\)</span> be a sequence of sub-<span class="math inline">\(\sigma\)</span>-fields of <span class="math inline">\(\mathcal{F}\)</span>. Then</p>
+<p><span class="math display">\[
+E\left[\exp \left( iu \sum_{i=1}^{M_N} \{ V_{N,i}  - E[V_{N,i} \mid \mathcal{F}^N] \}  \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left(-u^2\sigma^2/2 \right)
+\]</span> for any real <span class="math inline">\(u\)</span> if three conditions hold…</p>
+</div>
+<div id="proposition-9.5.12-1" class="slide section level2">
+<h1>Proposition 9.5.12</h1>
+<ol style="list-style-type: decimal">
+<li><p>The triangular array is conditionally independent given <span class="math inline">\(\{\mathcal{F}^N\}_N\)</span>, and for any <span class="math inline">\(N\)</span>, <span class="math inline">\(i=1,\ldots,M_N\)</span> we have <span class="math inline">\(E[V_{N,i}^2 \mid \mathcal{F}^N] &lt; \infty\)</span>,</p></li>
+<li><p>there exists a constant <span class="math inline">\(\sigma^2 &gt; 0\)</span> such that</p></li>
+</ol>
+<p><span class="math display">\[
+\sum_{i=1}^{M_N} \left\{ E[V_{N,i}^2 \mid \mathcal{F}^N] - \left(E[V_{N,i} \mid \mathcal{F}^N]\right)^2   \right\}  \overset{\text{p}}{\to} \sigma^2,
+\]</span> and</p>
+<ol start="3" style="list-style-type: decimal">
+<li>for all <span class="math inline">\(\epsilon &gt; 0\)</span></li>
+</ol>
+<p><span class="math display">\[
+\sum_{i=1}^{M_N} E[V_{N,i}^2 \mathbb{1}\left( |V_{N,i}| \ge \epsilon \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0
+\]</span></p>
+</div>
+<div id="proposition-9.5.12-proof-1-of-3" class="slide section level2">
+<h1>Proposition 9.5.12 proof (1 of 3)</h1>
+<p>We set <span class="math inline">\(U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N]\)</span> and check <span class="math inline">\(1-3\)</span> of 9.5.9.</p>
+<p>1 of 9.5.12:</p>
+<p>the triangular array is conditionally independent given <span class="math inline">\(\{\mathcal{F}^N\}_N\)</span>, and for any <span class="math inline">\(N\)</span>, <span class="math inline">\(i=1,\ldots,M_N\)</span> we have <span class="math inline">\(E[V_{N,i}^2 \mid \mathcal{F}^N] &lt; \infty\)</span></p>
+<p>1 of 9.5.9:</p>
+<p>the triangular array is conditionally independent given <span class="math inline">\(\{\mathcal{F}^N\}_N\)</span>, and, and for any <span class="math inline">\(N\)</span> and <span class="math inline">\(i=1,\ldots,M_N\)</span>, <span class="math inline">\(E[U_{N,i}^2 \mid \mathcal{F}^N] &lt; \infty\)</span>, and <span class="math inline">\(E[U_{N,i} \mid \mathcal{F}^N] = 0\)</span></p>
+</div>
+<div id="proposition-9.5.12-proof-2-of-3" class="slide section level2">
+<h1>Proposition 9.5.12 proof (2 of 3)</h1>
+<p>2 of 9.5.12:</p>
+<p>there exists a constant <span class="math inline">\(\sigma^2 &gt; 0\)</span> such that</p>
+<p><span class="math display">\[
+\sum_{i=1}^{M_N} \left\{ E[V_{N,i}^2 \mid \mathcal{F}^N] - \left(E[V_{N,i} \mid \mathcal{F}^N]\right)^2   \right\}  \overset{\text{p}}{\to} \sigma^2,
+\]</span></p>
+<p>2 of 9.5.9:</p>
+<p>there exists a positive constant <span class="math inline">\(\sigma^2\)</span> such that, <span class="math display">\[
+\sum_{i=1}^{M_N} E[U_{N,i}^2 \mid \mathcal{F}^N]  \overset{\text{p}}{\to} \sigma^2.
+\]</span></p>
+</div>
+<div id="proposition-9.5.12-proof-3-of-3" class="slide section level2">
+<h1>Proposition 9.5.12 proof (3 of 3)</h1>
+<p>This one is the most difficult. Detials in <code>proof_9.5.12.pdf</code>.</p>
+<p>3 of 9.5.12:</p>
+<p><span class="math inline">\(\forall \epsilon &gt; 0\)</span></p>
+<p><span class="math display">\[
+\sum_{i=1}^{M_N} E[V_{N,i}^2 \mathbb{1}\left( |V_{N,i}| \ge \epsilon \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0
+\]</span></p>
+<p>3 of 9.5.9:</p>
+<p><span class="math inline">\(\forall \epsilon' &gt; 0\)</span> <span class="math display">\[
+\sum_{i=1}^{M_N} E[U_{N,i}^2 \mathbb{1}\left( |U_{N,i}| \ge \epsilon' \right) \mid \mathcal{F}^N]  \overset{\text{p}}{\to} 0.
+\]</span></p>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->

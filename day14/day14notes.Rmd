@@ -18,7 +18,7 @@ Last class:
 
 This class:
 
-- 9.5.12 (apply 9.5.9 to centered version)
+- 9.5.12 (apply 9.5.9 to centered random variable)
 
 - 9.5.13 (final theorem applied to particles!)
 
@@ -26,3 +26,88 @@ Skipping:
 
 - Corollary 9.5.11 (assuming identicalness as an extra)
 - (TODO, figure out what $V_{N,i}$ applies to)
+
+
+## Proposition 9.5.12
+
+Let $\{V_{N,i}\}_{1 \le i \le M_N}$ be a triangular array of random variables and let $\{\mathcal{F}^N \}_{N \ge 0}$ be a sequence of sub-$\sigma$-fields of $\mathcal{F}$. Then
+
+$$
+E\left[\exp \left( iu \sum_{i=1}^{M_N} \{ V_{N,i}  - E[V_{N,i} \mid \mathcal{F}^N] \}  \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left(-u^2\sigma^2/2 \right)
+$$
+for any real $u$ if three conditions hold...
+
+
+## Proposition 9.5.12
+
+1. The triangular array is conditionally independent given $\{\mathcal{F}^N\}_N$, and for any $N$, $i=1,\ldots,M_N$ we have $E[V_{N,i}^2 \mid \mathcal{F}^N] < \infty$,
+
+2. there exists a constant $\sigma^2 > 0$ such that 
+
+$$
+\sum_{i=1}^{M_N} \left\{ E[V_{N,i}^2 \mid \mathcal{F}^N] - \left(E[V_{N,i} \mid \mathcal{F}^N]\right)^2   \right\}  \overset{\text{p}}{\to} \sigma^2,
+$$
+and
+
+3. for all $\epsilon > 0$
+
+$$
+\sum_{i=1}^{M_N} E[V_{N,i}^2 \mathbb{1}\left( |V_{N,i}| \ge \epsilon \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0
+$$
+
+
+## Proposition 9.5.12 proof (1 of 3)
+
+We set $U_{N,i} = V_{N,i} - E[V_{N,i} \mid \mathcal{F}^N]$ and check $1-3$ of 9.5.9.
+
+
+1 of 9.5.12: 
+
+the triangular array is conditionally independent given $\{\mathcal{F}^N\}_N$, and for any $N$, $i=1,\ldots,M_N$ we have $E[V_{N,i}^2 \mid \mathcal{F}^N] < \infty$
+
+
+1 of 9.5.9: 
+
+the triangular array is conditionally independent given $\{\mathcal{F}^N\}_N$, and, and for any $N$ and $i=1,\ldots,M_N$,  $E[U_{N,i}^2 \mid \mathcal{F}^N] < \infty$, and $E[U_{N,i} \mid \mathcal{F}^N] = 0$
+
+
+
+## Proposition 9.5.12 proof (2 of 3)
+
+
+2 of 9.5.12: 
+
+there exists a constant $\sigma^2 > 0$ such that 
+
+$$
+\sum_{i=1}^{M_N} \left\{ E[V_{N,i}^2 \mid \mathcal{F}^N] - \left(E[V_{N,i} \mid \mathcal{F}^N]\right)^2   \right\}  \overset{\text{p}}{\to} \sigma^2,
+$$
+
+2 of 9.5.9: 
+
+there exists a positive constant $\sigma^2$ such that, 
+$$
+\sum_{i=1}^{M_N} E[U_{N,i}^2 \mid \mathcal{F}^N]  \overset{\text{p}}{\to} \sigma^2.
+$$  
+
+## Proposition 9.5.12 proof (3 of 3)
+
+This one is the most difficult. Detials in `proof_9.5.12.pdf`.
+
+
+3 of 9.5.12: 
+
+$\forall \epsilon > 0$
+
+$$
+\sum_{i=1}^{M_N} E[V_{N,i}^2 \mathbb{1}\left( |V_{N,i}| \ge \epsilon \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0
+$$
+
+3 of 9.5.9: 
+
+$\forall \epsilon' > 0$
+$$
+\sum_{i=1}^{M_N} E[U_{N,i}^2 \mathbb{1}\left( |U_{N,i}| \ge \epsilon' \right) \mid \mathcal{F}^N]  \overset{\text{p}}{\to} 0.
+$$
+
+
