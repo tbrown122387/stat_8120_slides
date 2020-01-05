@@ -1,0 +1,242 @@
+---
+title: "Day 18"
+author: "Taylor R. Brown"
+date: "1/4/2020"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Roadmap
+
+9.1
+
+- back to non-time series situation
+
+- importance sampling -> self-normalized importance sampling
+
+- mostly proof-free (classical asymptotics)
+
+9.2
+
+- **sampling importance resampling/IS with resampling/factored sampling** 
+
+9.3
+
+- sequential importance sampling with resampling (single-step analysis)
+
+9.4
+
+- sequential importance sampling with resampling (multi-step analysis)
+
+
+
+## Sampling Distribution of the Estimator
+
+To find the mean of 
+$$
+\hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f) = \frac{1}{\tilde{M}} \sum_{i=1}^{\tilde{M}} f(\tilde{\xi}^i) = \frac{1}{\tilde{M}} \sum_{i=1}^{M} f(\xi^i)N^i.
+$$
+we iterate the expectations
+
+$$
+E[\hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f)] = E\left[ E\left( \hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f) \mid \xi^1, \ldots, \xi^M \right) \right]
+$$
+
+## Sampling Distribution of the Estimator
+
+For $E[\hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f)] = E\left[ E\left( \hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f) \mid \xi^1, \ldots, \xi^M \right) \right]$
+it helps to use 
+$$
+E[N^i \mid \xi^1, \ldots, \xi^M ] = \tilde{M}\frac{ \frac{d\mu}{d\nu}(\xi^i) }{ \sum_{j=1}^M \frac{d\mu}{d\nu}(\xi^j) }
+$$
+so using 
+$$
+\hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f) = \frac{1}{\tilde{M}} \sum_{i=1}^{\tilde{M}} f(\tilde{\xi}^i) = \frac{1}{\tilde{M}} \sum_{i=1}^{M} f(\xi^i)N^i.
+$$
+we have
+
+$$
+E\left( \hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f) \mid \xi^1, \ldots, \xi^M \right) = \frac{\sum_{i=1}^{M} f(\xi^i) \frac{d\mu}{d\nu}(\xi^i) }{ \sum_{j=1}^M \frac{d\mu}{d\nu}(\xi^j) }
+$$
+
+
+## Sampling Distribution of the Estimator
+
+Unfortunately it biased:
+$$
+E\left[\frac{\sum_{i=1}^{M} f(\xi^i) \frac{d\mu}{d\nu}(\xi^i) }{ \sum_{j=1}^M \frac{d\mu}{d\nu}(\xi^j) } \right] \neq \frac{ E\left[ \sum_{i=1}^{M} f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)\right] }{E\left[ \sum_{j=1}^M \frac{d\mu}{d\nu}(\xi^j) \right]}
+$$
+
+## Sampling Distribution of the Estimator
+
+But it is **asymptotically unbiased.**
+
+1.
+$$
+E\left( \hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f) \mid \xi^1, \ldots, \xi^M \right) = \frac{ M^{-1}\sum_{i=1}^{M} f(\xi^i) \frac{d\mu}{d\nu}(\xi^i) }{ M^{-1} \sum_{j=1}^M \frac{d\mu}{d\nu}(\xi^j) } \overset{\text{p}}{\to} \mu(f)
+$$
+
+2.
+
+If we can move the limit inside the expectation (e.g. by using dominated convergence),
+
+\begin{align*}
+\lim E\left[ E\left( \hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f) \mid \xi^1, \ldots, \xi^M \right) \right] 
+&=  E\left[ \lim E\left( \hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f) \mid \xi^1, \ldots, \xi^M \right) \right] \\
+&= E[\mu(f)] \\
+&= \mu(f).
+\end{align*}
+
+
+Moreover, $\xi^i$ and $\xi^j$ (with $i\neq j$) are not independent, but they are **asymptotically independent.** The book shows this using the same argument.
+
+
+## Sampling Distribution of the Estimator
+
+
+On page 297 they say the "estimation error" is 
+$$
+\hat{\mu}(f)^{\text{SIR}}_{\nu, M, \tilde{M}} - \mu(f) = \left\{ \hat{\mu}(f)^{\text{SIR}}_{\nu, M, \tilde{M}} - \widehat{\mu}(f)^{\text{IS}}_{\nu,M} \right\} +  \left\{ \widehat{\mu}(f)^{\text{IS}}_{\nu,M} - \mu(f) \right\} 
+$$
+
+Also, recall that we showed on day 5 (see page 213) that
+
+$$
+E\left[ \left( \hat{\mu}(f)^{\text{SIR}}_{\nu, M, \tilde{M}} - \mu(f) \right)^2 \right]= E\left[\left( \hat{\mu}(f)^{\text{SIR}}_{\nu, M, \tilde{M}} - \widehat{\mu}(f)^{\text{IS}}_{\nu,M}\right)^2 \right] + E\left[\left( \widehat{\mu}(f)^{\text{IS}}_{\nu,M} - \mu(f) \right)^2 \right]
+$$
+
+
+The first terms are attributable to the second stage sampling/resampling mechanism, and the second terms are attributable to the first stage importance sampling process. 
+
+It is always helpful to remember this decomposition, because many of the coming proofs are two-parted as well!
+
+
+## Reviewing Definitions
+
+Most of the definitions that we need were already discussed on Day 10. 
+
+- triangular array
+
+- filtrations
+
+- proper sets
+
+- consistency, asymptotic normality for triangular arrays
+
+
+
+## What we've done so far
+
+Standard asymptotics have given us 
+
+- $\{(\xi^{N,i}, 1)\}_{1 \le i \le M_N}$ is 
+
+    a. consistent for for $(\nu, L^1(\mathsf{X}, \nu))$
+    b. asymptotically normal for $(\nu, L^2(\mathsf{X},\nu), \sigma, \sqrt{M_N})$ with $\sigma^2(f) = \nu([f-\mu(f)]^2)$
+    
+- $\{(\xi^{N,i}, \frac{d\mu}{d\nu}(\xi^{N,i})  )\}_{1 \le i \le M_N}$ is 
+
+    a. consistent for $(\mu, L^1(\mathsf{X},\mu))$
+    b. asymptotically normal for $(\mu, \mathsf{A}, \sigma, \sqrt{M_N})$, where 
+        i. $\sigma^2(f) = \nu( \{ \frac{d\mu}{d\nu} [f-\mu(f)] \}^2)$ and
+        ii. $\mathsf{A} = \{f \in L^2(\mathsf{X}, \mu) : \nu\left( \left\{\frac{d\mu}{d\nu}[f-\mu(f)] \right\}^2 \right) < \infty\}$
+        
+        
+## Where we're going
+
+We want to show results for the resampled particles $\{(\tilde{\xi}^{N,i}, 1)\}$. We'll first describe the algorithm again, just for the sake of gradually introducing more notation. Sorry, but it's necessary for the triangular arrays.
+
+Also, keep in mind that the $\sigma$-field $\mathcal{G}^N$ is ignorable. You can simply not write it. In the future, when we use resampled particles as starting points for **future samples**, $\mathcal{G}^N$ will refer to the $\sigma$-field signifying information we have about the resampled particles.
+
+## Algorithm 9.2.5
+
+Given that we already have $\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}$ (typically $\omega^{N,i} = 1$, but we're being more general), we draw $I^{N,1}, \ldots, I^{N,\tilde{M}_N}$ conditionally independently given 
+$$
+\mathcal{F}^N = \mathcal{G}^N \bigvee \sigma\left\{ (\xi^{N,1}, \omega^{N,1}), \ldots, (\xi^{N,M_N}, \omega^{N,M_N})  \right\}
+$$
+with probabilities
+$$
+P(I^{N,k} = i \mid \mathcal{F}^N) = \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) }{ \sum_{j=1}^{M_N} \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) }.
+$$
+
+Then, use those indexes to assign
+$$
+\tilde{\xi}^{N,k} = \xi^{N,I^{N,k}}
+$$
+
+
+
+## Theorem 9.2.7
+
+
+Assumption 9.1.1: $\mu \ll \nu$, and $d\mu/d\nu > 0$ almost surely.
+
+Assumption 9.2.6: $\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}$ is consistent for $(\nu, \mathsf{C})$ (a proper set), and $d\mu/d\nu \in \mathsf{C}$. 
+
+If assumption 9.1.1 and assumption 9.2.6 are true, then 
+
+$$
+\tilde{\mathsf{C}} \overset{\text{def}}{=} \left\{ f \in L^1(\mathsf{X}, \mu) : |f| \frac{d\mu}{d\nu} \in \mathsf{C} \right\}
+$$
+
+is a proper set of functions, and $\{(\xi^{N,i}, \omega^{N,i}\frac{d\mu}{d\nu}(\xi^{N,i}))\}$ is consistent for $(\mu, \tilde{\mathsf{C}})$,
+
+
+## Theorem 9.2.7: proof (1/2)
+
+First, show 
+
+$$
+\tilde{\mathsf{C}} \overset{\text{def}}{=} \left\{ f \in L^1(\mathsf{X}, \mu) : |f| \frac{d\mu}{d\nu} \in \mathsf{C} \right\}
+$$
+is proper.
+
+1. Let $f, g \in \tilde{\mathsf{C}}$. Show $\alpha f + \beta g \in \tilde{\mathsf{C}}$
+
+2. Let $|f| \in \tilde{\mathsf{C}}$ and $|g| \le |f|$. Show $|g| \in \tilde{\mathsf{C}}$.
+
+
+## Theorem 9.2.7: proof (2/2)
+
+Pick $f \in \tilde{\mathsf{C}}$ and show that 
+
+$$
+\sum_i \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) f(\xi^{N,i}) }{ \sum_j \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) } \overset{\text{p}}{\to} \mu(f).
+$$
+
+Well, 
+
+$$
+\sum_i \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) f(\xi^{N,i}) }{ \sum_j \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) } = \frac{ M_N^{-1}\sum_i  \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) f(\xi^{N,i}) }{M_N^{-1} \sum_j \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) }.
+$$
+
+$f \in \tilde{\mathsf{C}}$ implies that $\frac{d\mu}{d\nu}(\xi^{N,i}) f(\xi^{N,i}) \in \mathsf{C}$, and so Assumption 9.2.6 implies the numerator converges in probability to $\mu(f)$.
+
+Assumption 9.2.6 implies that $1 \in \tilde{\mathsf{C}}$. Using the same reasoning as above, the denominator converges to $\mu(1) = \mu(\mathsf{X}) = 1$. 
+
+So the ratio converges to $\mu(f)$ in probability.
+
+
+## Theorem 9.2.7
+
+So, reweighting changes consistency for
+$$
+(\nu, \mathsf{C})
+$$
+
+into consistency for 
+$$
+(\mu, \tilde{\mathsf{C}})
+$$
+
+In addition to noticing that the measure changes, note that the proper set changes. The new set of functions 
+
+$$
+\tilde{\mathsf{C}} \overset{\text{def}}{=} \left\{ f \in L^1(\mathsf{X}, \mu) : |f| \frac{d\mu}{d\nu} \in \mathsf{C} \right\}
+$$
+
+is smaller. If we apply this algorithm over and over again, like we do in particle filtering, we should hope that it doesn't shrink by too much at every iteration. When would this happen, and when wouldn't it?

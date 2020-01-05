@@ -1,0 +1,169 @@
+---
+title: "Day 15"
+author: "Taylor R. Brown"
+date: "1/3/2020"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Roadmap
+
+9.1
+
+- back to non-time series situation
+
+- **importance sampling** -> self-normalized importance sampling
+
+- mostly proof-free (classical asymptotics)
+
+9.2
+
+- sampling importance resampling
+
+9.3
+
+- sequential importance sampling with resampling (single-step analysis)
+
+9.4
+
+- sequential importance sampling with resampling (multi-step analysis)
+
+
+<!-- ## Assumption 9.1.1 -->
+
+<!-- The target distribution $\mu$ is absolutely continuous with respect to the instrumental/proposal distribution $\nu$, written $\mu \ll \nu$, and $d\mu /d\nu > 0$ ($\nu$-almost surely). -->
+
+
+## Theorem 9.2.12 (first part)
+
+Let $f$ be a real, measurable function such that $\mu(|f|) < \infty$ and $|f| \mu \ll |f| \nu$, and let $\xi^1, \xi^2, \ldots$ be a sequence of iid random variables from $\nu$. Then the unnormalized importance sampling estimator 
+$$
+\tilde{\mu}^{\text{IS}}_{\nu, N}(f) = \frac{1}{N} \sum_{i=1}^N  f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)
+$$
+is strongly consistent. 
+
+This is just the ordinary strong law of large numbers.
+
+
+## Theorem 9.2.12 (second part)
+
+
+If in addition
+$$
+E_{\nu}\left[f^2(\xi^i) \frac{d\mu}{d\nu}(\xi^i)^2 \right] < \infty,
+$$
+
+then $\tilde{\mu}^{\text{IS}}_{\nu, N}$ is asymptotically normal, i.e. 
+$$
+\sqrt{N}\left(\tilde{\mu}^{\text{IS}}_{\nu, N}(f) - \mu(f) \right) \overset{\text{D}}{\to} \text{Normal} \left(0, \text{Var}_{\nu}\left[ f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)\right] \right)
+$$
+
+This is just the regular central limit theorem.
+
+## Theorem 9.2.12 in practice
+
+- $|f| \mu \ll |f| \nu$ is weaker than $\mu \ll \nu$
+
+- infinite variance estimators are quite bad in practice
+
+- pick $\nu$ carefully! (e.g. $P_{\mu}(\xi > 1e4) = E_{\mu}[\mathbb{1}(\xi > 1e4)]$)
+
+- fourth,
+\begin{align*}
+\text{Var}_{\nu}\left[ f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)\right] 
+&= E_{\nu}\left[ \left( f(\xi^i) \frac{d\mu}{d\nu}(\xi^i) - \nu\left[ f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)\right]\right)^2 \right] \\
+&= E_{\nu}\left[ \left( f(\xi^i) \frac{d\mu}{d\nu}(\xi^i) - \mu(f)\right)^2 \right] \\
+&= \mu^2(f)  \underbrace{\nu\left[ \left( \frac{f d\mu/d\nu}{\mu(f)} - 1\right)^2 \right]}_{\text{small if left measure is close to $1$}}
+\end{align*}
+
+## Theorem 9.2.12 in practice
+
+
+$$
+\text{Var}_{\nu}\left[ f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)\right] 
+= \mu^2(f) \nu\left[ \left( \frac{f d\mu/d\nu}{\mu(f)} - 1\right)^2 \right]
+$$
+
+- $\frac{f d\mu/d\nu}{\mu(f)}$ close to $1$ means $f d\mu/d\nu$ is close-to-constant flat. 
+
+- if $f$ is negligible, this means $\mu$ and $\nu$ are roughly the same. 
+
+- so, this is really only more useful than regular Monte-Carlo if $f$ is not negligible.
+
+## Example 9.1.3
+
+- target: $\mu$ is $\text{Cauchy}(0,1)$ (fat tails)
+
+- proposal: $\nu$ is $\text{Normal}(0,1)$ (thin tails)
+
+$$
+\frac{d\mu}{d\nu}(x) = \frac{\frac{1}{\pi}\left(1 + x^2\right)^{-1} }{\frac{1}{\sqrt{2\pi}}\exp[-.5x^2] } \propto \exp[.5x^2]/(1+x^2)
+$$
+
+## Example 9.1.3
+
+
+```{r, echo=TRUE}
+x_grid <- seq(-10,10,.01)
+plot(x_grid, dt(x_grid, df=1)/dnorm(x_grid), type="l") # not flat!
+```
+
+
+## Example 9.1.3
+
+
+```{r, echo=TRUE}
+x_grid <- seq(-10,10,.01)
+plot(x_grid, x_grid * dt(x_grid, df=1)/dnorm(x_grid), type="l") # not flat!
+```
+
+
+## Example 9.1.3
+
+
+```{r, echo=TRUE}
+x_grid <- seq(-10,10,.01)
+silly_indicator <- function(x) ifelse(abs(x) < 3, 1, 0)
+plot(x_grid, silly_indicator(x_grid) * dt(x_grid, df=1)/dnorm(x_grid), type="l") # not too un-flat
+```
+
+## Example 9.1.4
+
+now switch the target and the proposal
+
+- proposal: $\mu$ is $\text{Cauchy}(0,1)$ (fat tails)
+
+- target: $\nu$ is $\text{Normal}(0,1)$ (thin tails)
+
+$$
+\frac{d\mu}{d\nu}(x) \propto (1+x^2)/\exp[.5x^2]
+$$
+
+## Example 9.1.4
+
+
+```{r, echo=TRUE}
+x_grid <- seq(-10,10,.01)
+plot(x_grid, dnorm(x_grid)/dt(x_grid, df=1), type="l") # better!
+```
+
+
+## Example 9.1.4
+
+
+```{r, echo=TRUE}
+x_grid <- seq(-10,10,.01)
+plot(x_grid, x_grid * dnorm(x_grid)/dt(x_grid, df=1), type="l") # better!
+```
+
+## Example 9.1.4
+
+
+```{r, echo=TRUE}
+x_grid <- seq(-10,10,.01)
+plot(x_grid, silly_indicator(x_grid) * dnorm(x_grid)/dt(x_grid, df=1), type="l") # better!
+```

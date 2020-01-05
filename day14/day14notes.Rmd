@@ -18,7 +18,7 @@ Last class:
 
 This class:
 
-- 9.5.12 (apply 9.5.9 to centered random variable)
+- 9.5.12 (apply 9.5.9 to centered random variables)
 
 - 9.5.13 (final theorem applied to particles!)
 
@@ -33,7 +33,7 @@ Skipping:
 Let $\{V_{N,i}\}_{1 \le i \le M_N}$ be a triangular array of random variables and let $\{\mathcal{F}^N \}_{N \ge 0}$ be a sequence of sub-$\sigma$-fields of $\mathcal{F}$. Then
 
 $$
-E\left[\exp \left( iu \sum_{i=1}^{M_N} \{ V_{N,i}  - E[V_{N,i} \mid \mathcal{F}^N] \}  \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left(-u^2\sigma^2/2 \right)
+E\left[\exp \left( iu \sum_{i=1}^{M_N} \left\{ V_{N,i}  - E[V_{N,i} \mid \mathcal{F}^N] \right\}  \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left(-u^2\sigma^2/2 \right)
 $$
 for any real $u$ if three conditions hold...
 
@@ -111,3 +111,87 @@ $$
 $$
 
 
+## Proposition 9.5.13
+
+Proposition 9.5.13 is the final theorem of the chapter!
+
+It applies to the particles themselves, $\xi^{N,i}$, not rescaled or recentered ones!
+
+
+## Proposition 9.5.13
+
+Let $\{\xi^{N,i}\}$ be a triangular array of $\mathsf{X}$-valued random variables, and let $\{\mathcal{F}^N \}_{N \ge 0}$ be a sequence of sub-$\sigma$-fields of $\mathcal{F}$. Then
+
+$$
+E\left[\exp \left( iu M_N^{-1/2}\sum_{i=1}^{M_N} \left\{ f(\xi^{N,i})  - E[f(\xi^{N,i}) \mid \mathcal{F}^N] \right\}  \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left(-u^2\sigma^2/2 \right)
+$$
+for any real $u$ if three conditions hold...
+
+
+## Proposition 9.5.13
+
+
+1. The triangular array is conditionally independent given $\{\mathcal{F}^{N}\}$, and for any $N$, $i=1,\ldots,M_N$, we have $E[f(\xi^{N,i})^2 \mid \mathcal{F}^N] < \infty$,
+
+2. there exists a constant $\sigma^2 > 0$ such that
+$$
+M_N^{-1/2}\sum_{i=1}^{M_N} \left\{ E[f^2(\xi^{N,i}) \mid \mathcal{F}^N] - \left( E[f(\xi^{N,i}) \mid \mathcal{F}^N] \right)^2 \right\} \overset{\text{p}}{\to} \sigma^2,
+$$
+
+3. there exists a probability measure $\mu$ on $(\mathsf{X}, \mathcal{X})$ such that, if $f \in L^2(\mathsf{X}, \mu)$, and for any $C > 0$
+$$
+M_N^{-1} \sum_{i=1}^{M_N} E[f^2(\xi^{N,i}) \mathbb{1}\left( |f(\xi^{N,i})| \ge C \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} \mu(f^2\mathbb{1}\left( |f| \ge C \right))
+$$
+
+
+## Proposition 9.5.13: Proof (1 of 3)
+
+Set $V_{N,i} = f(\xi^{N,i}) M_N^{-1/2}$ and check conditions of the previous proposition, Proposition 9.5.12!
+\newline
+
+
+1-9.5.13: the triangular array is conditionally independent given $\{\mathcal{F}^{N}\}$, and for any $N$, $i=1,\ldots,M_N$, we have $E[f(\xi^{N,i})^2 \mid \mathcal{F}^N] < \infty$
+
+
+1-9.5.12: the triangular array is conditionally independent given $\{\mathcal{F}^N\}_N$, and for any $N$, $i=1,\ldots,M_N$ we have $E[V_{N,i}^2 \mid \mathcal{F}^N] < \infty$,
+
+
+## Proposition 9.5.13: Proof (2 of 3)
+
+Set $V_{N,i} = f(\xi^{N,i}) M_N^{-1/2}$ and check conditions of the previous proposition, Proposition 9.5.12!
+\newline
+
+2-9.5.13: there exists a constant $\sigma^2 > 0$ such that
+$$
+M_N^{-1/2}\sum_{i=1}^{M_N} \left\{ E[f^2(\xi^{N,i}) \mid \mathcal{F}^N] - \left( E[f(\xi^{N,i}) \mid \mathcal{F}^N] \right)^2 \right\} \overset{\text{p}}{\to} \sigma^2,
+$$
+
+
+2-9.5.12: there exists a constant $\sigma^2 > 0$ such that 
+
+$$
+\sum_{i=1}^{M_N} \left\{ E[V_{N,i}^2 \mid \mathcal{F}^N] - \left(E[V_{N,i} \mid \mathcal{F}^N]\right)^2   \right\}  \overset{\text{p}}{\to} \sigma^2,
+$$
+
+
+
+## Proposition 9.5.13: Proof (3 of 3)
+
+
+Set $V_{N,i} = f(\xi^{N,i}) M_N^{-1/2}$ and check conditions of the previous proposition, Proposition 9.5.12!
+\newline
+
+
+3-9.5.13: there exists a probability measure $\mu$ on $(\mathsf{X}, \mathcal{X})$ such that, if $f \in L^2(\mathsf{X}, \mu)$, and for any $C > 0$
+$$
+M_N^{-1} \sum_{i=1}^{M_N} E[f^2(\xi^{N,i}) \mathbb{1}\left( |f(\xi^{N,i})| \ge C \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} \mu(f^2\mathbb{1}\left( |f| \ge C \right))
+$$
+
+
+3-9.5.12: for all $\epsilon > 0$
+
+$$
+\sum_{i=1}^{M_N} E[V_{N,i}^2 \mathbb{1}\left( |V_{N,i}| \ge \epsilon \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0
+$$
+
+Pick $\epsilon>0$ before picking $0 < C \uparrow \infty$.

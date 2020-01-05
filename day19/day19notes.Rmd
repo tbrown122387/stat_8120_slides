@@ -1,0 +1,126 @@
+---
+title: "Day 19"
+author: "Taylor R. Brown"
+date: "1/4/2020"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Roadmap
+
+9.1
+
+- back to non-time series situation
+
+- importance sampling -> self-normalized importance sampling
+
+- mostly proof-free (classical asymptotics)
+
+9.2
+
+- **sampling importance resampling/IS with resampling/factored sampling** 
+
+9.3
+
+- sequential importance sampling with resampling (single-step analysis)
+
+9.4
+
+- sequential importance sampling with resampling (multi-step analysis)
+
+
+## Roadmap
+
+Last class we showed that reweighting changes consistency for
+$$
+(\nu, \mathsf{C})
+$$
+
+into consistency for 
+$$
+(\mu, \tilde{\mathsf{C}}).
+$$
+
+Now we'll take a look at resampling.
+
+## Theorem 9.2.8
+
+Let $\mu$ be a probability measure on $(\mathsf{X}, \mathcal{X})$ and let $f \in L^1(\mathsf{X},\mu)$. Assume that the triangular array $\{\xi^{N,i}\}_{1 \le i \le M_N}$ is conditionally independent given $\{\mathcal{F}^N\}$, and that for any $C \ge 0$
+$$
+\frac{1}{M_N} \sum_{i=1}^{M_N}  E\left[ \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge C\right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \mu(|f|1\{|f| \ge C\}).
+$$
+
+Then
+$$
+\frac{1}{M_N} \sum_{i=1}^{M_N} \left\{ f(\xi^{N,i}) - E[ f(\xi^{N,i}) \mid \mathcal{F}^N] \right\}  \overset{\text{p}}{\to} 0.
+$$
+
+
+## Theorem 9.2.8: proof (1 of 2)
+
+We set $V_{N,i} = f(\xi^{N,i}) / M_N$ and use Proposition 9.5.7 (see day 12 notes slide 16).
+
+Checking condition 1 of 9.5.7 is easy. So we must check 2 and 3. 
+
+Condition 9.5.7(2), translated into a statement about our triangular array, would say
+$$
+\left\{ M_N^{-1} \sum_{i=1}^{M_N} E\left[|f(\xi^{N,i})|  \mid \mathcal{F}^N \right] \right\}_{N=1}^{\infty}
+$$
+is bounded in probability.
+
+It is because it converges in probability to a constant. To see this, just set $C = 0$ and use this theorem's primary assumption:
+
+$$
+\frac{1}{M_N} \sum_{i=1}^{M_N}  E\left[ \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge 0 \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \mu(|f|1\{|f| \ge 0\}) = \mu(|f|).
+$$
+
+
+## Theorem 9.2.8: proof (2 of 2)
+
+
+Next, we check condition 3 of 9.5.7. Translated into a statement about our triangular array, this would be: for any $\epsilon > 0$
+
+$$
+M_N^{-1} \sum_{i=1}^{M_N}E\left[ \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge \epsilon M_N \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} 0.
+$$
+
+So, pick such an epsilon. Then pick $C$. Then if we pick $M_N$ large enough so that $\epsilon M_N \ge C$
+
+$$
+M_N^{-1} \sum_{i=1}^{M_N}E\left[ \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge \epsilon M_N \right) \bigg\rvert \mathcal{F}^N \right] \le M_N^{-1} \sum_{i=1}^{M_N}E\left[ \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge C \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \mu(|f|1\{|f| \ge C\}).
+$$
+
+$C$ is arbitrary, so if we pick $C$ large enough, the right hand side goes to $0$.
+
+
+## Theorem 9.2.9
+
+This theorem is a little more interpretable because we are using the notation in the SIR algorithm. Here it will be more clear which samples are resampled, and which are not. 
+
+Its proof just uses Theorem 9.2.8.
+
+
+## Theorem 9.2.9
+
+
+Let $\{(\tilde{\xi}^{N,i}, 1)\}_{1 \le i \le \tilde{M}_M}$ be as in algorithm 9.2.5 (see day 18 notes), and let 
+$$
+\tilde{\mathsf{C}} \overset{\text{def}}{=} \left\{ f \in L^1(\mathsf{X}, \mu) : |f| \frac{d\mu}{d\nu} \in \mathsf{C} \right\}.
+$$
+
+Assume again
+
+Assumption 9.1.1: $\mu \ll \nu$, and $d\mu/d\nu > 0$ almost surely.
+
+Assumption 9.2.6: $\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}$ is consistent for $(\nu, \mathsf{C})$ (a proper set), and $d\mu/d\nu \in \mathsf{C}$. 
+
+Then $\{(\tilde{\xi}^{N,i}, 1)\}_{1 \le i \le \tilde{M}_M}$ is (still) consistent for $(\mu, \mathsf{C})$.
+
+
+## Theorem 9.2.9: proof
+
+TODO: pick up here (page 17). Also consider squeezing more material into the first two days of 9.2.
