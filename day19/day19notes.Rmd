@@ -45,7 +45,7 @@ $$
 (\mu, \tilde{\mathsf{C}}).
 $$
 
-Now we'll take a look at resampling.
+Now we'll take a look at resampling. Even though the notation doesn't have tilde signs, Theorem 9.2.8 is going to be helpful to prove that SIR produces consistent estimators.
 
 ## Theorem 9.2.8
 
@@ -90,16 +90,22 @@ $$
 
 So, pick such an epsilon. Then pick $C$. Then if we pick $M_N$ large enough so that $\epsilon M_N \ge C$
 
-$$
-M_N^{-1} \sum_{i=1}^{M_N}E\left[ \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge \epsilon M_N \right) \bigg\rvert \mathcal{F}^N \right] \le M_N^{-1} \sum_{i=1}^{M_N}E\left[ \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge C \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \mu(|f|1\{|f| \ge C\}).
-$$
+\begin{align*}
+&M_N^{-1} \sum_{i=1}^{M_N}E\left[ \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge \epsilon M_N \right) \bigg\rvert \mathcal{F}^N \right] \\
+&\le M_N^{-1} \sum_{i=1}^{M_N}E\left[ \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge C \right) \bigg\rvert \mathcal{F}^N \right] \\
+&\overset{\text{p}}{\to} \mu(|f|1\{|f| \ge C\}).
+\end{align*}
 
 $C$ is arbitrary, so if we pick $C$ large enough, the right hand side goes to $0$.
 
 
 ## Theorem 9.2.9
 
-This theorem is a little more interpretable because we are using the notation in the SIR algorithm. Here it will be more clear which samples are resampled, and which are not. 
+Theorem 9.2.9 in a nutshell says SIR produces a consistent estimator of $\mu(f)$.
+
+This theorem is a little more interpretable than the last because we are using the notation in the SIR algorithm.
+
+Here it will be more clear which samples are resampled, and which are not. 
 
 Its proof just uses Theorem 9.2.8.
 
@@ -118,9 +124,51 @@ Assumption 9.1.1: $\mu \ll \nu$, and $d\mu/d\nu > 0$ almost surely.
 
 Assumption 9.2.6: $\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}$ is consistent for $(\nu, \mathsf{C})$ (a proper set), and $d\mu/d\nu \in \mathsf{C}$. 
 
-Then $\{(\tilde{\xi}^{N,i}, 1)\}_{1 \le i \le \tilde{M}_M}$ is (still) consistent for $(\mu, \mathsf{C})$.
+Then $\{(\tilde{\xi}^{N,i}, 1)\}_{1 \le i \le \tilde{M}_M}$ is consistent for $(\mu, \tilde{\mathsf{C}})$.
 
 
-## Theorem 9.2.9: proof
+## Theorem 9.2.9: proof (1 of 3)
 
-TODO: pick up here (page 17). Also consider squeezing more material into the first two days of 9.2.
+First, we need to check that $\{\tilde{\xi}^{N,i}\}$ are conditionally independent in each row. That's true by assumption.
+
+Next, we need to verify that for any $C \ge 0$
+
+$$
+\frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N}  E\left[ \left| f(\tilde{\xi}^{N,i}) \right| \mathbb{1}\left( \left| f(\tilde{\xi}^{N,i}) \right| \ge C\right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \mu(|f|1\{|f| \ge C\}).
+$$
+
+
+## Theorem 9.2.9: proof (2 of 3)
+
+Recall that $\mathcal{F}^N$ is the sigma field containing all the information just before resampling is conducted. 
+
+
+\begin{align*}
+&\frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N}  E\left[ \left| f(\tilde{\xi}^{N,i}) \right| \mathbb{1}\left( \left| f(\tilde{\xi}^{N,i}) \right| \ge C\right) \bigg\rvert \mathcal{F}^N \right] \\
+&= \sum_{i=1}^{M_N} \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) }{ \sum_{j=1}^{M_N} \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) }  \left| f(\tilde{\xi}^{N,i}) \right| \mathbb{1}\left( \left| f(\tilde{\xi}^{N,i}) \right| \ge C\right) \\
+&=  \frac{ M_N^{-1}\sum_{i=1}^{M_N} \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) \left| f(\tilde{\xi}^{N,i}) \right| \mathbb{1}\left( \left| f(\tilde{\xi}^{N,i}) \right| \ge C\right)  }{ M_N^{-1}\sum_{j=1}^{M_N} \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) }   
+\end{align*}
+
+Numerator converges, and the deminator converges because of Theorem 9.2.7, and by proper-ness of $\tilde{\mathsf{C}}$ (i.e. because $\left| f(\tilde{\xi}^{N,i}) \right| \mathbb{1}\left( \left| f(\tilde{\xi}^{N,i}) \right| \ge C\right) \le \left| f(\tilde{\xi}^{N,i}) \right|$)
+
+
+## Theorem 9.2.9: proof (3 of 3)
+
+So, for any $C \ge 0$
+$$
+\frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N}  E\left[ \left| f(\tilde{\xi}^{N,i}) \right| \mathbb{1}\left( \left| f(\tilde{\xi}^{N,i}) \right| \ge C\right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \mu(|f|\mathbb{1}\left[|f| \ge C \right]) \tag{*}
+$$
+By Theorem 9.2.8
+$$
+\frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \left\{ f(\tilde{\xi}^{N,i}) - E[ f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right\}  \overset{\text{p}}{\to} 0
+$$
+Then, after we add and subtract, we can use (*) above, with $C = 0$ to show that 
+
+
+\begin{align*}
+&\frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \left\{ f(\tilde{\xi}^{N,i}) - \mu(f) \right\} \\
+&=
+\frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \left\{ f(\tilde{\xi}^{N,i}) - E[ f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right\} +
+\frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \left\{ E[ f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] - \mu(f) \right\}\\
+&\overset{\text{p}}{\to} 0.
+\end{align*}

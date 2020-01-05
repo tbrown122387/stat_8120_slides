@@ -1,0 +1,176 @@
+---
+title: "Day 20"
+author: "Taylor R. Brown"
+date: "1/4/2020"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Roadmap
+
+9.1
+
+- back to non-time series situation
+
+- importance sampling -> self-normalized importance sampling
+
+- mostly proof-free (classical asymptotics)
+
+9.2
+
+- **sampling importance resampling/IS with resampling/factored sampling** 
+
+9.3
+
+- sequential importance sampling with resampling (single-step analysis)
+
+9.4
+
+- sequential importance sampling with resampling (multi-step analysis)
+
+
+## Today
+
+Last class, we showed that SIR produces consistent estimators. This was Theorem 9.2.9.
+
+Now we want to show that SIR estiamtors are asymptotically normal. 
+
+We do this in two steps:
+
+1. re-weighting preserves asymptotic normality
+2. resampling preserves asymptotic normality
+
+
+## Assumption 9.2.10
+
+This is reasonable to assume because it is often guaranteed by the "standard" CLT.
+
+Assumption 9.2.10: The weighted sample $\{(\xi^{N,i}, \omega^{N,i})\}_{1 \le i \le M_N}$ is asymptotically normal for $(\nu, \mathsf{A}, \sigma, \{a_N\})$, and $\frac{d\mu}{d\nu} \in \mathsf{A}$.
+
+Keep in mind that
+
+- $\mathsf{A}$ is proper
+- $\sigma$ is nonnegative
+- $a_N \uparrow \infty$
+
+
+## Theorem 9.2.11
+
+Assume these three:
+
+Assumption 9.1.1: $\mu \ll \nu$, and $d\mu/d\nu > 0$ almost surely.
+
+Assumption 9.2.6: $\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}$ is consistent for $(\nu, \mathsf{C})$ (a proper set), and $d\mu/d\nu \in \mathsf{C}$. 
+
+Assumption 9.2.10: The weighted sample $\{(\xi^{N,i}, \omega^{N,i})\}_{1 \le i \le M_N}$ is asymptotically normal for $(\nu, \mathsf{A}, \sigma, \{a_N\})$, and $\frac{d\mu}{d\nu} \in \mathsf{A}$.
+
+Then ...
+
+
+## Theorem 9.2.11
+
+Then
+
+$$
+\bar{\mathsf{A}} = \left\{ f \in L^2(\mathsf{X}, \mu) : |f| \frac{d\mu}{d\nu} \in \mathsf{A} \right\}
+$$
+is a proper set, and the weighted sample $\{(\xi^{N,i}, \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) )\}_{1 \le i \le M_N}$ is asymptotically normal for $(\mu, \bar{\mathsf{A}}, \bar{\sigma}, \{a_N\})$.
+
+The new asymptotic variance functional is 
+$$
+\bar{\sigma}^2(f) = \sigma^2\left( \frac{d\mu}{d\nu}[f - \mu(f)]  \right).
+$$
+
+
+## Theorem 9.2.11: proof (1 of 3)
+
+First, show 
+$$
+\bar{\mathsf{A}} = \left\{ f \in L^2(\mathsf{X}, \mu) : |f| \frac{d\mu}{d\nu} \in \mathsf{A} \right\}
+$$
+is proper. 
+
+In class exercise! Hint: we followed the same steps in an earlier proof.
+
+
+## Theorem 9.2.11: proof (2 of 3)
+
+General idea: rewrite
+
+$$
+a_N\left\{ \sum_{i=1}^{M_N} \frac{ \omega^{N,i}\frac{d\mu}{d\nu}(\xi^{N,i})  }{ \sum_j \omega^{N,i}\frac{d\mu}{d\nu}(\xi^{N,i}) } [f(\xi^{N,i}) - \mu(f)]  \right\}
+$$
+as
+$$  
+\frac{ a_N \sum_{i=1}^{M_N} \frac{\omega^{N,i}}{\sum_j \omega^{N,j}}\frac{d\mu}{d\nu}(\xi^{N,i})[f(\xi^{N,i}) - \mu(f)]  }{  \sum_j \frac{ \omega^{N,i} }{ \sum_k \omega^{N,k} }\frac{d\mu}{d\nu}(\xi^{N,i}) } 
+$$
+and see the numerator converges in distribution, the denominator converges in probability; then use Slutsky's.
+
+
+
+## Theorem 9.2.11: proof (3 of 3)
+
+If $f \in \bar{\mathsf{A}}$, then $f\frac{d\mu}{d\nu} \in \mathsf{A}$ (definition of $\tilde{\mathsf{A}}$) and  $f\frac{d\mu}{d\nu} \in \mathsf{A}$ (assumption 9.2.10). Because $\mathsf{A}$ is proper, $h = \frac{d\mu}{d\nu} (f - \mu(f)) \in \mathsf{A}$ (linear combinations!) and so the numerator:
+$$
+a_N \sum_{i=1}^{M_N} \frac{\omega^{N,i}}{\sum_j \omega^{N,j}}\frac{d\mu}{d\nu}(\xi^{N,i})[f(\xi^{N,i}) - \mu(f)]   \overset{\text{D}}{\to}  \text{Normal}\left(0, \bar{\sigma}^2(f)\right)
+$$
+(be sure to work out the mean/variance!).
+
+The denominator 
+$$
+ \sum_j \frac{ \omega^{N,i} }{ \sum_k \omega^{N,k} }\frac{d\mu}{d\nu}(\xi^{N,i})  \overset{\text{p}}{\to} 1 = \nu\left(\frac{d\mu}{d\nu} \right)
+$$
+as long as $\frac{d\mu}{d\nu} \in \mathsf{C}$, and this is true by assumption 9.2.6.
+
+
+
+
+## Proposition 9.2.12
+
+This is a stepping stone to the final theorem: Theorem 9.2.14. Its proof uses Proposition 9.5.13 (see day 14 notes).
+
+Assume 
+
+Assumption 9.1.1: $\mu \ll \nu$, and $d\mu/d\nu > 0$ almost surely.
+
+Assumption 9.2.6: $\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}$ is consistent for $(\nu, \mathsf{C})$ (a proper set), and $d\mu/d\nu \in \mathsf{C}$. 
+
+Also, assume $\mu \in \mathbb{R}$ and $f$ is such that $f^2 \frac{d\mu}{d\nu} \in \mathsf{C}$. 
+
+Then ...
+
+## Proposition 9.2.12
+
+Then the conditional characteristic function
+$$
+E\left[ \exp\left( i u \tilde{M}_N^{-1/2} \sum_{i=1}^{\tilde{M_N}} \{ f(\tilde{\xi}^{N,i}) - E[f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N ]   \} \right)  \Bigg\rvert \mathcal{F}^N \right]
+$$
+
+converges in probability to a normal characteristic function
+$$
+\exp\left[ - u^2  \text{Var}_{\mu} (f) /2  \right].
+$$
+
+
+## Proposition 9.2.12: proof (1 of )
+
+TODO: pick up here
+
+The three conditions of Proposition 9.5.13 are
+
+
+1. The triangular array is conditionally independent given $\{\mathcal{F}^{N}\}$, and for any $N$, $i=1,\ldots,M_N$, we have $E[f(\xi^{N,i})^2 \mid \mathcal{F}^N] < \infty$,
+
+2. there exists a constant $\sigma^2 > 0$ such that
+$$
+M_N^{-1/2}\sum_{i=1}^{M_N} \left\{ E[f^2(\xi^{N,i}) \mid \mathcal{F}^N] - \left( E[f(\xi^{N,i}) \mid \mathcal{F}^N] \right)^2 \right\} \overset{\text{p}}{\to} \sigma^2,
+$$
+
+3. there exists a probability measure $\mu$ on $(\mathsf{X}, \mathcal{X})$ such that, if $f \in L^2(\mathsf{X}, \mu)$, and for any $C > 0$
+$$
+M_N^{-1} \sum_{i=1}^{M_N} E[f^2(\xi^{N,i}) \mathbb{1}\left( |f(\xi^{N,i})| \ge C \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} \mu(f^2\mathbb{1}\left( |f| \ge C \right))
+$$
