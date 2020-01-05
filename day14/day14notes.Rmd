@@ -135,7 +135,7 @@ for any real $u$ if three conditions hold...
 
 2. there exists a constant $\sigma^2 > 0$ such that
 $$
-M_N^{-1/2}\sum_{i=1}^{M_N} \left\{ E[f^2(\xi^{N,i}) \mid \mathcal{F}^N] - \left( E[f(\xi^{N,i}) \mid \mathcal{F}^N] \right)^2 \right\} \overset{\text{p}}{\to} \sigma^2,
+M_N^{-1}\sum_{i=1}^{M_N} \left\{ E[f^2(\xi^{N,i}) \mid \mathcal{F}^N] - \left( E[f(\xi^{N,i}) \mid \mathcal{F}^N] \right)^2 \right\} \overset{\text{p}}{\to} \sigma^2,
 $$
 
 3. there exists a probability measure $\mu$ on $(\mathsf{X}, \mathcal{X})$ such that, if $f \in L^2(\mathsf{X}, \mu)$, and for any $C > 0$

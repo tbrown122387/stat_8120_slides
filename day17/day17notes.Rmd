@@ -43,6 +43,15 @@ Now we will add **resampling** as a second step. The result is **unweighted samp
 The assumptions we will need are the same as Self-Normalized IS.
 
 
+## Overview
+
+```{r, echo=F, out.width="500px"}
+knitr::include_graphics("SIR.png")
+```
+
+
+
+
 ## Reviewing Definitions
 
 A lot of this has been covered already, but now we're starting to be "official."

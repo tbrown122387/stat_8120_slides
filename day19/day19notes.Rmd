@@ -33,6 +33,13 @@ knitr::opts_chunk$set(echo = FALSE)
 - sequential importance sampling with resampling (multi-step analysis)
 
 
+## Overview
+
+```{r, echo=F, out.width="500px"}
+knitr::include_graphics("SIR.png")
+```
+
+
 ## Roadmap
 
 Last class we showed that reweighting changes consistency for

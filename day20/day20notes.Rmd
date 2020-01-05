@@ -33,6 +33,14 @@ knitr::opts_chunk$set(echo = FALSE)
 - sequential importance sampling with resampling (multi-step analysis)
 
 
+## Overview
+
+```{r, echo=F, out.width="500px"}
+knitr::include_graphics("SIR.png")
+```
+
+
+
 ## Today
 
 Last class, we showed that SIR produces consistent estimators. This was Theorem 9.2.9.
@@ -156,21 +164,146 @@ $$
 $$
 
 
-## Proposition 9.2.12: proof (1 of )
+## Proposition 9.2.12: proof (1 of 3)
 
-TODO: pick up here
-
-The three conditions of Proposition 9.5.13 are
+Verifying condition 1 of 3 of Proposition 9.5.13:
 
 
 1. The triangular array is conditionally independent given $\{\mathcal{F}^{N}\}$, and for any $N$, $i=1,\ldots,M_N$, we have $E[f(\xi^{N,i})^2 \mid \mathcal{F}^N] < \infty$,
 
+The conditional independent is assumed by the description of Algorithm 9.2.5. 
+
+Also, each $E[f(\xi^{N,i})^2 \mid \mathcal{F}^N]$ should be assumed to be finite more explicitly because all the assumptions are about is what they converge to! The book glosses over this a little.
+
+
+
+## Proposition 9.2.12: proof (2 of 3)
+
+Verifying condition 2 of 3 of Proposition 9.5.13:
+
 2. there exists a constant $\sigma^2 > 0$ such that
 $$
-M_N^{-1/2}\sum_{i=1}^{M_N} \left\{ E[f^2(\xi^{N,i}) \mid \mathcal{F}^N] - \left( E[f(\xi^{N,i}) \mid \mathcal{F}^N] \right)^2 \right\} \overset{\text{p}}{\to} \sigma^2,
+\tilde{M}_N^{-1}\sum_{i=1}^{\tilde{M}_N} \left\{ E[f^2(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] - \left( E[f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right)^2 \right\} \overset{\text{p}}{\to} \sigma^2,
 $$
 
-3. there exists a probability measure $\mu$ on $(\mathsf{X}, \mathcal{X})$ such that, if $f \in L^2(\mathsf{X}, \mu)$, and for any $C > 0$
+
+
+## Proposition 9.2.12: proof (2 of 3) (continued)
+
+By identicalness
 $$
-M_N^{-1} \sum_{i=1}^{M_N} E[f^2(\xi^{N,i}) \mathbb{1}\left( |f(\xi^{N,i})| \ge C \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} \mu(f^2\mathbb{1}\left( |f| \ge C \right))
+\tilde{M}_N^{-1}\sum_{i=1}^{\tilde{M}_N} E[f^2(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] = E[f^2(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N]
 $$
+and then
+$$
+E[f(\tilde{\xi}^{N,i})^2 \mid \mathcal{F}^N] = \sum_{i=1}^{M_N} \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) }{ \sum_j \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) } f(\xi^{N,i})^2 
+=  \frac{ \sum_{i=1}^{M_N}\frac{\omega^{N,i}}{\sum_k \omega^{N,k}} \frac{d\mu}{d\nu}(\xi^{N,i})f(\xi^{N,i})^2   }{ \sum_j \frac{\omega^{N,j}}{\sum_k \omega^{N,k} } \frac{d\mu}{d\nu}(\xi^{N,j}) } 
+$$
+
+- $f^2 \frac{d\mu}{d\nu} \in \mathsf{C}$ by the last assumption
+- $\frac{d\mu}{d\nu} \in \mathsf{C}$ by assumption 9.2.6
+
+
+## Proposition 9.2.12: proof (2 of 3) (continued)
+
+
+The second term can be turned into one summand by identicalness as well. Then
+$$
+\left( E[f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right)^2 = \left( \sum_{i=1}^{M_N} \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) }{ \sum_j \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) } f(\xi^{N,i})   \right)^2
+$$
+The term inside the parentheses will converge by Theorem 9.2.7 if we can show that $f \in \tilde{\mathsf{C}}$ (i.e that $|f| \frac{d\mu}{d\nu} \in \mathsf{C}$).
+
+- $f^2 \frac{d\mu}{d\nu} \in \mathsf{C}$ by the last assumption
+- $\frac{d\mu}{d\nu} \in \mathsf{C}$ by assumption 9.2.6
+
+\begin{align*}
+|f| \frac{d\mu}{d\nu} &= |f| \frac{d\mu}{d\nu}\mathbb{1}(|f| \le 1) + |f| \frac{d\mu}{d\nu} \mathbb{1}(|f| > 1) \\
+&\le \frac{d\mu}{d\nu}\mathbb{1}(|f| \le 1) + f^2 \frac{d\mu}{d\nu} \mathbb{1}(|f| > 1) \\
+&\le \frac{d\mu}{d\nu} + f^2 \frac{d\mu}{d\nu} \in \mathsf{C}
+\end{align*}
+
+## Proposition 9.2.12: proof (3 of 3)
+
+The third assumption of Proposition 9.5.13 is:
+
+3. There exists a probability measure $\mu$ on $(\mathsf{X}, \mathcal{X})$ such that, if $f \in L^2(\mathsf{X}, \mu)$, and for any $C > 0$
+$$
+\tilde{M}_N^{-1} \sum_{i=1}^{\tilde{M}_N} E[f^2( \tilde{\xi}^{N,i}) \mathbb{1}\left( |f(\tilde{\xi}^{N,i})| \ge C \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} \mu(f^2\mathbb{1}\left( |f| \ge C \right))
+$$
+
+Rewriting the left hand side and using identicalness...
+
+## Proposition 9.2.12: proof (3 of 3) (continued)
+
+\begin{align*}
+&E[f(\tilde{\xi}^{N,i})^2 \mathbb{1}\left( |f(\tilde{\xi}^{N,i})| \ge C \right) \mid \mathcal{F}^N] \\
+&= \sum_{i=1}^{M_N} \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) }{ \sum_j \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) } f(\xi^{N,i})^2 \mathbb{1}\left( |f(\tilde{\xi}^{N,i})| \ge C \right) \\
+&=  \frac{ \sum_{i=1}^{M_N}\frac{\omega^{N,i}}{\sum_k \omega^{N,k}} \frac{d\mu}{d\nu}(\xi^{N,i})f(\xi^{N,i})^2 \mathbb{1}\left( |f(\tilde{\xi}^{N,i})| \ge C \right)  }{ \sum_j \frac{\omega^{N,j}}{\sum_k \omega^{N,k} } \frac{d\mu}{d\nu}(\xi^{N,j}) } 
+\end{align*}
+
+Numerator converges to $\mu(f^2 \mathbb{1}\left( |f| \ge C \right))$ because
+
+- $f^2 \frac{d\mu}{d\nu} \in \mathsf{C}$ by the last assumption
+- $f^2 \frac{d\mu}{d\nu}\mathbb{1}\left( |f(\tilde{\xi}^{N,i})| \ge C \right)\le f^2 \frac{d\mu}{d\nu} \in \mathsf{C}$ (so the left hand side is in $\mathsf{C}$ by proper-ness)
+
+
+## Proposition 9.2.12: proof (3 of 3) (continued)
+
+\begin{align*}
+&E[f(\tilde{\xi}^{N,i})^2 \mathbb{1}\left( |f(\tilde{\xi}^{N,i})| \ge C \right) \mid \mathcal{F}^N] \\
+&= \sum_{i=1}^{M_N} \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) }{ \sum_j \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) } f(\xi^{N,i})^2 \mathbb{1}\left( |f(\tilde{\xi}^{N,i})| \ge C \right) \\
+&=  \frac{ \sum_{i=1}^{M_N}\frac{\omega^{N,i}}{\sum_k \omega^{N,k}} \frac{d\mu}{d\nu}(\xi^{N,i})f(\xi^{N,i})^2 \mathbb{1}\left( |f(\tilde{\xi}^{N,i})| \ge C \right)  }{ \sum_j \frac{\omega^{N,j}}{\sum_k \omega^{N,k} } \frac{d\mu}{d\nu}(\xi^{N,j}) } 
+\end{align*}
+
+Denominator converges to $1$ because
+
+- $\frac{d\mu}{d\nu} \in \mathsf{C}$ by assumption 9.2.6
+
+
+
+## Theorem 9.2.14
+
+This theorem shows that resampling preserves asymptotic normality, and describes how much the asymptotic variance increases once you resample.
+
+Assume:
+
+Assumption 9.1.1: $\mu \ll \nu$, and $d\mu/d\nu > 0$ almost surely.
+
+Assumption 9.2.6: $\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}$ is consistent for $(\nu, \mathsf{C})$ (a proper set), and $d\mu/d\nu \in \mathsf{C}$. 
+
+Assumption 9.2.10: The weighted sample $\{(\xi^{N,i}, \omega^{N,i})\}_{1 \le i \le M_N}$ is asymptotically normal for $(\nu, \mathsf{A}, \sigma, \{a_N\})$, and $\frac{d\mu}{d\nu} \in \mathsf{A}$.
+
+Last, $a^2_N / \tilde{M}_N \to \alpha$ and 
+$$
+\tilde{\mathsf{A}} \overset{\text{def}}{=} \left\{ f \in L^2(\mathsf{X}, \mu) : |f| \frac{d\mu}{d\nu} \in \mathsf{A}, f^2 \frac{d\mu}{d\nu} \in \mathsf{C} \right\}.
+$$
+
+Then...
+
+
+## Theorem 9.2.14
+
+...then $\tilde{\mathsf{A}}$ is proper and 
+
+1. $\{ (\tilde{\xi}^{N,i}, 1) \}_{1 \le i \le \tilde{M}_N}$ is asymptotically normal for $(\mu, \tilde{\mathsf{A}}, \tilde{\sigma}, \{ a_N \})$ with 
+$$
+\tilde{\sigma}^2(f) = \alpha \text{Var}_{\mu}(f) + \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
+$$ 
+if $\alpha < 1$ and $f \in \tilde{\mathsf{A}}$, and
+
+2.  $\{ (\tilde{\xi}^{N,i}, 1) \}_{1 \le i \le \tilde{M}_N}$ is asymptotically normal for $(\mu, \tilde{\mathsf{A}}, \tilde{\sigma}, \{ \sqrt{ \tilde{M}_N} \})$ with 
+$$
+\tilde{\sigma}^2(f) = \text{Var}_{\mu}(f) + \frac{1}{\alpha} \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
+$$ 
+if $\alpha \ge 1$ and $f \in \tilde{\mathsf{A}}$.
+
+
+
+
+## Theorem 9.2.14: proof
+
+First, let's show $\tilde{\mathsf{A}}$ is proper. This you can do on your own.
+
+The rest of the details are given in \verb|proof_9.2.14.pdf|.
+
+Theorem 9.2.15 is just a summary with different notation. For homework, take a look at the rest of the chapter's examples, (ignore the inequalities on tail probabilities).
