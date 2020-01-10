@@ -49,6 +49,7 @@ $$
 
 ## Some Notation
 
+
 - $L(x,A)$ is "like" $\int_A g(y_t \mid x_t)f(x_t \mid x_{t-1} = x) d x_t$
 
 - $R(x,A)$ is "like" $\int_A q_t(x_t \mid y_t, x) dx_t$
@@ -140,7 +141,7 @@ L(\xi^{N,i}, f) &=
 \end{align*}
 
 
-## Theorem 9.3.5: proof (1 of )
+## Theorem 9.3.5: proof
 
 Recall 
 
@@ -156,7 +157,7 @@ We want to show
 and thus their ratio converges to $\mu(f)$.
 
 
-## Theorem 9.3.5: proof ( of )
+## Theorem 9.3.5: proof
 
 Actually, (1) is a special case of (2). This is because, Assumption 9.3.2 gives us $L(x,\mathsf{X}) \in \mathsf{C}$, which means the identity function $1 \in \tilde{\mathsf{C}}$. 
 

@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Taylor R. Brown" />
-  <title>Day 21</title>
+  <title>Day 22</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 body
@@ -362,11 +362,11 @@ list-style-type: none;
 </head>
 <body>
 <div class="slide titlepage">
-  <h1 class="title">Day 21</h1>
+  <h1 class="title">Day 22</h1>
   <p class="author">
 Taylor R. Brown
   </p>
-  <p class="date">1/6/2020</p>
+  <p class="date">1/8/2020</p>
 </div>
 <div id="roadmap" class="slide section level2">
 <h1>Roadmap</h1>
@@ -383,73 +383,8 @@ Taylor R. Brown
 <li>sequential importance sampling with resampling (multi-step analysis)</li>
 </ul>
 </div>
-<div id="overview" class="slide section level2">
-<h1>Overview</h1>
-<p>We will investigate SISR in detail, but we will disregard “iid sampling” which is rarely available in practice.</p>
-<p>In earlier chapters, we separated everything along the lines of re-weighting and resampling. Now we’ll address <strong>mutation,</strong> which is the same as sampling, but the samples are drawn from a Markov kernel.</p>
-</div>
-<div id="motivation" class="slide section level2">
-<h1>Motivation</h1>
-<p>Want <span class="math display">\[
-\mu(f) = \frac{\int \nu(dx) L(x, dy) f(y)}{\int \nu(dx) L(x, dy) }
-\]</span></p>
-<ul>
-<li><p>sample from <span class="math inline">\(\nu\)</span></p></li>
-<li><p>evaluate the density of <span class="math inline">\(L\)</span></p></li>
-</ul>
-<p>So we use</p>
-<p><span class="math display">\[
-\frac{\int \nu(dx) L(x, dy) f(y)}{\int \nu(dx) L(x, dy) } = \frac{\int \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\int \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) }
-\]</span></p>
-</div>
-<div id="some-notation" class="slide section level2">
-<h1>Some Notation</h1>
-<ul>
-<li><p><span class="math inline">\(L(x,A)\)</span> is “like” <span class="math inline">\(\int_A g(y_t \mid x_t)f(x_t \mid x_{t-1} = x) d x_t\)</span></p></li>
-<li><p><span class="math inline">\(R(x,A)\)</span> is “like” <span class="math inline">\(\int_A q_t(x_t \mid y_t, x) dx_t\)</span></p></li>
-<li><p><span class="math inline">\(\frac{L(x,A)}{L(x,\mathsf{X})}\)</span> is “like” <span class="math inline">\(\frac{\int_A g(y_t \mid x_t)f(x_t \mid x) d x_t}{\int_{\mathsf{X}} g(y_t \mid x_t)f(x_t \mid x) d x_t} = p(x_t \in A \mid y_t, x_{t-1} = x)\)</span> (optimal proposal)</p></li>
-<li><p><span class="math inline">\(\frac{dL(x_{t-1}, \cdot)}{dR(x_{t-1}, \cdot)}(x_t)\)</span> is “like” <span class="math inline">\(\frac{g(y_t \mid x_t)f(x_t \mid x_{t-1}) }{q_t(x_t \mid y_t, x_{t-1})}\)</span></p></li>
-</ul>
-</div>
-<div id="some-notation-1" class="slide section level2">
-<h1>Some Notation</h1>
-<ul>
-<li><p><span class="math inline">\(\nu\)</span> samples from the previous time period that were used to target the old target</p></li>
-<li><p><span class="math inline">\(\mu = (\nu L)(A)/(\nu L)(\mathsf{X})\)</span> target at next time point</p></li>
-<li><p><span class="math inline">\(\tilde{\xi}^{N,i}\)</span> are no longer resampled particles, but rather the “mutated” particles</p></li>
-<li><p><span class="math inline">\(\tilde{\xi}^{N,i} \mid \xi^{N,i} \sim R\)</span> (mutated from the old samples using <span class="math inline">\(R\)</span>)</p></li>
-<li><p><span class="math inline">\(\tilde{\xi}^{N,i} \sim \nu R\)</span></p></li>
-</ul>
-</div>
-<div id="assumptions" class="slide section level2">
-<h1>Assumptions</h1>
-<p>Assumption 9.3.1: <span class="math inline">\(0 &lt; \int \nu(dx) L(x,\mathsf{X}) &lt; \infty\)</span>.</p>
-<p>Assumption 9.3.2: <span class="math inline">\(\{(\xi^{N,i},1)\}_{1 \le i \le M_N}\)</span> are consistent for <span class="math inline">\((\nu, \mathsf{C})\)</span>. Also <span class="math inline">\(L(x,\mathsf{X}) \in \mathsf{C}\)</span>.</p>
-<p>Assumption 9.3.3: <span class="math inline">\(\forall x \in \mathsf{X}\)</span>, <span class="math inline">\(L(x, \cdot) \ll R(x, \cdot)\)</span>, and there exists a strictly positive RN derivative: <span class="math inline">\(\frac{dL(x,\cdot )}{dR(x, \cdot)}\)</span>.</p>
-</div>
-<div id="mutation" class="slide section level2">
-<h1>Mutation!</h1>
-<p>Let <span class="math inline">\(\{\alpha_N\} \in \mathbb{N}\)</span> be the number of “offspring” of each “parent” (not the same as <span class="math inline">\(a_N\)</span> from the previous section). We need this because we set <span class="math inline">\(\tilde{M}_N = \alpha_N M_N\)</span>.</p>
-<ul>
-<li><span class="math inline">\(i=1,\ldots, M_N\)</span>, and for each <span class="math inline">\(i\)</span>, we have <span class="math display">\[
-j = \alpha_N(i-1) + 1, \ldots, \alpha_Ni
-\]</span></li>
-</ul>
-<p>If <span class="math inline">\(\alpha_N = 1\)</span>, we don’t need multiple indexes, which is usually the way I implement everything in practice.</p>
-</div>
-<div id="mutation-continued" class="slide section level2">
-<h1>Mutation! (continued)</h1>
-<ol style="list-style-type: decimal">
-<li><p>Draw <span class="math inline">\(\tilde{\xi}^{N,1}, \ldots, \tilde{\xi}^{N,\tilde{M}_N}\)</span> conditionally independently given <span class="math inline">\(\mathcal{F}^N = \mathcal{G}^N \bigvee \sigma\left(\xi^{N,i}, \ldots, \xi^{N,M_N} \right)\)</span> as follows: <span class="math display">\[
-\tilde{\xi}^{N,j} \sim R(\xi^{N,i}, \cdot)
-\]</span></p></li>
-<li><p>Assign each sample <span class="math inline">\(\tilde{\xi}^{N,j}\)</span> the weight <span class="math display">\[
-\tilde{\omega}^{N,j} = \frac{dL(\xi^{N,i},\cdot )}{dR(\xi^{N,i}, \cdot)}(\tilde{\xi}^{N,j})
-\]</span></p></li>
-</ol>
-</div>
-<div id="theorem-9.3.5" class="slide section level2">
-<h1>Theorem 9.3.5</h1>
+<div id="last-class-theorem-9.3.5" class="slide section level2">
+<h1>Last class: Theorem 9.3.5</h1>
 <p>Assume</p>
 <ol style="list-style-type: decimal">
 <li><p>Assumption 9.3.1: <span class="math inline">\(0 &lt; L(x,\mathsf{X}) &lt; \infty\)</span>.</p></li>
@@ -460,38 +395,44 @@ j = \alpha_N(i-1) + 1, \ldots, \alpha_Ni
 \tilde{\mathsf{C}} = \left\{ f \in L^1(\mathsf{X}, \mu) : x \mapsto L(x, |f|) \in \mathsf{C}  \right\}.
 \]</span></p>
 <p>Then <span class="math inline">\(\tilde{\mathsf{C}}\)</span> is proper and <span class="math inline">\(\{ (\tilde{\xi}^{N,i}, \tilde{\omega}^{N,i} )\}_{1 \le i \le M_N}\)</span> is consistent for <span class="math inline">\((\mu, \tilde{\mathsf{C}})\)</span>.</p>
+<p>…now we want a CLT!</p>
 </div>
-<div id="theorem-9.3.5-proof" class="slide section level2">
-<h1>Theorem 9.3.5: proof</h1>
-<p>Check <span class="math inline">\(\tilde{\mathsf{C}}\)</span> is proper on your own.</p>
-<p>The rest of the proof is just applying theorem 9.5.7, and using a trick:</p>
-<p><span class="math display">\[\begin{align*}
-L(\xi^{N,i}, f) &amp;= 
-\int L(\xi^{N,i}, dy) f(y) \\
-&amp;= \int  R(\xi^{N,i},dy) \frac{d L(\xi^{N,i}, \cdot)}{ dR(\xi^{N,i}, \cdot) }(y) f(y) \\
-&amp;= E\left[ \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,j}) \mid \mathcal{F}^N \right]
-\end{align*}\]</span></p>
-</div>
-<div id="theorem-9.3.5-proof-1" class="slide section level2">
-<h1>Theorem 9.3.5: proof</h1>
-<p>Recall</p>
-<p><span class="math display">\[
-\mu(f)  = \frac{\int \nu(dx) L(x, dy) f(y)}{\int \nu(dx) L(x, dy) } = \frac{\int \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\int \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) } 
-\]</span> We want to show</p>
+<div id="theorem-9.3.7" class="slide section level2">
+<h1>Theorem 9.3.7</h1>
+<p>Recall <span class="math inline">\(\tilde{\mathsf{C}} = \left\{ f \in L^1(\mathsf{X}, \mu) : x \mapsto L(x, |f|) \in \mathsf{C} \right\}\)</span> and assume</p>
 <ol style="list-style-type: decimal">
-<li><p><span class="math inline">\(\frac{1}{\tilde{M}^N} \sum_{j=1}^{\tilde{M}_N} \tilde{\omega}^{N,j} 1(\tilde{\xi}^{N,j})\overset{\text{p}}{\to} \nu L(\mathsf{X})\)</span></p></li>
-<li><p><span class="math inline">\(\frac{1}{\tilde{M}^N} \sum_{j=1}^{\tilde{M}_N} \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})\overset{\text{p}}{\to} \nu L(f)\)</span></p></li>
+<li><p>Assumption 9.3.1: <span class="math inline">\(0 &lt; L(x,\mathsf{X}) &lt; \infty\)</span>.</p></li>
+<li><p>Assumption 9.3.2: <span class="math inline">\(\{(\xi^{N,i},1)\}_{1 \le i \le M_N}\)</span> are consistent for <span class="math inline">\((\nu, \mathsf{C})\)</span>. <span class="math inline">\(L(x,\mathsf{X}) \in \mathsf{C}\)</span>.</p></li>
+<li><p>Assumption 9.3.3: <span class="math inline">\(\forall x \in \mathsf{X}\)</span>, <span class="math inline">\(L(x, \cdot) \ll R(x, \cdot)\)</span>, and there exists a strictly positive RN derivative: <span class="math inline">\(\frac{dL(x,\cdot )}{dR(x, \cdot)}\)</span>.</p></li>
+<li><p>Assumption 9.3.6: the weighted sample <span class="math inline">\(\{(\xi^{N,i}, 1)\}_{1 \le i \le M_N}\)</span> is asymptotically normal for <span class="math inline">\((\nu, \mathsf{A}, \sigma, M_N^{1/2})\)</span>, where <span class="math inline">\(\mathsf{A}\)</span> is proper, and <span class="math inline">\(\sigma\)</span> is some nonnegative function on <span class="math inline">\(\mathsf{A}\)</span>.</p></li>
 </ol>
-<p>and thus their ratio converges to <span class="math inline">\(\mu(f)\)</span>.</p>
+<p>Then <span class="math inline">\(\tilde{\mathsf{A}}\)</span> is proper, and <span class="math inline">\(\{ (\tilde{\xi}^{N,j}, \tilde{\omega}^{N,j} )\}_{1 \le j \le M_N}\)</span> is asymptotically normal for <span class="math inline">\((\mu, \tilde{\mathsf{A}}, \tilde{\sigma}, M_N^{1/2})\)</span>.</p>
 </div>
-<div id="theorem-9.3.5-proof-2" class="slide section level2">
-<h1>Theorem 9.3.5: proof</h1>
-<p>Actually, (1) is a special case of (2). This is because, Assumption 9.3.2 gives us <span class="math inline">\(L(x,\mathsf{X}) \in \mathsf{C}\)</span>, which means the identity function <span class="math inline">\(1 \in \tilde{\mathsf{C}}\)</span>.</p>
-<p>So we pick an arbitrary <span class="math inline">\(f \in \tilde{\mathsf{C}}\)</span> and show</p>
-<p><span class="math display">\[
-\frac{1}{\tilde{M}^N} \sum_{j=1}^{\tilde{M}_N} \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})\overset{\text{p}}{\to} \nu L(f)
+<div id="theorem-9.3.7-1" class="slide section level2">
+<h1>Theorem 9.3.7</h1>
+<p>Where <span class="math display">\[
+\tilde{\mathsf{A}} \overset{\text{def}}{=} \left\{ f \in L^2(\mathsf{X}, \mu) : L(x,f) \in \mathsf{A}, x \mapsto \int R(x,dx')\left[ \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') f(x') \right]^2 \in \mathsf{C} \right\}
 \]</span></p>
-<p>For the details of this, see <code>proof_9.3.5.pdf</code></p>
+<p>and for <span class="math inline">\(f \in \tilde{\mathsf{A}}\)</span>, <span class="math display">\[
+\tilde{\sigma}^{1/2}(f) \overset{\text{def}}{=} \frac{ \sigma^2\left\{ L[f - \mu(f)] \right\} + \frac{1}{\alpha}\eta^2\left[f - \mu(f) \right] }{ \left[ \nu L(\mathsf{X}) \right]^2 },
+\]</span> and in this expression <span class="math display">\[
+\eta^2(f) \overset{\text{def}}{=} \iint \nu(dx) R(x,dx')\left[ \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') f(x') \right]^2 - \int \nu(dx) [L(x,f)]^2
+\]</span></p>
+<p>Think “law of total variance.”</p>
+</div>
+<div id="theorem-9.3.7-proof-just-propriety" class="slide section level2">
+<h1>Theorem 9.3.7: proof (just propriety)</h1>
+<p>We can show <span class="math inline">\(\tilde{\mathsf{A}}\)</span> is proper, but we’ll push all the other details to <code>proof_9.3.7.pdf</code>.</p>
+<p>First, let’s pick <span class="math inline">\(|f| \in \tilde{\mathsf{A}}\)</span> and <span class="math inline">\(|g| \le |f|\)</span> in order to show <span class="math inline">\(|g| \in \tilde{\mathsf{A}}\)</span>.</p>
+<p>Like always, we use propriety in the earlier sets to show propriety in the new set. The assumed inequality implies that</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(L(x,|g|) \le L(x, |f|) \in \mathsf{A}\)</span>, and</li>
+<li><span class="math inline">\(\nu(dx) R(x,dx')\left[ \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') |g|(x') \right]^2 \le \nu(dx) R(x,dx')\left[ \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') |f|(x') \right]^2 \in \mathsf{C}\)</span></li>
+</ol>
+</div>
+<div id="theorem-9.3.7-proof-just-propriety-1" class="slide section level2">
+<h1>Theorem 9.3.7: proof (just propriety)</h1>
+<p>Second, <span class="math inline">\(f,g \in \tilde{\mathsf{A}}\)</span>, and <span class="math inline">\(\alpha,\beta \in \mathbb{R}\)</span></p>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
