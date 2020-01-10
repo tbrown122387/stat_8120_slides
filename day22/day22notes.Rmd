@@ -24,6 +24,14 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - sequential importance sampling with resampling (multi-step analysis)
 
+## Overview
+
+```{r, echo=FALSE, out.width="400px"}
+knitr::include_graphics("single-step-diagram.png")
+```
+
+
+
 ## Last class: Theorem 9.3.5
 
 Assume 

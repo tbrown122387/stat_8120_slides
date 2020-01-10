@@ -1,0 +1,123 @@
+---
+title: "Day 23"
+author: "Taylor R. Brown"
+date: "1/10/2020"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Roadmap
+
+9.3
+
+- sequential importance sampling with resampling (single-step analysis)
+
+9.4
+
+- **sequential importance sampling with resampling (multi-step analysis)**
+
+We made it!
+
+## Notation
+
+In a nutshell, we're just going to do the last section's algorithm over and over again as we go through more time points. 
+
+
+## Notation
+
+We discussed the notation previously in chapter 7.3, but here's a review:
+
+1. The unobserved state has transition kernel $Q$, i.e.
+$$
+P(x_t \in A \mid x_{t-1} = x) = Q(x,A)
+$$
+
+2. At the first time point $t=0$, the state has distribution $\nu$; i.e. 
+
+$$
+P(X_0 \in A) = \nu(A)
+$$
+
+3. Given a state at time $t$, $y_t$ has the following conditional density:
+
+$$
+g_t(y_t \mid x_t = x) = g_t(x)
+$$
+
+
+4. The instrumental/proposal kernel draws $X_k \mid X_{k-1}$ or
+
+$$
+X_k \sim R(x, dx_k)
+$$
+
+
+## Notation
+
+We'll use these distributions quite often
+
+
+1. 
+$$
+\phi_{\nu,0}(A) = \frac{ \int_A \nu (dx') g_0(x') }{ \int_{\mathsf{X}} \nu (dx') g_0(x') }
+$$
+This is akin to $p(x_0 \mid y_0)$.
+
+
+
+2. The unnormalized 
+$$
+T^u_k(x,A) = \int_A Q(x,dx') g_{k+1}(x')
+$$
+
+This is akin to $p(y_{k+1}, x_{k+1} \in A \mid x_{k})$, or the unnormalized $L(x,A)$ from last section!
+
+
+## Notation
+
+We'll use these distributions quite often
+
+3. Recursive formulas for filtering:
+$$
+\phi_{\nu,k+1}(A) = \frac{ \int_{\mathsf{X}} \phi_{\nu,k}(dx)T_k^u(x,A)  }{\int_{\mathsf{X}} \phi_{\nu,k}(dx)T_k^u(x,\mathsf{X})  }
+$$
+where $A \in \mathcal{X}$ and $k \ge 0$.
+
+This is akin to something like 
+
+$$
+\phi(x_{k+1} \mid y_{0:k+1}) = \frac{ \int g(y_{k+1} \mid x_{k+1})  q(x_{k+1} \mid x_k) \phi(x_{k}  \mid y_{0:k+1}) dx_k}{ \iint g(y_{k+1} \mid x_{k+1})  q(x_{k+1} \mid x_k) \phi(x_{k} \mid y_{0:k+1}) dx_k dx_{k+1} }
+$$
+
+## Notation
+
+In the algorithm, we will (like always) alternate between mutation/propogation and then resampling. 
+
+
+The initial sampling will be done by drawing from $\rho_0$.
+
+The distributions the mutations will be done with instrumental kernels $R_k$ for $k \ge 1$. 
+
+
+## Assumption 9.4.1
+
+There are three things for assumption 9.4.1:
+
+1. $\nu(g_0) > 0$;
+
+2. $\int_{\mathsf{X}} Q(x,dx') g_k(x') > 0$ (for all $x \in \mathsf{X}$ and $k \ge 1$)
+
+3. for all $k \ge 0$, $\sup_x g_k(x) < \infty $.
+
+These are the assumptions that say the observations can't be "absurdly bad" or "absurdly good." 
+
+
+## Assumptions 9.4.2 and 9.4.3.
+
+These are requiring that you can't sample 
+
+1. $\phi_{\nu,0} \ll \rho_0$

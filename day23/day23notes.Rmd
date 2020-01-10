@@ -1,0 +1,23 @@
+---
+title: "Day 23"
+author: "Taylor R. Brown"
+date: "1/10/2020"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Today
+
+...continue going over proof of asymptotic normality
+
+```{r, echo=FALSE, out.width="350px"}
+knitr::include_graphics("single-step-diagram.png")
+```
+
+
+
+
