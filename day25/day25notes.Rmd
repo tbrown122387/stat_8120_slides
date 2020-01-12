@@ -1,5 +1,5 @@
 ---
-title: "Day 23"
+title: "Day 25"
 author: "Taylor R. Brown"
 date: "1/10/2020"
 output: slidy_presentation
@@ -74,7 +74,7 @@ $$
 T^u_k(x,A) = \int_A Q(x,dx') g_{k+1}(x')
 $$
 
-This is akin to $p(y_{k+1}, x_{k+1} \in A \mid x_{k})$, or the unnormalized $L(x,A)$ from last section!
+This is akin to $p(y_{k+1}, x_{k+1} \in A \mid x_{k})$, or the unnormalized $L(x,A)$ from last section, or $Q(x_{k-1}, dx_k) g_k(x_k)$ from chapter 7!
 
 
 ## Notation
@@ -90,7 +90,7 @@ where $A \in \mathcal{X}$ and $k \ge 0$.
 This is akin to something like 
 
 $$
-\phi(x_{k+1} \mid y_{0:k+1}) = \frac{ \int g(y_{k+1} \mid x_{k+1})  q(x_{k+1} \mid x_k) \phi(x_{k}  \mid y_{0:k+1}) dx_k}{ \iint g(y_{k+1} \mid x_{k+1})  q(x_{k+1} \mid x_k) \phi(x_{k} \mid y_{0:k+1}) dx_k dx_{k+1} }
+\phi(x_{k+1} \mid y_{0:k+1}) = \frac{ \int g(y_{k+1} \mid x_{k+1})  q(x_{k+1} \mid x_k) \phi(x_{k}  \mid y_{0:k}) dx_k}{ \iint g(y_{k+1} \mid x_{k+1})  q(x_{k+1} \mid x_k) \phi(x_{k} \mid y_{0:k}) dx_k dx_{k+1} }
 $$
 
 ## Notation
@@ -111,13 +111,168 @@ There are three things for assumption 9.4.1:
 
 2. $\int_{\mathsf{X}} Q(x,dx') g_k(x') > 0$ (for all $x \in \mathsf{X}$ and $k \ge 1$)
 
-3. for all $k \ge 0$, $\sup_x g_k(x) < \infty $.
-
-These are the assumptions that say the observations can't be "absurdly bad" or "absurdly good." 
+3. for all $k \ge 0$, $\sup_x g_k(x) < \infty$.
 
 
-## Assumptions 9.4.2 and 9.4.3.
+## Assumption 9.4.1 (continued)
 
-These are requiring that you can't sample 
+
+These are the assumptions that say the observations can't be "absurdly bad" or "absurdly good." They are sufficient to bound the likelihood between two extremes:
+
+$$
+0 < \underbrace{\int \cdots \int \nu(dx_0)g_0(x_0)\prod_{i=1}^k  Q(x_{i-1}, dx_i)g_i(x_i)}_{\text{likelihood}} \le \prod_{i=0}^k \sup_x g_k(x) < \infty
+$$
+
+You need this to prevent the recursive filtering formulas from breaking. It guarantees
+
+$$
+\phi_{\nu,k} T_k^u(\mathsf{X}) < \infty
+$$
+which is akin to something like $p(y_{k+1} \mid y_{0:k}) < \infty$. This means that each filtering distribution is "proper" to use Bayesian lingo.
+
+
+
+## Assumptions 9.4.2 and 9.4.3
+
+These assumptions require that you can't sample poorly:
 
 1. $\phi_{\nu,0} \ll \rho_0$
+
+2. For any time $k \ge 1$, and for all $x \in \mathsf{X}$, $T^u_k(x, \cdot) \ll R_k(x, \cdot)$. Also, for all $x \in \mathsf{X}$, there exists a positive version $\frac{d T^u_k(x, \cdot)}{R_k(x, \cdot)}(x')$ such that
+$$
+\sup_{(x,x')} \frac{d T^u_k(x, \cdot)}{dR_k(x, \cdot)}(x') < \infty
+$$
+
+
+## Algorithm 9.4.4
+
+This is the final algorithm: sequential importance sampling with resampling (SISR).
+
+We describe one iteration (except for the first).
+
+Just as before, it consists of two steps: **mutation** and **selection**.
+
+
+## Algorithm 9.4.4: Mutation (1 of 2)
+
+Draw $\{\tilde{\xi}^{N,j}\}_{1 \le j \le \tilde{M}_N}$ conditionally independently given $\mathcal{F}^N_k$ with 
+$$
+P(\tilde{\xi}^{N,j} \in A \mid \mathcal{F}^N_k) = R( \xi )
+$$
+where $i=1,\ldots,M_N$ and $j = \alpha_N(i-1) + 1 , \ldots, \alpha_N i$, $A \in \mathcal{X}$ and compute the importance weights
+
+$$
+\tilde{\omega}^{N,j}_{k+1} = g_{k+1}(\tilde{\xi}^{N,j}_{k+1}) \frac{dQ(\xi^{N,i}_k, \cdot)}{dR_k(\xi^{N,i}_k, \cdot)}(\tilde{\xi}^{N,j}_{k+1})
+$$
+
+## Algorithm 9.4.4: Selection (2 of 2)
+
+
+At step 2, you currently have $\{ (\tilde{\xi}^{N,j}_{k+1}, \tilde{\omega}^{N,j}_{k+1}) \}_{1 \le j \le \tilde{M}_N}$.
+
+You draw indexes $\{I_{k+1}^{N,i'}\}_{1 \le i' \le M_N}$ conditionally independently (and identically) given 
+$$
+\tilde{\mathcal{F}}^N_{k+1} = \mathcal{F}^N_{k+1} \bigvee \sigma(\tilde{\xi}^{N,1}_{k+1}, \ldots, \tilde{\xi}^{N,\tilde{M}_N}_{k+1}  ),
+$$
+according to 
+$$
+P(I_{k+1}^{N,i'} = j \mid \tilde{\mathcal{F}}^N_{k+1}) = \frac{ \tilde{\omega}^{N,j}_{k+1}  }{ \sum_{j'=1}^{\tilde{M}_N} \tilde{\omega}^{N,j'}_{k+1} }
+$$
+and set 
+$$
+\xi^{N,i'}_{k+1} = \tilde{\xi}_{k+1}^{I_{k+1}^{N,i'}}
+$$
+
+
+## Example
+
+Let's try SISR on the stochastic volatility model. Recall that the (uncentered) stochastic volatility model is
+
+$$
+Y_k = \beta \exp\left[X_k/2 \right]v_k
+$$
+
+$$
+X_k = \phi X_{k-1} + \sigma U_k
+$$
+We can rewrite this in the form of kernels and densities:
+
+$$
+Q(x_{k-1},d x_k) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[\frac{(x_{k} - \phi x_{k-1} )^2}{2 \sigma^2} \right]d x_k
+$$
+
+$$
+g_k(x_k) = \frac{1}{\sqrt{2\pi\beta^2}}\frac{1}{\exp\left[x_k/2 \right]} \exp\left[ -\frac{y_k^2}{2 \beta^2 \exp(x_k)} \right]
+$$
+
+
+## Example
+
+Can we pick the "optimal proposal"? In other words, let's try to make 
+
+$$
+\tilde{\omega}^{N,j}_{k+1} = g_{k+1}(\tilde{\xi}^{N,j}_{k+1}) \frac{dQ(\xi^{N,i}_k, \cdot)}{dR_k(\xi^{N,i}_k, \cdot)}(\tilde{\xi}^{N,j}_{k+1})
+$$
+
+constant.
+
+Can we solve the integral "get" something like $p(x_{k+1} \mid x_k, y_{k+1})$? In other words, can we solve
+$$
+T^u_k(x_k, A) = \int_A g_{k+1}(x_{k+1})q(x_{k+1} \mid x_k) dx_{k+1}?
+$$
+
+
+## Example
+
+For a general model, if we could set 
+$$
+R_k(x, A) \overset{\text{set}}{=} \frac{T_k^u(x,A)}{T_k^u(x,\mathsf{X})}
+$$
+and the weight update would simplify to
+
+$$
+\tilde{\omega}^{N,j}_{k+1} = g_{k+1}(\tilde{\xi}^{N,j}_{k+1}) \frac{dQ(\xi^{N,i}_k, \cdot)}{dR_k(\xi^{N,i}_k, \cdot)}(\tilde{\xi}^{N,j}_{k+1}) = T_k^u(x,\mathsf{X})
+$$
+
+No (conditional) variance because it isn't a function of $x_{k+1}$ at all!
+
+
+## Example
+
+Another cool thing if we can sample from the optimal proposal for all time points is that  Assumption 9.4.1 will imply  Assumption 9.4.3, and so we don't even have to check the second one.
+
+
+\begin{align*}
+\sup_{(x,x')} \frac{d T^u_k(x, \cdot)}{dR_k(x, \cdot)}(x') &= \sup_x T_k^u(x,\mathsf{X}) \\
+&= \sup_x \int Q(x,dx')g(x') \le \sup_x \left[\sup_{x'} g(x') \right] \\
+&= \sup_{x'} g(x') < \infty
+\end{align*}
+
+
+## Example
+
+However, do we even have 
+$$
+\sup_{x'} g(x') < \infty?
+$$
+for a stochastic volatility model:
+
+
+$$
+\sup_x g_k(x) = \sup_x \frac{1}{\sqrt{2\pi \beta^2}}\frac{1}{\exp\left[x/2 \right]} \exp\left[ -\frac{y^2}{2 \beta^2 \exp(x)} \right]
+$$
+
+
+## Example
+
+
+```{r}
+betaSqrd <- 1
+ySqrd <- .01
+xGrid <- seq(-10,10, by = .01)
+logG <- function(x) { - ySqrd/(2*betaSqrd*exp(x)) - .5*x -.5*log(2*pi*betaSqrd)}
+plot(xGrid, exp(logG(xGrid)), xlab = "x", ylab = "g(x)")
+```
+
+...it would be nice to prove it though for a wide class of parameters and observed data points, though. Let's make this a homework problem!
+

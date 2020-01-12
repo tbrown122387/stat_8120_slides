@@ -115,7 +115,7 @@ $$
 or 
 
 $$
-q(x_{k-1},d x_k) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[\frac{(x_{k} - \phi x_{k-1} )^2}{2 \sigma^2} \right]d x_k
+Q(x_{k-1},d x_k) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[\frac{(x_{k} - \phi x_{k-1} )^2}{2 \sigma^2} \right]d x_k
 $$
 
 or
