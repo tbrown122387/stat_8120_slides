@@ -92,7 +92,7 @@ and either $Y_k = \begin{bmatrix}1 & 0 & \cdots & 0 \end{bmatrix}X_k$ or $Y_k = 
 
 - $Y_k$ the observed response
 
-- $X_k$ the unobserved "true" response
+- $W_k$ the unobserved "true" response
 
 - $C_k \in \{0,1\}$ unobserved, whether or not there was a change point at $k$
 

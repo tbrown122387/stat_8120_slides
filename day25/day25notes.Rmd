@@ -276,3 +276,4 @@ plot(xGrid, exp(logG(xGrid)), xlab = "x", ylab = "g(x)")
 
 ...it would be nice to prove it though for a wide class of parameters and observed data points, though. Let's make this a homework problem!
 
+
