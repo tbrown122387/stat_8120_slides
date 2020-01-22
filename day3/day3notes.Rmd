@@ -122,4 +122,4 @@ Let $k \neq k_1, \ldots, k_p$...
 
 - $E_{\nu}\left[f(y_k) h(X_{k_1}, \ldots, X_{k_p}) \mid X_k \right] = E_{\nu}\left[f(y_k) \mid X_k \right]E_{\nu}\left[ h(X_{k_1}, \ldots, X_{k_p}) \mid X_k \right]$ 
 
-- $E_{\nu}\left[ f(Y_{k_1}, \ldots, Y_{k_p}) \mid X_{k_1}, \ldots, X_{k_p}, X_{\text{extra}} \right] = E_{\nu}\left[ f(Y_{k_1}, \ldots, Y_{k_p}) \mid X_{k_1}, \ldots, X_{k_p} \right]$
+- $E_{\nu}\left[ f(Y_{k_1}, \ldots, Y_{k_p}) \mid X_{k_1}, \ldots, X_{k_p}, X_{k} \right] = E_{\nu}\left[ f(Y_{k_1}, \ldots, Y_{k_p}) \mid X_{k_1}, \ldots, X_{k_p} \right]$
