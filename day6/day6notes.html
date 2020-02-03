@@ -382,10 +382,10 @@ Taylor R. Brown
 <li><span class="math inline">\(q(x_t \mid x_{t-1})\)</span> is the state transition density, <span class="math inline">\(n(x_0)\)</span> is the first time’s state distribution</li>
 <li>target: <span class="math inline">\(p(x_{0:t} \mid y_{0:t})\)</span></li>
 <li>we can only evaluate <span class="math display">\[
-p(x_{0:t}, y_{0:t}) = n(x_0)g(y_0 | x_0)q(x_1 \mid x_0)g(y_1 \mid x_1) \times \cdots \times q(x_1 \mid x_0)g(y_1 \mid x_1)
+p(x_{0:t}, y_{0:t}) = n(x_0)g(y_0 | x_0)q(x_1 \mid x_0)g(y_1 \mid x_1) \times \cdots \times q(x_n \mid x_{n-1})g(y_n \mid x_n)
 \]</span></li>
 <li>not <span class="math display">\[
-p(x_{0:t} \mid y_{0:t}) = \frac{p(x_{0:t}, y_{0:t})}{p(y_{0:t})}
+p(x_{0:t} \mid y_{0:t}) = \frac{p(x_{0:t}, y_{0:t})}{ \underbrace{p(y_{0:t})}_{\text{intractable}} }
 \]</span></li>
 </ul>
 </div>
@@ -433,18 +433,18 @@ p(x_{0:k+1} \mid y_{0:k+1} ) = \left[\frac{p(y_{0:k})}{p(y_{0:k+1})}\right] g(y_
 <h1>Outline</h1>
 <h3 id="targets-think-posteriors">Targets (think posteriors):</h3>
 <ul>
-<li><span class="math inline">\(\phi_{0 |0}\)</span>, <span class="math inline">\(\phi_{0:1 | 1}\)</span>, …</li>
-<li><span class="math inline">\(p(x_0 \mid y_0)\)</span>, <span class="math inline">\(p(x_{0:1} \mid y_{0:1})\)</span>, …</li>
+<li><span class="math inline">\(\phi_{0 |0}\)</span>, <span class="math inline">\(\phi_{0:1 | 1}\)</span>, <span class="math inline">\(\ldots\)</span></li>
+<li><span class="math inline">\(p(x_0 \mid y_0)\)</span>, <span class="math inline">\(p(x_{0:1} \mid y_{0:1})\)</span>, <span class="math inline">\(\ldots\)</span></li>
 </ul>
 <h3 id="unnormalized-targets-think-complete-data-likelihoods">Unnormalized Targets (think “complete-data” likelihoods)</h3>
 <ul>
-<li><span class="math inline">\(\nu(dx_0)g_0(x_0)\)</span>, <span class="math inline">\(\nu(dx_0)g_0(x_0)Q(x_0,dx_1)g_1(x_1)\)</span>, …</li>
-<li><span class="math inline">\(p(x_0)g(y_0 \mid x_0)\)</span>, <span class="math inline">\(p(x_0)g(y_0 \mid x_0)q(x_1 \mid x_0) g(y_1 \mid x_1)\)</span>, …</li>
+<li><span class="math inline">\(\nu(dx_0)g_0(x_0)\)</span>, <span class="math inline">\(\nu(dx_0)g_0(x_0)Q(x_0,dx_1)g_1(x_1)\)</span>, <span class="math inline">\(\ldots\)</span></li>
+<li><span class="math inline">\(p(x_0)g(y_0 \mid x_0)\)</span>, <span class="math inline">\(p(x_0)g(y_0 \mid x_0)q(x_1 \mid x_0) g(y_1 \mid x_1)\)</span>, <span class="math inline">\(\ldots\)</span></li>
 </ul>
 <h3 id="proposalsinstrumental-distributions">Proposals/Instrumental Distributions</h3>
 <ul>
-<li><span class="math inline">\(\rho_0(d x_0)\)</span>, <span class="math inline">\(\rho_{0:1}(d x_{0:1}) = \rho_0(d x_0)R(x_0, dx_1)\)</span>, …</li>
-<li><span class="math inline">\(r(x_0)\)</span>, <span class="math inline">\(r(x_{0:1})\)</span>, …</li>
+<li><span class="math inline">\(\rho_0(d x_0)\)</span>, <span class="math inline">\(\rho_{0:1}(d x_{0:1}) = \rho_0(d x_0)R(x_0, dx_1)\)</span>, <span class="math inline">\(\ldots\)</span></li>
+<li><span class="math inline">\(r(x_0)\)</span>, <span class="math inline">\(r(x_{0:1})\)</span>, <span class="math inline">\(\ldots\)</span></li>
 </ul>
 </div>
 <div id="main-idea" class="slide section level2">
@@ -453,7 +453,7 @@ p(x_{0:k+1} \mid y_{0:k+1} ) = \left[\frac{p(y_{0:k})}{p(y_{0:k+1})}\right] g(y_
 <p><span class="math display">\[
 \phi_{0:k|k}(f) = \int \cdots \int f(x_{0:k}) \frac{d \phi_{0:k|k}}{d\rho_{0:k}}(x_{0:k}) \rho_{0:k}(dx_{0:k})
 \]</span></p>
-<p>if <span class="math inline">\(\phi_{0:k|k}\)</span> is absolutely continuous with respect to <span class="math inline">\(\rho_{0:k}\)</span>.</p>
+<p>if <span class="math inline">\(\phi_{0:k|k} \ll \rho_{0:k}\)</span> (i.e. <span class="math inline">\(\phi_{0:k|k}\)</span> is absolutely continuous with respect to <span class="math inline">\(\rho_{0:k}\)</span>.)</p>
 <p>The weights we calculate will be an unnormalized version of that RN derivative.</p>
 </div>
 <div id="main-idea-1" class="slide section level2">

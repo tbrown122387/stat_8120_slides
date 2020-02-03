@@ -28,11 +28,11 @@ First, it might help to outline this in more familiar notation. Recall:
 - target: $p(x_{0:t} \mid y_{0:t})$
 - we can only evaluate 
 $$
-p(x_{0:t}, y_{0:t}) = n(x_0)g(y_0 | x_0)q(x_1 \mid x_0)g(y_1 \mid x_1) \times \cdots \times q(x_1 \mid x_0)g(y_1 \mid x_1)
+p(x_{0:t}, y_{0:t}) = n(x_0)g(y_0 | x_0)q(x_1 \mid x_0)g(y_1 \mid x_1) \times \cdots \times q(x_n \mid x_{n-1})g(y_n \mid x_n)
 $$
 - not 
 $$
-p(x_{0:t} \mid y_{0:t}) = \frac{p(x_{0:t}, y_{0:t})}{p(y_{0:t})}
+p(x_{0:t} \mid y_{0:t}) = \frac{p(x_{0:t}, y_{0:t})}{ \underbrace{p(y_{0:t})}_{\text{intractable}} }
 $$
 
 
@@ -98,16 +98,16 @@ We target $\phi_{0:k+1 | k}$, but $\frac{L_{0:k}}{L_{0:k+1}}$ is typically intra
 ## Outline
 
 ### Targets (think posteriors):
-  - $\phi_{0 |0}$, $\phi_{0:1 | 1}$, ...
-  - $p(x_0 \mid y_0)$, $p(x_{0:1} \mid y_{0:1})$, ...
+  - $\phi_{0 |0}$, $\phi_{0:1 | 1}$, $\ldots$
+  - $p(x_0 \mid y_0)$, $p(x_{0:1} \mid y_{0:1})$, $\ldots$
 
 ### Unnormalized Targets (think "complete-data" likelihoods)
-  - $\nu(dx_0)g_0(x_0)$, $\nu(dx_0)g_0(x_0)Q(x_0,dx_1)g_1(x_1)$, ...
-  - $p(x_0)g(y_0 \mid x_0)$, $p(x_0)g(y_0 \mid x_0)q(x_1 \mid x_0) g(y_1 \mid x_1)$, ...
+  - $\nu(dx_0)g_0(x_0)$, $\nu(dx_0)g_0(x_0)Q(x_0,dx_1)g_1(x_1)$, $\ldots$
+  - $p(x_0)g(y_0 \mid x_0)$, $p(x_0)g(y_0 \mid x_0)q(x_1 \mid x_0) g(y_1 \mid x_1)$, $\ldots$
 
 ### Proposals/Instrumental Distributions
-  - $\rho_0(d x_0)$, $\rho_{0:1}(d x_{0:1}) = \rho_0(d x_0)R(x_0, dx_1)$, ...
-  - $r(x_0)$, $r(x_{0:1})$, ...
+  - $\rho_0(d x_0)$, $\rho_{0:1}(d x_{0:1}) = \rho_0(d x_0)R(x_0, dx_1)$, $\ldots$
+  - $r(x_0)$, $r(x_{0:1})$, $\ldots$
 
   
 ## Main Idea
@@ -118,7 +118,7 @@ $$
 \phi_{0:k|k}(f) = \int \cdots \int f(x_{0:k}) \frac{d \phi_{0:k|k}}{d\rho_{0:k}}(x_{0:k}) \rho_{0:k}(dx_{0:k})
 $$
 
-if $\phi_{0:k|k}$ is absolutely continuous with respect to $\rho_{0:k}$.
+if $\phi_{0:k|k} \ll \rho_{0:k}$ (i.e. $\phi_{0:k|k}$ is absolutely continuous with respect to $\rho_{0:k}$.)
 
 The weights we calculate will be an unnormalized version of that RN derivative. 
 
