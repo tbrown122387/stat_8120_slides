@@ -88,11 +88,11 @@ $$
 
 versus
 $$
-\phi_{0:k+1 | k}(f) = \int\cdots \int f(x_{0:k+1})\phi_{0:k|k}(dx_{0:k}) \underbrace{\frac{L_{0:k}}{L_{0:k+1}}Q(x_k, dx_{k+1})g(x_{k+1})}_{T^u_k}
+\phi_{0:k+1 | k+1}(f) = \int\cdots \int f(x_{0:k+1})\phi_{0:k|k}(dx_{0:k}) \underbrace{\frac{L_{0:k}}{L_{0:k+1}}Q(x_k, dx_{k+1})g(x_{k+1})}_{T^u_k}
 $$
 where $f$ is any measurable, real-valued function. Note $T^u_k(x,\mathsf{X}) \neq 1$, so this kernel is not normalized (hence the $u$).
 
-We target $\phi_{0:k+1 | k}$, but $\frac{L_{0:k}}{L_{0:k+1}}$ is typically intractable.
+We target $\phi_{0:k+1 | k+1}$, but $\frac{L_{0:k}}{L_{0:k+1}}$ is typically intractable.
 
 
 ## Outline
@@ -122,7 +122,7 @@ if $\phi_{0:k|k} \ll \rho_{0:k}$ (i.e. $\phi_{0:k|k}$ is absolutely continuous w
 
 The weights we calculate will be an unnormalized version of that RN derivative. 
 
-## Main Idea
+## SIS: the algorithm
 
 
 1. make sure $\phi_{0:k|k}$ is absolutely continuous with respect to $\rho_{0:k}$ by picking 
@@ -173,11 +173,11 @@ Regarding step 3, and the calculation of weights. It's done sequentially:
 For $i=1,2,\ldots,N$:
 
   a. $\omega_0^i = g_0(\xi_0^i) \frac{d \nu}{d\rho_0}(\xi_0^i)$
-  b. for $k> 0$  $\omega_{k+1}^i = \omega_{k} g_{k+1}(\xi_{k+1}^i) \frac{d Q( \xi_k^i, \cdot)}{dR(\xi^i_k, \cdot) }(\xi_{k+1}^i)$
+  b. for $k> 0$, adjust unnormalized weights $\omega_{k+1}^i = \omega_{k} g_{k+1}(\xi_{k+1}^i) \frac{d Q( \xi_k^i, \cdot)}{dR(\xi^i_k, \cdot) }(\xi_{k+1}^i)$
   
 Multiplicative updates.
 
-NB: we only need to be able to evaluate from model distribution's and the proposal! Evaluation of the tricky normalizing constant has been avoided!.
+NB: Evaluation of the tricky normalizing constant has been avoided!
 
 ## The Algorithm
 
@@ -194,6 +194,8 @@ knitr::include_graphics("pic.png")
 
 ## Exercises
 
+### Option 1:
+
 - Show that 
 
     * $\phi_0 \ll \rho_0$
@@ -202,3 +204,6 @@ knitr::include_graphics("pic.png")
 
 guarantees that $\phi_{0:k|k}$ is absolutely continuous with respect to $\rho_{0:k}$.
 
+### Option 2:
+
+Continue programming your SIS algorithm for the SVOL model using the data provided in Collab!

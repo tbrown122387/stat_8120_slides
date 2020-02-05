@@ -425,9 +425,9 @@ p(x_0 \mid y_0) = \frac{g(y_0 \mid x_0) n(x_0) }{\int g(y_0 \mid x') n(x') dx' }
 p(x_{0:k+1} \mid y_{0:k+1} ) = \left[\frac{p(y_{0:k})}{p(y_{0:k+1})}\right] g(y_{k+1} \mid x_{k+1})q(x_{k+1} \mid x_k)p(x_{0:k} \mid y_{0:k}) 
 \]</span></p>
 <p>versus <span class="math display">\[
-\phi_{0:k+1 | k}(f) = \int\cdots \int f(x_{0:k+1})\phi_{0:k|k}(dx_{0:k}) \underbrace{\frac{L_{0:k}}{L_{0:k+1}}Q(x_k, dx_{k+1})g(x_{k+1})}_{T^u_k}
+\phi_{0:k+1 | k+1}(f) = \int\cdots \int f(x_{0:k+1})\phi_{0:k|k}(dx_{0:k}) \underbrace{\frac{L_{0:k}}{L_{0:k+1}}Q(x_k, dx_{k+1})g(x_{k+1})}_{T^u_k}
 \]</span> where <span class="math inline">\(f\)</span> is any measurable, real-valued function. Note <span class="math inline">\(T^u_k(x,\mathsf{X}) \neq 1\)</span>, so this kernel is not normalized (hence the <span class="math inline">\(u\)</span>).</p>
-<p>We target <span class="math inline">\(\phi_{0:k+1 | k}\)</span>, but <span class="math inline">\(\frac{L_{0:k}}{L_{0:k+1}}\)</span> is typically intractable.</p>
+<p>We target <span class="math inline">\(\phi_{0:k+1 | k+1}\)</span>, but <span class="math inline">\(\frac{L_{0:k}}{L_{0:k+1}}\)</span> is typically intractable.</p>
 </div>
 <div id="outline-1" class="slide section level2">
 <h1>Outline</h1>
@@ -456,8 +456,8 @@ p(x_{0:k+1} \mid y_{0:k+1} ) = \left[\frac{p(y_{0:k})}{p(y_{0:k+1})}\right] g(y_
 <p>if <span class="math inline">\(\phi_{0:k|k} \ll \rho_{0:k}\)</span> (i.e. <span class="math inline">\(\phi_{0:k|k}\)</span> is absolutely continuous with respect to <span class="math inline">\(\rho_{0:k}\)</span>.)</p>
 <p>The weights we calculate will be an unnormalized version of that RN derivative.</p>
 </div>
-<div id="main-idea-1" class="slide section level2">
-<h1>Main Idea</h1>
+<div id="sis-the-algorithm" class="slide section level2">
+<h1>SIS: the algorithm</h1>
 <ol style="list-style-type: decimal">
 <li><p>make sure <span class="math inline">\(\phi_{0:k|k}\)</span> is absolutely continuous with respect to <span class="math inline">\(\rho_{0:k}\)</span> by picking</p>
 <ul>
@@ -469,7 +469,7 @@ p(x_{0:k+1} \mid y_{0:k+1} ) = \left[\frac{p(y_{0:k})}{p(y_{0:k+1})}\right] g(y_
 </ol>
 <p>It’s just self-normalized importance sampling!</p>
 </div>
-<div id="main-idea-2" class="slide section level2">
+<div id="main-idea-1" class="slide section level2">
 <h1>Main Idea</h1>
 <p>Note how the RN derivative factors <span class="math display">\[
 \frac{d \phi_{0:k|k}}{d\rho_{0:k}}(x_{0:k}) = \frac{d\phi_0}{d \rho_0}(x_0)\prod_{l=0}^{k-1} 
@@ -498,10 +498,10 @@ g_{l+1}(x_{l+1} )\frac{d Q(x_l, \cdot ) }{dR(x_l, \cdot)}(x_{l+1})
 <p>For <span class="math inline">\(i=1,2,\ldots,N\)</span>:</p>
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(\omega_0^i = g_0(\xi_0^i) \frac{d \nu}{d\rho_0}(\xi_0^i)\)</span></li>
-<li>for <span class="math inline">\(k&gt; 0\)</span> <span class="math inline">\(\omega_{k+1}^i = \omega_{k} g_{k+1}(\xi_{k+1}^i) \frac{d Q( \xi_k^i, \cdot)}{dR(\xi^i_k, \cdot) }(\xi_{k+1}^i)\)</span></li>
+<li>for <span class="math inline">\(k&gt; 0\)</span>, adjust unnormalized weights <span class="math inline">\(\omega_{k+1}^i = \omega_{k} g_{k+1}(\xi_{k+1}^i) \frac{d Q( \xi_k^i, \cdot)}{dR(\xi^i_k, \cdot) }(\xi_{k+1}^i)\)</span></li>
 </ol>
 <p>Multiplicative updates.</p>
-<p>NB: we only need to be able to evaluate from model distribution’s and the proposal! Evaluation of the tricky normalizing constant has been avoided!.</p>
+<p>NB: Evaluation of the tricky normalizing constant has been avoided!</p>
 </div>
 <div id="the-algorithm" class="slide section level2">
 <h1>The Algorithm</h1>
@@ -513,6 +513,7 @@ g_{l+1}(x_{l+1} )\frac{d Q(x_l, \cdot ) }{dR(x_l, \cdot)}(x_{l+1})
 </div>
 <div id="exercises" class="slide section level2">
 <h1>Exercises</h1>
+<h3 id="option-1">Option 1:</h3>
 <ul>
 <li><p>Show that</p>
 <ul>
@@ -521,6 +522,8 @@ g_{l+1}(x_{l+1} )\frac{d Q(x_l, \cdot ) }{dR(x_l, \cdot)}(x_{l+1})
 </ul></li>
 </ul>
 <p>guarantees that <span class="math inline">\(\phi_{0:k|k}\)</span> is absolutely continuous with respect to <span class="math inline">\(\rho_{0:k}\)</span>.</p>
+<h3 id="option-2">Option 2:</h3>
+<p>Continue programming your SIS algorithm for the SVOL model using the data provided in Collab!</p>
 </div>
 
   <!-- dynamically load mathjax for compatibility with self-contained -->
