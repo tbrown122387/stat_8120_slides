@@ -173,7 +173,7 @@ Regarding step 3, and the calculation of weights. It's done sequentially:
 For $i=1,2,\ldots,N$:
 
   a. $\omega_0^i = g_0(\xi_0^i) \frac{d \nu}{d\rho_0}(\xi_0^i)$
-  b. for $k> 0$, adjust unnormalized weights $\omega_{k+1}^i = \omega_{k} g_{k+1}(\xi_{k+1}^i) \frac{d Q( \xi_k^i, \cdot)}{dR(\xi^i_k, \cdot) }(\xi_{k+1}^i)$
+  b. for $k> 0$, adjust unnormalized weights $\omega_{k+1}^i = \omega_{k}^i \times g_{k+1}(\xi_{k+1}^i) \frac{d Q( \xi_k^i, \cdot)}{dR(\xi^i_k, \cdot) }(\xi_{k+1}^i)$
   
 Multiplicative updates.
 
