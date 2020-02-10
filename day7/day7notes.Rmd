@@ -84,19 +84,20 @@ knitr::include_graphics("prior_kernel.png")
 
 ## Example 2
 
-Choose the "optimal kernel"
+Choose the "optimal kernel", which means 
 $$
-R_t(x_{t-1},dx_t) = \frac{Q(x_{t-1}, dx_t)g_t(x_t)}{\int Q(x_{t-1}, dx_t)g_t(x_t)}. 
+R_t(x_{t-1},dx_t) \overset{\text{set}}{=} \frac{Q(x_{t-1}, dx_t)g_t(x_t)}{\int Q(x_{t-1}, dx_t)g_t(x_t)}. 
 $$
 
+The weight update is then
 $$
  g_{t}(x_{t} )\frac{d Q(x_{t-1}, \cdot ) }{dR(x_{t-1}, \cdot)}(x_{t}) = \int Q(x_{t-1}, dx_t)g_t(x_t)
 $$
-completely free of $x_t$!
+which is completely free of $x_t$!
 
 Usually impossible, but the closer you get to it, the better.
 
-NB: actually, the book lists quite an interesting model where this would be feasible and Kalman filtering would not!
+NB: actually, the book lists quite an interesting model on page 221 where this would be feasible and Kalman filtering would not!
 
 ## Example 2
 
@@ -176,7 +177,7 @@ $$
 \int \frac{1}{\sqrt{2\pi\beta^2}}\frac{1}{\exp\left[x_k/2 \right]} \exp\left[ -\frac{y_k^2}{2 \beta^2 \exp(x_k)} \right]\frac{1}{\sqrt{2\pi\sigma^2}} \exp\left[\frac{(x_{k} - \phi x_{k-1} )^2}{2 \sigma^2} \right] dx_k \\
 $$
 
- is impossible to integrate :(
+ which is impossible to integrate :(
 
 
 
