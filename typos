@@ -1,5 +1,6 @@
 page 43 \nu \times G should be \nu \otimes G
 page 213, ...is an unbiased estimate of mu(f)... correction: self-normalized estimator is biased
+page 232, equation 7.32, the RN derivatives should be evaluated at xi_l not xi_k (both numerator and denominator)
 page 233, equation 7.34 the square bracketed term should not be squared
 page 306, "Under the stated assumptions, Proposition 9.2.11" should be "Under the stated assumptions, Theorem 9.2.11"
 page 338, This follows from induction the last product should be z_2' \cdots z_m' instead of z_1' \cdots z_m'
