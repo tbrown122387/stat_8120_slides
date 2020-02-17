@@ -129,10 +129,22 @@ Recall that $F^{-1}(p) = \text{inf}\{ i  : F(i) \ge p \}$.
 
 It's the $I$ such that 
 $$
-\sum_{j=1}^{I-1} \tilde{\omega}_k^j < I \le \sum_{j=1}^{I} \tilde{\omega}_k^j
+\sum_{j=1}^{I-1} \tilde{\omega}_k^j < p \le \sum_{j=1}^{I} \tilde{\omega}_k^j
 $$
 where $\tilde{\omega}$ are the **normalized** weights.
 
+
+## Optional: section 7.4.1
+
+So, $F^{-1}(p)$ is the inverse cdf, but we plug standard uniform random variables into it:
+$$
+F^{-1}(U) = \left\{ i :  \sum_{j=1}^{i-1} \tilde{\omega}_k^j < U \le \sum_{j=1}^{i} \tilde{\omega}_k^j \right\}
+$$
+
+```{r, echo=F, out.width = "600px"}
+knitr::include_graphics("inversion_method.png")
+```
+They refer to the normalized weights without tildes in this section...
 
 ## Optional: section 7.4.1
 
