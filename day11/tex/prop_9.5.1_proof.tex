@@ -14,7 +14,7 @@ Overall, we have
 $$
 \sum_i U_{N,i} = \sum_i E[ \bar{U}_{N,i}  \mid \mathcal{F}^N]  + \left(\sum_i \bar{U}_{N,i} - \sum_i E[ \bar{U}_{N,i}  \mid \mathcal{F}^N] \right) +  \left(\sum_i U_{N,i} - \sum_i \bar{U}_{N,i}\right).
 $$
-We want to show each of these pieces on the right hand side converges to $0$. If they all do, then we can use triangular inequality to show the left hand side converges to $0$.
+We want to show each of these pieces on the right hand side converges to $0$. If they all do, then we can use triangle inequality to show the left hand side converges to $0$.
 
 
 \subsubsection*{Part 1}
@@ -115,7 +115,7 @@ P\left( \bigg\rvert \sum_i U_{N,i} \bigg\rvert  \ge \delta \right)  &\le P\left(
 &+ P \left( \bigg\rvert \sum_i E[ \bar{U}_{N,i}  \mid \mathcal{F}^N]\bigg\rvert \ge \delta/3 \right ).
 \end{align*}
 
-by countable additivity and because probability of supersets is greater than subsets.
+by sub-additivity of $P$, and because probability of supersets is greater than subsets.
 
 Use parts (1), (2) and (3), the three terms on the right hand side all go to $0$ in probability. 
 
