@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2018.10.12)  19 DEC 2019 18:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.9.24)  26 FEB 2020 12:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -109,8 +109,6 @@ LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
@@ -128,25 +126,40 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 LaTeX Warning: No \author given.
 
-LaTeX Font Info:    Try loading font information for U+bbm on input line 22.
-(/usr/share/texlive/texmf-dist/tex/latex/bbm-macros/ubbm.fd
-File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
-) [1
 
-]
-Overfull \hbox (78.81192pt too wide) in paragraph at lines 40--41
-[]\TU/lmr/m/n/10 First, $\OML/cmm/m/it/10 ^^O [][] E []$ \TU/lmr/m/n/10 goes to
- $\OT1/cmr/m/n/10 0$ \TU/lmr/m/n/10 because $[][] \OML/cmm/m/it/10 E []$
+Overfull \hbox (87.08585pt too wide) in paragraph at lines 38--39
+[]\OT1/cmr/m/n/10 First, $\OML/cmm/m/it/10 ^^O [][] E []$ \OT1/cmr/m/n/10 goes 
+to $0$ be-cause $[][] \OML/cmm/m/it/10 E []$
  []
 
-[2] (./prop_9.5.5_proof.aux) ) 
-Here is how much of TeX's memory you used:
- 1047 strings out of 493007
- 12771 string characters out of 6136718
- 78798 words of memory out of 5000000
- 5038 multiletter control sequences out of 15000+600000
- 10419 words of font info for 48 fonts, out of 8000000 for 9000
- 1348 hyphenation exceptions out of 8191
- 27i,9n,24p,291b,198s stack positions out of 5000i,500n,10000p,200000b,80000s
+[1
 
-Output written on prop_9.5.5_proof.pdf (2 pages).
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+(./prop_9.5.5_proof.aux) ) 
+Here is how much of TeX's memory you used:
+ 1024 strings out of 492982
+ 11938 string characters out of 6134896
+ 72269 words of memory out of 5000000
+ 4620 multiletter control sequences out of 15000+600000
+ 11517 words of font info for 45 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 27i,16n,24p,300b,197s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cme
+x10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb>
+Output written on prop_9.5.5_proof.pdf (2 pages, 112790 bytes).
+PDF statistics:
+ 59 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

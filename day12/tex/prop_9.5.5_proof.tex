@@ -11,39 +11,45 @@
 \maketitle
 
 
-This is a revisement of 9.5.1. It produces the same result with weakened assumptions. 
+This is a revision of 9.5.1. It produces the same result with weakened assumptions. 
 
-Again it is assumed that the sum of the tail conditional expectations is negligible, but now there is an assumption of boundedness in probability to deal with. So, we need to show that if 
+We want to show that the assumptions of 9.5.5 imply all of the assumptions, collectively, of 9.5.1. Many of the assumptions are the same, so those don't need to be dealt with by us.
+
+\subsection*{1}
+
+First, let's show that the assumptions of 9.5.5 imply: for some $\epsilon > 0$, we have
 $$
-\left\{ \sum_{i=1}^{M_N} E[|U_{N,i}| \mid \mathcal{F}^N]  \right\}_N
-$$
-is bounded in probability, then 
-$$
-\sum_{i=1}^{M_N}E[U_{N,i}^2 \mathbbm{1}( |U_{N,i}| < \epsilon) \mid \mathcal{F}^N ] \overset{\text{p}}{\to} 0 .
+\sum_{i=1}^{M_N}E[U_{N,i}^2 \mathbf{1}( |U_{N,i}| < \epsilon) \mid \mathcal{F}^N ] \overset{\text{p}}{\to} 0.
 $$
 
-We won't use the ``bar" notation here, because there are two thresholds, $\epsilon$ and $\eta$, and we don't want to get confused. 
-
-Pick any $\epsilon > 0$. Then take $0 < \eta < \epsilon$.
+Fix an $\epsilon > 0$ and notice that for $0 < \eta_1 < \epsilon$ we have
 
 \begin{align*}
 &\sum_{i=1}^{M_N} E\left[ U^2_{N,i}1( |U_{N,i}| < \epsilon ) \mid \mathcal{F}^N \right] \\
-&= \sum_{i=1}^{M_N} E\left[ U^2_{N,i}1( |U_{N,i}| < \eta ) \mid \mathcal{F}^N \right] +  \sum_{i=1}^{M_N} E\left[ U^2_{N,i}1(\eta \le  |U_{N,i}| < \epsilon ) \mid \mathcal{F}^N \right] \\
-&\le \eta \sum_{i=1}^{M_N} E\left[ |U_{N,i} |1( |U_{N,i}| < \eta ) \mid \mathcal{F}^N \right] +  \sum_{i=1}^{M_N} E\left[ U^2_{N,i}1(\eta \le  |U_{N,i}| < \epsilon ) \mid \mathcal{F}^N \right] \tag{1} \\
-&\le \eta \sum_{i=1}^{M_N} E\left[ |U_{N,i} |\mid \mathcal{F}^N \right] +  \sum_{i=1}^{M_N} E\left[ U^2_{N,i}1(\eta \le  |U_{N,i}| < \epsilon ) \mid \mathcal{F}^N \right] \tag{more space} \\
-&\le \eta \sum_{i=1}^{M_N} E\left[ |U_{N,i} |\mid \mathcal{F}^N \right] +  \epsilon \sum_{i=1}^{M_N} E\left[ |U_{N,i}|1(\eta \le  |U_{N,i}| < \epsilon ) \mid \mathcal{F}^N \right] \tag{2} \\
-&\le \eta \sum_{i=1}^{M_N} E\left[ |U_{N,i} |\mid \mathcal{F}^N \right] +  \epsilon \sum_{i=1}^{M_N} E\left[ |U_{N,i}|1(\eta \le  |U_{N,i}| ) \mid \mathcal{F}^N \right] \tag{more space}
+&= \sum_{i=1}^{M_N} E\left[ U^2_{N,i}1( |U_{N,i}| < \eta_1 ) \mid \mathcal{F}^N \right] +  \sum_{i=1}^{M_N} E\left[ U^2_{N,i}1(\eta_1 \le  |U_{N,i}| < \epsilon ) \mid \mathcal{F}^N \right] \\
+&\le \eta_1 \sum_{i=1}^{M_N} E\left[ |U_{N,i} |1( |U_{N,i}| < \eta_1 ) \mid \mathcal{F}^N \right] +  \sum_{i=1}^{M_N} E\left[ U^2_{N,i}1(\eta_1 \le  |U_{N,i}| < \epsilon ) \mid \mathcal{F}^N \right] \tag{1} \\
+&\le \eta_1 \sum_{i=1}^{M_N} E\left[ |U_{N,i} |\mid \mathcal{F}^N \right] +  \sum_{i=1}^{M_N} E\left[ U^2_{N,i}1(\eta_1 \le  |U_{N,i}| < \epsilon ) \mid \mathcal{F}^N \right] \tag{more space} \\
+&\le \eta_1 \sum_{i=1}^{M_N} E\left[ |U_{N,i} |\mid \mathcal{F}^N \right] +  \epsilon \sum_{i=1}^{M_N} E\left[ |U_{N,i}|1(\eta_1 \le  |U_{N,i}| < \epsilon ) \mid \mathcal{F}^N \right] \tag{2} \\
+&\le \eta_1 \underbrace{\sum_{i=1}^{M_N} E\left[ |U_{N,i} |\mid \mathcal{F}^N \right]}_{V_N} +  \underbrace{\epsilon \sum_{i=1}^{M_N} E\left[ |U_{N,i}|1(\eta_1 \le  |U_{N,i}| ) \mid \mathcal{F}^N \right]}_{W_N(\eta_1)} \tag{more space}
 \end{align*}
 
-(1) follows because if (a) $U_{N,i} \le |U_{N,i}|$ and (b) $|U_{N,i}| \le \eta$, then we combine these two via multiplication to get (on this itnerval) that $U_{N,i}^2 \le \eta |U_{N,i}|$. (2) follows from a similar line of reasoning.
 
-First, $\epsilon \sum_{i=1}^{M_N} E\left[ |U_{N,i}|1(\eta \le  |U_{N,i}| ) \mid \mathcal{F}^N \right]$ goes to $0$ because $\sum_{i=1}^{M_N} E\left[ |U_{N,i}|1(\eta \le  |U_{N,i}| ) \mid \mathcal{F}^N \right]$ does by assumption. Second, Lemma 9.5.4, implies that
+
+First, $\epsilon \sum_{i=1}^{M_N} E\left[ |U_{N,i}|1(\eta_1 \le  |U_{N,i}| ) \mid \mathcal{F}^N \right]$ goes to $0$ because $\sum_{i=1}^{M_N} E\left[ |U_{N,i}|1(\eta_1 \le  |U_{N,i}| ) \mid \mathcal{F}^N \right]$ does by assumption. Then we just apply Lemma 9.5.4 to get
 $$
 \sum_{i=1}^{M_N} E\left[ U^2_{N,i}1( |U_{N,i}| < \epsilon ) \mid \mathcal{F}^N \right] \overset{p}{\to} 0.
 $$
 
-Finally, $\sum_i U_{N,i} \overset{p}{\to} 0$ by 9.5.1.
+NB: we won't use the ``bar" notation here, because there are two thresholds, $\epsilon$ and $\eta_1$, and we don't want to get confused. 
 
+\subsection*{2}
 
+Now we need to show that for the same $\epsilon > 0$ as above, that
+$$
+\sum_{i=1}^{M_N}E[ |U_{N,i}| \mathbf{1}( |U_{N,i}| \ge \epsilon) \mid \mathcal{F}^N ] \overset{\text{p}}{\to} 0
+$$
+
+This one is easy. We can just pick $\eta_2 = \epsilon$, and use assumption 3 of 9.5.5 again.
+    
 
 \end{document}

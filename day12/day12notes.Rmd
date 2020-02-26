@@ -25,6 +25,25 @@ $$
 $$
 as $C \to \infty$.
 
+
+
+
+## Bounded in Probability
+
+A sequence of random variables $\{Z_N\}$ is **bounded in probability** if 
+$$
+\sup_{N \ge 0} P(|Z_N| \ge C) \to 0 
+$$
+as $C \to \infty$.
+
+An alternative definition that sometimes makes proofs easier because it only deals with the tails...
+
+A sequence of random variables $\{Z_N\}$ is **bounded in probability** if for any $\epsilon > 0$, there exist  an integer $N_{\epsilon}$ and $C_{\epsilon} > 0$ such that
+$$
+P(|Z_N| \ge C_{\epsilon}) < \epsilon 
+$$
+when $N \ge N_{\epsilon}$.
+
 ## Lemma 9.5.3
 
 Fact 1:
@@ -79,18 +98,29 @@ $$
 then $U_N \overset{\text{p}}{\to} 0$.
 
 
-## Lemma 9.5.4
+## Lemma 9.5.4 : Proof
 
-
+We want to show that for any $\epsilon, \delta > 0$, there exists $N^*$ such that 
 $$
-|U_N| \le \eta V_N + W_N(\eta)
+P(|U_N| > \epsilon) < \delta
+$$
+whenever $N \ge N^*$.
+
+In the attached pdf we show 
+$$
+P(|U_N| > \epsilon) \le P( |V_N| > \epsilon/2\eta ) + P( |W_N(\eta)| > \epsilon/2) 
 $$
 
-In the upcoming theorem, the right hand side's components are what we make assumptions about, and the left hand side is what we want to show converges to $0$.
 
+So, 
 
-Proof details can be found in attached pdf.
+1. Choose $\epsilon, \delta > 0$. Also pick $\eta > 0$
 
+2. Pick $N^1$ such that $N \ge N^1$ implies $P( |V_N| \ge \epsilon/2\eta ) < \delta / 2$
+
+3. Pick $N^2$ such that $N \ge N^2$ implies $P( |W_N(\eta)| \ge \epsilon/2) < \delta / 2$.
+
+4. Finally, take $N^* = \max(N^1, N^2)$
 
 
 ## Proposition 9.5.5

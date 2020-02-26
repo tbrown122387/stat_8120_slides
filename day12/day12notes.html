@@ -380,6 +380,16 @@ Taylor R. Brown
 \sup_{N \ge 0} P(|Z_N| \ge C) \to 0 
 \]</span> as <span class="math inline">\(C \to \infty\)</span>.</p>
 </div>
+<div id="bounded-in-probability-1" class="slide section level2">
+<h1>Bounded in Probability</h1>
+<p>A sequence of random variables <span class="math inline">\(\{Z_N\}\)</span> is <strong>bounded in probability</strong> if <span class="math display">\[
+\sup_{N \ge 0} P(|Z_N| \ge C) \to 0 
+\]</span> as <span class="math inline">\(C \to \infty\)</span>.</p>
+<p>An alternative definition that sometimes makes proofs easier because it only deals with the tails…</p>
+<p>A sequence of random variables <span class="math inline">\(\{Z_N\}\)</span> is <strong>bounded in probability</strong> if for any <span class="math inline">\(\epsilon &gt; 0\)</span>, there exist an integer <span class="math inline">\(N_{\epsilon}\)</span> and <span class="math inline">\(C_{\epsilon} &gt; 0\)</span> such that <span class="math display">\[
+P(|Z_N| \ge C_{\epsilon}) &lt; \epsilon 
+\]</span> when <span class="math inline">\(N \ge N_{\epsilon}\)</span>.</p>
+</div>
 <div id="lemma-9.5.3" class="slide section level2">
 <h1>Lemma 9.5.3</h1>
 <p>Fact 1:</p>
@@ -423,13 +433,21 @@ Taylor R. Brown
 |U_N| \le \eta V_N + W_N(\eta)
 \]</span> then <span class="math inline">\(U_N \overset{\text{p}}{\to} 0\)</span>.</p>
 </div>
-<div id="lemma-9.5.4-1" class="slide section level2">
-<h1>Lemma 9.5.4</h1>
-<p><span class="math display">\[
-|U_N| \le \eta V_N + W_N(\eta)
+<div id="lemma-9.5.4-proof" class="slide section level2">
+<h1>Lemma 9.5.4 : Proof</h1>
+<p>We want to show that for any <span class="math inline">\(\epsilon, \delta &gt; 0\)</span>, there exists <span class="math inline">\(N^*\)</span> such that <span class="math display">\[
+P(|U_N| &gt; \epsilon) &lt; \delta
+\]</span> whenever <span class="math inline">\(N \ge N^*\)</span>.</p>
+<p>In the attached pdf we show <span class="math display">\[
+P(|U_N| &gt; \epsilon) \le P( |V_N| &gt; \epsilon/2\eta ) + P( |W_N(\eta)| &gt; \epsilon/2) 
 \]</span></p>
-<p>In the upcoming theorem, the right hand side’s components are what we make assumptions about, and the left hand side is what we want to show converges to <span class="math inline">\(0\)</span>.</p>
-<p>Proof details can be found in attached pdf.</p>
+<p>So,</p>
+<ol style="list-style-type: decimal">
+<li><p>Choose <span class="math inline">\(\epsilon, \delta &gt; 0\)</span>. Also pick <span class="math inline">\(\eta &gt; 0\)</span></p></li>
+<li><p>Pick <span class="math inline">\(N^1\)</span> such that <span class="math inline">\(N \ge N^1\)</span> implies <span class="math inline">\(P( |V_N| \ge \epsilon/2\eta ) &lt; \delta / 2\)</span></p></li>
+<li><p>Pick <span class="math inline">\(N^2\)</span> such that <span class="math inline">\(N \ge N^2\)</span> implies <span class="math inline">\(P( |W_N(\eta)| \ge \epsilon/2) &lt; \delta / 2\)</span>.</p></li>
+<li><p>Finally, take <span class="math inline">\(N^* = \max(N^1, N^2)\)</span></p></li>
+</ol>
 </div>
 <div id="proposition-9.5.5-1" class="slide section level2">
 <h1>Proposition 9.5.5</h1>
