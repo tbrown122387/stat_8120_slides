@@ -43,10 +43,12 @@ We provided Lemma 9.5.8 for complex numbers with modulus less than $1$. Keep in 
 &  \left| E\left[\exp\left( i u \sum_j U_{N,j} \right) -  \exp\left( -(u^2/2) \sum_j \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right| \\
 &=  \left| E\left[ \prod_j \exp\left( i u  U_{N,j} \right) -  \prod_j \exp\left( -(u^2/2) \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right| \tag{algebra}\\
 &=  \left|  \prod_j E\left[ \exp\left( i u  U_{N,j} \right)\bigg\rvert \mathcal{F}^N \right] -  \prod_j E\left[\exp\left( -(u^2/2) \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right| \tag{independence, linearity} \\
-&\le  \sum_j \left| E\left[  \exp\left( i u  U_{N,j} \right) - \exp\left( -(u^2/2) \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right| \tag{Lemma 9.5.8}\\
+&\le  \sum_j \left| E\left[  \exp\left( i u  U_{N,j} \right) - \exp\left( -(u^2/2) \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right| \tag{Lemma 9.5.8, Linearity}\\
 &=  \sum_j \left| E\left[  \exp\left( i u  U_{N,j} \right) - (1 - u^2 \sigma^2_{N,j}/2) + (1 - u^2 \sigma^2_{N,j}/2) -\exp\left( -(u^2/2) \sigma^2_{N,j}  \right)  \bigg\rvert \mathcal{F}^N \right] \right|  \tag{algebra}\\
 &\le \sum_j \left| E\left[   \exp\left( i u U_{N,j} \right)  - (1 - u^2 \sigma^2_{N,j}/2) \mid \mathcal{F}^N \right] \right|  \\
 &\hspace{10mm} + \sum_j  \left|E\left[  \exp\left( -(u^2/2) \sigma^2_{N,j}  \right) - (1 - u^2 \sigma^2_{N,j}/2)   \mid \mathcal{F}^N \right] \right| \tag{linearity, tri-ineq} \\
+&\le \sum_j \left| E\left[   \exp\left( i u U_{N,j} \right)  - (1 - u^2 \sigma^2_{N,j}/2) \mid \mathcal{F}^N \right] \right|  \\
+&\hspace{10mm} + \sum_j  \left|  \exp\left( -(u^2/2) \sigma^2_{N,j}  \right) - (1 - u^2 \sigma^2_{N,j}/2)    \right| \\
 &= A_N + B_N. \tag{defn}
 \end{align*}
 
