@@ -9,4 +9,4 @@ page 321, "The instrumental distributions are defined by a sequence"... with R_k
 page 321, In assumption 9.4.1(ii) k \ge 1 not k \ge 0
 page 322, Not really a typo, but the i index should be changed to a j index to prevent confusion withthe first mention of $\tilde{\xi}^{N,i}_{k+1}$
 page 322, not sure if this is a typo, but they might be overusing the j index for the probability of drawing index j in the selection part of the algorithm
-
+page 338, the one line in the proof of Lemma 9.5.8 has a z_1' instead of a z_2'

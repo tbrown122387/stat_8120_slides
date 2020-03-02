@@ -79,7 +79,7 @@ $$
 Clearly the proposition in question is true for $m=1$. Now assume it's true for $m-1$.
 
 \begin{align*}
-&|z_1 \cdots z_m - z_1' \cdots z_mp'| \\
+&|z_1 \cdots z_m - z_1' \cdots z_m'| \\
 &= |(z_1 \cdots z_{m-1}) z_m - (z_1 \cdots z_{m-1})z_m' + (z_1 \cdots z_{m-1})z_m'  - (z_1' \cdots z_{m-1}')z_m'| \\
 &= |(z_1 \cdots z_{m-1})(z_m - z_m') + (z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}') z_m'| \\
 &\le |(z_1 \cdots z_{m-1})(z_m - z_m')| + |(z_1 \cdots z_{m-1} - z_1'\cdots z_{m-1}') z_m'| \tag{tri-ineq} \\
@@ -94,7 +94,7 @@ $$
 \left| \exp[i t x] - \left(1 + itx - \frac{1}{2} t^2 x^2 \right) \right| \le \min \left\{ |tx|^2, |tx|^3  \right\}.
 $$
 
-I provide more information in `taylor_ineq.pdf` (TODO double check proof)|.
+I provide more information in `taylor_ineq.pdf`.
 
 ## Proposition 9.5.9
 

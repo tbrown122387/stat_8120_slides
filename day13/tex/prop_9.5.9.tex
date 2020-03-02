@@ -17,13 +17,26 @@ The goal is to show that
 \[
 E\left[ \exp\left( i u \sum_j U_{N,j} \right) \bigg\rvert \mathcal{F}^N \right] - \exp(- \sigma^2 u^2/2) \overset{p}{\to} 0.
 \]
-However, the continuous mapping theorem, together with assumption (ii), implies that 
-\[
-\exp\left( -(u^2/2) \sum_j \sigma^2_{N,j}  \right) - \exp(- \sigma^2 u^2/2)\overset{p}{\to} 0,
-\]
-so this explains why it suffices to prove 9.74. 
 
-We provded Lemma 9.5.8 for complex numbers with modulus less than $1$. Real numbers are complex numbers, too, though.
+It is equivalent to show
+\[
+\underbrace{
+E\left[ \exp\left( i u \sum_j U_{N,j} \right) \bigg\rvert \mathcal{F}^N \right] 
+- \exp\left( -(u^2/2) \sum_j \sigma^2_{N,j}  \right)}_{\text{first chunk}}
+\underbrace{
++ \exp\left( -(u^2/2) \sum_j \sigma^2_{N,j}  \right)
+- \exp(- \sigma^2 u^2/2)}_{\text{second chunk}} 
+\]
+converges in probability to $0$. 
+
+However, the second chunk is easy...by the continuous mapping theorem, together with assumption (ii), we have
+\[
+\exp\left( -(u^2/2) \sum_j \sigma^2_{N,j}  \right) - \exp(- \sigma^2 u^2/2)\overset{p}{\to} 0.
+\]
+
+So this explains why it suffices to prove 9.74 (the left chunk).
+
+We provided Lemma 9.5.8 for complex numbers with modulus less than $1$. Keep in mind that real numbers are complex numbers, too, so we can apply this theorem there as well.
 
 
 \begin{align*}
@@ -77,9 +90,9 @@ A_N &= \sum_j \left| E\left[   \exp\left( i u U_{N,j} \right)  - (1 - u^2 \sigma
 
 Now we look at $B_n$. The real-valued version of Taylor's Inequality states
 \[
-\bigg\rvert e^{-x} - \sum_{i=0}^n \frac{x^i}{i!}\bigg\rvert \le \frac{M}{(n+1)!} | x-a|^{n+1}
+\bigg\rvert e^{-x} - \sum_{i=0}^n \frac{(-x)^i}{i!}\bigg\rvert \le \frac{M}{(n+1)!} | x|^{n+1}
 \]
-as long as $|f^{(n+1)}(x)| \le M$. Set $n=1$, $a=0$, and looking at $x \ge 0$, which means $|f^{(n+1)}(x)| = |f^{(2)}(x)| = |e^{-x}| \le 1$. This gives us, 
+as long as $|f^{(n+1)}(x)| \le M$. Set $n=1$, and looking at $x \ge 0$, which means $|f^{(n+1)}(x)| = |f^{(2)}(x)| = |e^{-x}| \le 1$. This gives us, 
 \[
 |e^{-x} - 1 + x  | \le x^2/2.
 \]
