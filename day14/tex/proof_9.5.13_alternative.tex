@@ -1,0 +1,144 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{url}
+\usepackage{bbm} %for bold indicator func
+
+\title{An Alternative Proof of Prop. 9.5.13}
+
+\begin{document}
+\maketitle
+
+This applies 9.5.9 to random variables that no longer have a (conditional) mean of $0$. Unlike the textbook, we don't use theorem 9.5.12 as a stepping stone. 
+
+
+
+\section{}
+The first condition of 9.5.9 is: the triangular array is conditionally independent given $\{\mathcal{F}^N\}_N$, $E[U_{N,j}^2 \mid \mathcal{F}^N] < \infty$, and $E[U_{N,j} \mid \mathcal{F}^N] = 0$. These are immediate from the first assumption of 9.5.13.
+
+\section{}
+The second condition of 9.5.9 is: there exists $\sigma^2 > 0$, such that 
+$$
+\sum_{j=1}^{M_N} E[U_{N,j}^2 \mid \mathcal{F}^N] \overset{\text{p}}{\to} \sigma^2.
+$$
+
+Upon setting $U_{N,j} = M_N^{-1/2}f(\xi^{N,j}) - M_N^{-1/2}E[f(\xi^{N,j}) \mid \mathcal{F}^N]$, the sum terms into
+
+$$
+M_N^{-1} \sum_{j=1}^{M_N} E[ f^2(\xi^{N,j})  \mid \mathcal{F}^N] - M_N^{-1} \sum_{j=1}^{M_N}\left( E[f(\xi^{N,j}) \mid \mathcal{F}^N] \right)^2.
+$$
+
+By the second assumption of 9.5.13, this converges in probability to $\sigma^2$.
+
+
+\section{}
+
+The third condition of 9.5.9 is: for all $\epsilon> 0$, 
+$$
+\sum_{j=1}^{M_N} E[U_{N,j}^2 \mathbf{1}\left( |U_{N,j}| \ge \epsilon \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0.
+$$
+
+If we replace $U_{N,j}$, we can replace the truncated random variable inside the expectation, $U_{N,j}^2 \mathbf{1}\left( |U_{N,j}| \ge \epsilon \right)$, with something larger
+
+$$
+2 M_N^{-1} \left(f^2(\xi^{N,j}) + E[f^2(\xi^{N,j}) \mid \mathcal{F}^N ] \right) \left(\mathbf{1}\left( U^2_{N,j} \ge \epsilon^2/4 \right) + \mathbf{1}\left( E[U_{N,j}^2 \mid \mathcal{F}^N] \ge \epsilon^2/4 \right)  \right)
+$$
+
+This is due to two reasons.
+
+\subsection{}
+
+First of two:
+\begin{align*}
+U_{N,j}^2 &= M_N^{-1}\left(  f(\xi^{N,j}) - E[f(\xi^{N,j}) \mid \mathcal{F}^N] \right)^2 \\
+&= M_N^{-1}f^2(\xi^{N,j}) - 2 M_N^{-1} f(\xi^{N,j}) E[f(\xi^{N,j}) \mid \mathcal{F}^N] + M_N^{-1} \left( E[f(\xi^{N,j}) \mid \mathcal{F}^N] \right)^2 \\
+&= 2M_N^{-1}f^2(\xi^{N,j}) + 2M_N^{-1} \left( E[f(\xi^{N,j}) \mid \mathcal{F}^N] \right)^2 \\
+&\hspace{10mm}
+-\left( M_N^{-1/2}f(\xi^{N,j}) + M_N^{-1/2} E[f(\xi^{N,j}) \mid \mathcal{F}^N] \right)^2 \\
+&\le 2M_N^{-1}f^2(\xi^{N,j}) + 2M_N^{-1} \left( E[f(\xi^{N,j}) \mid \mathcal{F}^N] \right)^2  \\
+&\le 2M_N^{-1}f^2(\xi^{N,j}) + 2M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N]  \tag{Jensen's}.
+\end{align*}
+
+
+\subsection{}
+
+Second of two, and building on the above, we have
+
+\begin{align*}
+\{|U_{N,j}| \ge \epsilon \} &= \{U_{N,j}^2 \ge \epsilon^2 \} \\
+&\subset \{M_N^{-1}f^2(\xi^{N,j}) + M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \ge \epsilon^2/2 \} \\
+&\subset \{ M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/4\}  \cup  \{ M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \ge \epsilon^2/4 \}
+\end{align*}
+
+using the "$\epsilon$-over-$2$" trick. This will help us upper bound the indicator by the sum of two indicators:
+
+\[
+\mathbbm{1} \left( |U_{N,j}| \ge \epsilon \right) \le \mathbbm{1} \left( M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/4 \right) + \mathbbm{1}\left( M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \ge \epsilon^2/4 \right)
+\]
+
+\subsection{}
+
+
+
+Taking these two inequalities together, $U_{N,j}^2 \mathbbm{1} \left( |U_{N,j}| \ge \epsilon \right)$ is less than or equal to 
+\begin{align*}
+&\left(2M_N^{-1}f^2(\xi^{N,j}) + 2M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N]\right) \times \\
+&\hspace{10mm}\left\{
+\mathbbm{1} \left( M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/4 \right) + \mathbbm{1}\left( M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \ge \epsilon^2/4 \right)
+\right\} \\
+&= 
+2M_N^{-1}f^2(\xi^{N,j})  \mathbbm{1} \left( M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/4 \right) + \\
+&\hspace{10mm} 2M_N^{-1}f^2(\xi^{N,j})  \mathbbm{1}\left( M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \ge \epsilon^2/4 \right) +  \\
+&\hspace{10mm} 2M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N]  \mathbbm{1} \left( M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/4 \right) + \\
+&\hspace{10mm}  2M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \mathbbm{1}\left( M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \ge \epsilon^2/4 \right) \tag{*}
+\end{align*}
+
+\subsection{}
+
+Recall our goal is to show
+
+$$
+\sum_{j=1}^{M_N} E[U_{N,j}^2 \mathbf{1}\left( |U_{N,j}| \ge \epsilon \right) \mid \mathcal{F}^N] \overset{\text{p}}{\to} 0.
+$$
+
+Take the conditional expectation on both sides of (*), then sum: 
+\begin{align*}
+&\sum_j E[U_{N,j}^2 \mathbbm{1} \left( |U_{N,j}| \ge \epsilon \right) \mid \mathcal{F}^N  ] \\
+&\le 
+2  M_N^{-1} \sum_j E[f^2(\xi^{N,j})  \mathbbm{1} \left( M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/4 \right) \mid \mathcal{F}^N  ] + \\
+&\hspace{10mm} 4M_N^{-1} \sum_j E[ f^2(\xi^{N,j}) \mid \mathcal{F}^N  ]  \mathbbm{1}\left( M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \ge \epsilon^2/4 \right) +  \\
+&\hspace{10mm} 2M_N^{-1} \sum_j E[f^2(\xi^{N,j}) \mid \mathcal{F}^N]  P \left( M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/4  \mid \mathcal{F}^N  \right) \\
+&=2  M_N^{-1} \sum_j E[f^2(\xi^{N,j})  \mathbbm{1} \left( M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/4 \right) \mid \mathcal{F}^N  ] + 4B_N + 2 A_N 
+\end{align*}
+
+The first term goes to $0$ assumption (iii) of this proposition. The other two terms go to $0$ using logic that is similar to the tools we used at the end of proof 9.5.7. We will reproduce those details here, but recall that in 9.5.7, there was an inequality trick we discussed. For details on that inequality, see \verb|prof_9.5.7_proof.pdf|.
+
+To prove $A_N \overset{p}{\to} 0$: 
+
+\begin{align*}
+A_n &= M_N^{-1} \sum_j E[f^2(\xi^{N,j}) \mid \mathcal{F}^N]  P \left( M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/4  \mid \mathcal{F}^N  \right) \\
+&\le P(\max_j M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/4 \mid \mathcal{F}^N ) M_N^{-1} \sum_i E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \\
+&\le P\left[\sum_j M_N^{-1}f^2(\xi^{N,j}) \mathbf{1}\left(M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/8 \right) \ge \epsilon^2/8 \mid \mathcal{F}^N \right] M_N^{-1} \sum_i E[f^2(\xi^{N,j}) \mid \mathcal{F}^N]
+\tag{9.5.7's second trick} \\
+&\le (8/ \epsilon^2) \sum_j E\left[ M_N^{-1}f^2(\xi^{N,j}) \mathbf{1}\left(M_N^{-1}f^2(\xi^{N,j}) \ge \epsilon^2/8 \right) \mid \mathcal{F}^N \right]  M_N^{-1} \sum_i E[f^2(\xi^{N,j}) \mid \mathcal{F}^N]   \tag{Markov's} \\
+&\le (8/ \epsilon^2) \sum_j E\left[ M_N^{-1}f^2(\xi^{N,j}) \mathbf{1}\left(f^2(\xi^{N,j}) \ge C \right) \mid \mathcal{F}^N \right]  M_N^{-1} \sum_i E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \tag{if $M_N \epsilon^2/8 > C$ }
+\end{align*}
+
+The middle term converges in probability to $\mu(f^2 \mathbb{1}\mathbf{1}\left(f^2 \ge C \right))$, which can be made arbitrarily small with a large $C$. The last term converges to $\mu(f^2 )$. This is by the last assumption of 9.5.13, but not directly. They assume convergence holds for any *strictly positive* $C$. If this is true, then it implies it's also true for nonnegative $C$. Therefore, the entire term goes to $0$ in probability.
+
+
+To show $B_N$ goes to zero:
+\begin{align*}
+B_N &= M_N^{-1} \sum_j E[ f^2(\xi^{N,j}) \mid \mathcal{F}^N  ]  \mathbbm{1}\left( M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \ge \epsilon^2/4 \right) \\
+&\le \mathbbm{1} \left( \max_j M_N^{-1} E[f^2(\xi^{N,j}) \mid \mathcal{F}^N] \ge \epsilon^2/4 \right) \sum_j E[ V_{N,j}^2 \mid \mathcal{F}^N] \\
+&\le \mathbbm{1} \left( \sum_j M_N^{-1} E[f^2(\xi^{N,j})\mathbf{1}\left[M_N^{-1/2} |f|(\xi^{N,j}) \ge \epsilon^2/8 \right] \mid \mathcal{F}^N] \ge \epsilon^2/8 \right) \sum_j E[ V_{N,j}^2 \mid \mathcal{F}^N] \\
+&\le (8/\epsilon^2) \sum_j M_N^{-1} E[f^2(\xi^{N,j})\mathbf{1}\left[M_N^{-1/2} |f|(\xi^{N,j}) \ge \epsilon^2/8 \right] \mid \mathcal{F}^N] \sum_j E[ V_{N,j}^2 \mid \mathcal{F}^N] \\
+&\le (8/\epsilon^2) \sum_j M_N^{-1} E[f^2(\xi^{N,j})\mathbf{1}\left[|f|(\xi^{N,j}) \ge C \right] \mid \mathcal{F}^N] \sum_j E[ V_{N,j}^2 \mid \mathcal{F}^N] \\
+\end{align*}
+
+where the last line follows if $M_N \epsilon^2/8 \ge C$. Again, we can invoke the last assumption of 9.5.13 twice. The middle term converges to the expectation of a truncation variable, which we can make arbitrarily small by increasing the threshold. The last term converges to a finite second moment. So the entire thing goes to $0$ in probability.
+
+
+
+\end{document}
