@@ -102,7 +102,7 @@ Let $\{U_{N,i}\}_{1 \le i \le M_N}$ be a triangular array of random variables an
 
 Then for any real $u$, 
 $$
-E\left[ \exp\left( i u  \sum_{i=1}^{M_N} U_{N,i} \right) \Biggr\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left( - u^2\sigma^2/2 \right)
+E\left[ \exp\left( i u  \sum_{j=1}^{M_N} U_{N,j} \right) \Biggr\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left( - u^2\sigma^2/2 \right)
 $$ 
 if two conditions hold...
     

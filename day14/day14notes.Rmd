@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-## TODO
+## Roadmap
 
 Last class:
 
@@ -20,12 +20,11 @@ This class:
 
 - 9.5.12 (apply 9.5.9 to centered random variables)
 
-- 9.5.13 (final theorem applied to particles!)
+- 9.5.13 (final theorem applied to resampled particles!)
 
 Skipping:
 
 - Corollary 9.5.11 (assuming identicalness as an extra)
-- (TODO, figure out what $V_{N,i}$ applies to)
 
 
 ## Proposition 9.5.12
@@ -33,7 +32,7 @@ Skipping:
 Let $\{V_{N,i}\}_{1 \le i \le M_N}$ be a triangular array of random variables and let $\{\mathcal{F}^N \}_{N \ge 0}$ be a sequence of sub-$\sigma$-fields of $\mathcal{F}$. Then
 
 $$
-E\left[\exp \left( iu \sum_{i=1}^{M_N} \left\{ V_{N,i}  - E[V_{N,i} \mid \mathcal{F}^N] \right\}  \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left(-u^2\sigma^2/2 \right)
+E\left[\exp \left( iu \sum_{j=1}^{M_N} \left\{ V_{N,j}  - E[V_{N,j} \mid \mathcal{F}^N] \right\}  \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left(-u^2\sigma^2/2 \right)
 $$
 for any real $u$ if three conditions hold...
 
@@ -92,7 +91,7 @@ $$
 
 ## Proposition 9.5.12 proof (3 of 3)
 
-This one is the most difficult. Detials in `proof_9.5.12.pdf`.
+This one is the most difficult. Details in `proof_9.5.12.pdf`.
 
 
 3 of 9.5.12: 
@@ -123,7 +122,7 @@ It applies to the particles themselves, $\xi^{N,i}$, not rescaled or recentered 
 Let $\{\xi^{N,i}\}$ be a triangular array of $\mathsf{X}$-valued random variables, and let $\{\mathcal{F}^N \}_{N \ge 0}$ be a sequence of sub-$\sigma$-fields of $\mathcal{F}$. Then
 
 $$
-E\left[\exp \left( iu M_N^{-1/2}\sum_{i=1}^{M_N} \left\{ f(\xi^{N,i})  - E[f(\xi^{N,i}) \mid \mathcal{F}^N] \right\}  \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left(-u^2\sigma^2/2 \right)
+E\left[\exp \left( iu M_N^{-1/2}\sum_{j=1}^{M_N} \left\{ f(\xi^{N,j})  - E[f(\xi^{N,j}) \mid \mathcal{F}^N] \right\}  \right) \bigg\rvert \mathcal{F}^N \right] \overset{\text{p}}{\to} \exp\left(-u^2\sigma^2/2 \right)
 $$
 for any real $u$ if three conditions hold...
 
