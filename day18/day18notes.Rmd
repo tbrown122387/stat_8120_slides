@@ -160,6 +160,8 @@ We want to show results for the resampled particles $\{(\tilde{\xi}^{N,i}, 1)\}$
 
 Also, keep in mind that the $\sigma$-field $\mathcal{G}^N$ is ignorable. You can simply not write it. In the future, when we use resampled particles as starting points for **future samples**, $\mathcal{G}^N$ will refer to the $\sigma$-field signifying information we have about the resampled particles.
 
+This is what the authors are conveying to you at the top of page 301.
+
 ## Algorithm 9.2.5
 
 Given that we already have $\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}$ (typically $\omega^{N,i} = 1$, but we're being more general), we draw $I^{N,1}, \ldots, I^{N,\tilde{M}_N}$ conditionally independently given 

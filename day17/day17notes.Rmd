@@ -59,7 +59,7 @@ A lot of this has been covered already, but now we're starting to be "official."
 
 ## SIR from 10,000 feet
 
-There are two steps to this algorithm:
+Recall that there are two steps to this algorithm:
 
 1. Draw $\xi^1, \ldots, \xi^M$ from the proposal, and weight them accordingly.
 
