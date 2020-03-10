@@ -50,7 +50,6 @@ $$
 $$
 
 
-
 ##  **Self-Normalized** Importance Sampling
 
 $\nu \left[\frac{d\mu}{d\nu} \right] = 1$ still, but we cannot evaluate $\frac{d\mu}{d\nu}(x)$. If we can evaluate some function $g(x)$ where
@@ -100,7 +99,7 @@ where
 $$
 \sigma^2\left( \nu, f \right) = \text{Var}_{\nu}\left[  \frac{d\mu}{d\nu}(\xi)[f(\xi)-\mu(f)]  \right] = \text{E}_{\nu}\left[  \left[\frac{d\mu}{d\nu}\right]^2 \left[f(\xi)-\mu(f) \right]^2  \right]
 $$
-is the asymptotic variance for the expectation $\mu(f)$ while using $\nu$.
+is the asymptotic variance for the approximation to the expectation $\mu(f)$ while using $\nu$.
 
 
 ## Theorem 9.1.8: proof (part 1)
@@ -154,3 +153,8 @@ If we sample from $p(\theta) = \frac{1}{\pi(1+\theta^2)}$ then the unnormalized 
 &= 2\pi^{-n/2} \exp\left[-\frac{1}{2} \sum_i(y_i-\theta_j)^2 \right]
 \end{align*}
 
+
+- $i$ is the data index
+- $j$ is the parameter sample index
+
+Homework: complete this simulation study and make some nice plots.
