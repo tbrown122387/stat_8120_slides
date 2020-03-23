@@ -456,7 +456,7 @@ Taylor R. Brown
 </div>
 <div id="theorem-9.1.2-first-part" class="slide section level2">
 <h1>Theorem 9.1.2 (first part)</h1>
-<p>Let <span class="math inline">\(f\)</span> be a real, measurable function such that <span class="math inline">\(\mu(|f|) &lt; \infty\)</span> and <span class="math inline">\(|f| \mu \ll |f| \nu\)</span>, and let <span class="math inline">\(\xi^1, \xi^2, \ldots\)</span> be a sequence of iid random variables from <span class="math inline">\(\nu\)</span>. Then the unnormalized importance sampling estimator <span class="math display">\[
+<p>Let <span class="math inline">\(f\)</span> be a real, measurable function such that <span class="math inline">\(\mu(|f|) &lt; \infty\)</span> and <span class="math inline">\(|f| \mu \ll \nu\)</span> (note the typo in the book), and let <span class="math inline">\(\xi^1, \xi^2, \ldots\)</span> be a sequence of iid random variables from <span class="math inline">\(\nu\)</span>. Then the unnormalized importance sampling estimator <span class="math display">\[
 \tilde{\mu}^{\text{IS}}_{\nu, N}(f) = \frac{1}{N} \sum_{i=1}^N  f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)
 \]</span> is strongly consistent.</p>
 <p>This is just the ordinary strong law of large numbers.</p>
@@ -474,7 +474,7 @@ E_{\nu}\left[f^2(\xi^i) \frac{d\mu}{d\nu}(\xi^i)^2 \right] &lt; \infty,
 <div id="theorem-9.1.2-in-practice" class="slide section level2">
 <h1>Theorem 9.1.2 in practice</h1>
 <ul>
-<li><p><span class="math inline">\(|f| \mu \ll |f| \nu\)</span> is weaker than <span class="math inline">\(\mu \ll \nu\)</span></p></li>
+<li><p><span class="math inline">\(|f| \mu \ll \nu\)</span> is weaker than <span class="math inline">\(\mu \ll \nu\)</span></p></li>
 <li><p>infinite variance estimators are quite bad in practice</p></li>
 <li><p>pick <span class="math inline">\(\nu\)</span> carefully! (e.g. <span class="math inline">\(P_{\mu}(\xi &gt; 1e4) = E_{\mu}[\mathbb{1}(\xi &gt; 1e4)]\)</span>)</p></li>
 <li><p>a rearrangement, <span class="math display">\[\begin{align*}

@@ -40,7 +40,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Theorem 9.1.2 (first part)
 
-Let $f$ be a real, measurable function such that $\mu(|f|) < \infty$ and $|f| \mu \ll |f| \nu$, and let $\xi^1, \xi^2, \ldots$ be a sequence of iid random variables from $\nu$. Then the unnormalized importance sampling estimator 
+Let $f$ be a real, measurable function such that $\mu(|f|) < \infty$ and $|f| \mu \ll \nu$ (note the typo in the book), and let $\xi^1, \xi^2, \ldots$ be a sequence of iid random variables from $\nu$. Then the unnormalized importance sampling estimator 
 $$
 \tilde{\mu}^{\text{IS}}_{\nu, N}(f) = \frac{1}{N} \sum_{i=1}^N  f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)
 $$
@@ -66,7 +66,7 @@ This is just the regular central limit theorem.
 
 ## Theorem 9.1.2 in practice
 
-- $|f| \mu \ll |f| \nu$ is weaker than $\mu \ll \nu$
+- $|f| \mu \ll \nu$ is weaker than $\mu \ll \nu$
 
 - infinite variance estimators are quite bad in practice
 
