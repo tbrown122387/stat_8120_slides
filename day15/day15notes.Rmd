@@ -78,7 +78,7 @@ This is just the regular central limit theorem.
 &= E_{\nu}\left[ \left( f(\xi^i) \frac{d\mu}{d\nu}(\xi^i) - \nu\left[ f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)\right]\right)^2 \right] \\
 &= E_{\nu}\left[ \left( f(\xi^i) \frac{d\mu}{d\nu}(\xi^i) - \mu(f)\right)^2 \right] \\
 &= \mu^2(f)  \nu\left[ \left( \frac{f d\mu/d\nu}{\mu(f)} - 1\right)^2 \right] \\
-&= \mu^2(f)  \nu\left[ \left( \frac{|f| d\mu/d\nu}{\mu(|f|)} - 1\right)^2 \right]\tag{ $f = f^{+} - f^{-}$ }
+&\ge \mu^2(f)  \nu\left[ \left( \frac{|f| d\mu/d\nu}{\mu(|f|)} - 1\right)^2 \right] \tag{typo in book}
 \end{align*}
 
 ## Theorem 9.1.2 in practice
@@ -86,14 +86,18 @@ This is just the regular central limit theorem.
 
 $$
 \text{Var}_{\nu}\left[ f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)\right] 
-= \mu^2(f) \nu\left[ \left( \frac{|f| d\mu/d\nu}{\mu(|f|)} - 1\right)^2 \right]
+= \mu^2(f) \nu\left[ \left( \frac{f d\mu/d\nu}{\mu(f)} - 1\right)^2 \right]
 $$
 
-- $\frac{|f| d\mu/d\nu}{\mu(|f|)}$ close to $1$ means $|f| d\mu/d\nu$ is close-to-constant or flat. 
+
+- $\frac{f d\mu/d\nu}{\mu(f)}$ has mean $1$ no matter what $\nu$ is, so we want to minimize the second moment or variance.
+
+- $\frac{f d\mu/d\nu}{\mu(f)}$ close to $1$ with low variance means $f d\mu/d\nu$ is close-to-constant or flat. 
 
 - if $f$ is negligible, this means $\mu$ and $\nu$ are roughly the same. 
 
 - so, this is really only more useful than regular Monte-Carlo if $f$ is not negligible (which is pretty much always true).
+
 
 ## Example 9.1.3
 

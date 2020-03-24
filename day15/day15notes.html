@@ -482,7 +482,7 @@ E_{\nu}\left[f^2(\xi^i) \frac{d\mu}{d\nu}(\xi^i)^2 \right] &lt; \infty,
 &amp;= E_{\nu}\left[ \left( f(\xi^i) \frac{d\mu}{d\nu}(\xi^i) - \nu\left[ f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)\right]\right)^2 \right] \\
 &amp;= E_{\nu}\left[ \left( f(\xi^i) \frac{d\mu}{d\nu}(\xi^i) - \mu(f)\right)^2 \right] \\
 &amp;= \mu^2(f)  \nu\left[ \left( \frac{f d\mu/d\nu}{\mu(f)} - 1\right)^2 \right] \\
-&amp;= \mu^2(f)  \nu\left[ \left( \frac{|f| d\mu/d\nu}{\mu(|f|)} - 1\right)^2 \right]\tag{ $f = f^{+} - f^{-}$ }
+&amp;\ge \mu^2(f)  \nu\left[ \left( \frac{|f| d\mu/d\nu}{\mu(|f|)} - 1\right)^2 \right] \tag{typo in book}
 \end{align*}\]</span></p></li>
 </ul>
 </div>
@@ -490,10 +490,11 @@ E_{\nu}\left[f^2(\xi^i) \frac{d\mu}{d\nu}(\xi^i)^2 \right] &lt; \infty,
 <h1>Theorem 9.1.2 in practice</h1>
 <p><span class="math display">\[
 \text{Var}_{\nu}\left[ f(\xi^i) \frac{d\mu}{d\nu}(\xi^i)\right] 
-= \mu^2(f) \nu\left[ \left( \frac{|f| d\mu/d\nu}{\mu(|f|)} - 1\right)^2 \right]
+= \mu^2(f) \nu\left[ \left( \frac{f d\mu/d\nu}{\mu(f)} - 1\right)^2 \right]
 \]</span></p>
 <ul>
-<li><p><span class="math inline">\(\frac{|f| d\mu/d\nu}{\mu(|f|)}\)</span> close to <span class="math inline">\(1\)</span> means <span class="math inline">\(|f| d\mu/d\nu\)</span> is close-to-constant or flat.</p></li>
+<li><p><span class="math inline">\(\frac{f d\mu/d\nu}{\mu(f)}\)</span> has mean <span class="math inline">\(1\)</span> no matter what <span class="math inline">\(\nu\)</span> is, so we want to minimize the second moment or variance.</p></li>
+<li><p><span class="math inline">\(\frac{f d\mu/d\nu}{\mu(f)}\)</span> close to <span class="math inline">\(1\)</span> with low variance means <span class="math inline">\(f d\mu/d\nu\)</span> is close-to-constant or flat.</p></li>
 <li><p>if <span class="math inline">\(f\)</span> is negligible, this means <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\nu\)</span> are roughly the same.</p></li>
 <li><p>so, this is really only more useful than regular Monte-Carlo if <span class="math inline">\(f\)</span> is not negligible (which is pretty much always true).</p></li>
 </ul>
