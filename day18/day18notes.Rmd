@@ -100,7 +100,7 @@ If we can move the limit inside the expectation (e.g. by using dominated converg
 \end{align*}
 
 
-Moreover, $\xi^i$ and $\xi^j$ (with $i\neq j$) are not independent, but they are **asymptotically independent.** The book shows this using the same argument.
+Moreover, $\tilde{\xi}^i$ and $\tilde{\xi}^j$ (with $i\neq j$) are not independent, but they are **asymptotically independent.** The book shows this using the same argument.
 
 
 ## Sampling Distribution of the Estimator
@@ -158,7 +158,14 @@ Standard asymptotics have given us
 
 We want to show results for the resampled particles $\{(\tilde{\xi}^{N,i}, 1)\}$. We'll first describe the algorithm again, just for the sake of gradually introducing more notation. Sorry, but it's necessary for the triangular arrays.
 
-Also, keep in mind that the $\sigma$-field $\mathcal{G}^N$ is ignorable. You can simply not write it. In the future, when we use resampled particles as starting points for **future samples**, $\mathcal{G}^N$ will refer to the $\sigma$-field signifying information we have about the resampled particles.
+Before we show that, though, we will prove rigorously the second result in the previous slide. In other words, we will show that self-normalized importance sampling is consistent. To say that a third way, reweighting the samples from $\nu$ changes the target to $\mu$.
+
+
+
+## Notation information
+
+
+Keep in mind that the $\sigma$-field $\mathcal{G}^N$ is ignorable. You can simply not write it. In the future, when we use resampled particles as starting points for **future samples**, $\mathcal{G}^N$ will refer to the $\sigma$-field signifying information we have about the resampled particles.
 
 This is what the authors are conveying to you at the top of page 301.
 

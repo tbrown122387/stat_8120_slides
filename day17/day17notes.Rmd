@@ -51,12 +51,6 @@ knitr::include_graphics("SIR.png")
 
 
 
-
-## Reviewing Definitions
-
-A lot of this has been covered already, but now we're starting to be "official."
-
-
 ## SIR from 10,000 feet
 
 Recall that there are two steps to this algorithm:

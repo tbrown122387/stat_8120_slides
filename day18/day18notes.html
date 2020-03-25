@@ -435,7 +435,7 @@ E\left( \hat{\mu}^{\text{SIR}}_{\nu, M, \tilde{M}}(f) \mid \xi^1, \ldots, \xi^M 
 &amp;= E[\mu(f)] \\
 &amp;= \mu(f).
 \end{align*}\]</span></p>
-<p>Moreover, <span class="math inline">\(\xi^i\)</span> and <span class="math inline">\(\xi^j\)</span> (with <span class="math inline">\(i\neq j\)</span>) are not independent, but they are <strong>asymptotically independent.</strong> The book shows this using the same argument.</p>
+<p>Moreover, <span class="math inline">\(\tilde{\xi}^i\)</span> and <span class="math inline">\(\tilde{\xi}^j\)</span> (with <span class="math inline">\(i\neq j\)</span>) are not independent, but they are <strong>asymptotically independent.</strong> The book shows this using the same argument.</p>
 </div>
 <div id="sampling-distribution-of-the-estimator-4" class="slide section level2">
 <h1>Sampling Distribution of the Estimator</h1>
@@ -482,7 +482,11 @@ E\left[ \left( \hat{\mu}(f)^{\text{SIR}}_{\nu, M, \tilde{M}} - \mu(f) \right)^2 
 <div id="where-were-going" class="slide section level2">
 <h1>Where we’re going</h1>
 <p>We want to show results for the resampled particles <span class="math inline">\(\{(\tilde{\xi}^{N,i}, 1)\}\)</span>. We’ll first describe the algorithm again, just for the sake of gradually introducing more notation. Sorry, but it’s necessary for the triangular arrays.</p>
-<p>Also, keep in mind that the <span class="math inline">\(\sigma\)</span>-field <span class="math inline">\(\mathcal{G}^N\)</span> is ignorable. You can simply not write it. In the future, when we use resampled particles as starting points for <strong>future samples</strong>, <span class="math inline">\(\mathcal{G}^N\)</span> will refer to the <span class="math inline">\(\sigma\)</span>-field signifying information we have about the resampled particles.</p>
+<p>Before we show that, though, we will prove rigorously the second result in the previous slide. In other words, we will show that self-normalized importance sampling is consistent. To say that a third way, reweighting the samples from <span class="math inline">\(\nu\)</span> changes the target to <span class="math inline">\(\mu\)</span>.</p>
+</div>
+<div id="notation-information" class="slide section level2">
+<h1>Notation information</h1>
+<p>Keep in mind that the <span class="math inline">\(\sigma\)</span>-field <span class="math inline">\(\mathcal{G}^N\)</span> is ignorable. You can simply not write it. In the future, when we use resampled particles as starting points for <strong>future samples</strong>, <span class="math inline">\(\mathcal{G}^N\)</span> will refer to the <span class="math inline">\(\sigma\)</span>-field signifying information we have about the resampled particles.</p>
 <p>This is what the authors are conveying to you at the top of page 301.</p>
 </div>
 <div id="algorithm-9.2.5" class="slide section level2">
