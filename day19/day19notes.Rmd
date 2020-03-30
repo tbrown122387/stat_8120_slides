@@ -152,8 +152,8 @@ Recall that $\mathcal{F}^N$ is the sigma field containing all the information ju
 
 \begin{align*}
 &\frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N}  E\left[ \left| f(\tilde{\xi}^{N,i}) \right| \mathbb{1}\left( \left| f(\tilde{\xi}^{N,i}) \right| \ge C\right) \bigg\rvert \mathcal{F}^N \right] \\
-&= \sum_{i=1}^{M_N} \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) }{ \sum_{j=1}^{M_N} \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) }  \left| f(\tilde{\xi}^{N,i}) \right| \mathbb{1}\left( \left| f(\tilde{\xi}^{N,i}) \right| \ge C\right) \\
-&=  \frac{ M_N^{-1}\sum_{i=1}^{M_N} \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) \left| f(\tilde{\xi}^{N,i}) \right| \mathbb{1}\left( \left| f(\tilde{\xi}^{N,i}) \right| \ge C\right)  }{ M_N^{-1}\sum_{j=1}^{M_N} \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) }   
+&= \sum_{i=1}^{M_N} \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) }{ \sum_{j=1}^{M_N} \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) }  \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge C\right) \\
+&=  \frac{ M_N^{-1}\sum_{i=1}^{M_N} \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i}) \left| f(\xi^{N,i}) \right| \mathbb{1}\left( \left| f(\xi^{N,i}) \right| \ge C\right)  }{ M_N^{-1}\sum_{j=1}^{M_N} \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j}) }   
 \end{align*}
 
 Numerator converges, and the deminator converges because of Theorem 9.2.7, and by proper-ness of $\tilde{\mathsf{C}}$ (i.e. because $\left| f(\tilde{\xi}^{N,i}) \right| \mathbb{1}\left( \left| f(\tilde{\xi}^{N,i}) \right| \ge C\right) \le \left| f(\tilde{\xi}^{N,i}) \right|$)
@@ -177,5 +177,8 @@ Then, after we add and subtract, we can use (*) above, with $C = 0$ to show that
 &=
 \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \left\{ f(\tilde{\xi}^{N,i}) - E[ f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right\} +
 \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \left\{ E[ f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] - \mu(f) \right\}\\
+&=
+\frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \left\{ f(\tilde{\xi}^{N,i}) - E[ f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right\} +
+\frac{1}{\tilde{M}_N} \sum_{i=1}^{M_N} f(\xi^{N,i}) E[N^i \mid \mathcal{F}^N] - \mu(f) \\
 &\overset{\text{p}}{\to} 0.
 \end{align*}
