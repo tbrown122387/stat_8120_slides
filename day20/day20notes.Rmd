@@ -59,7 +59,7 @@ This is reasonable to assume because it is often guaranteed by the "standard" CL
 
 Assumption 9.2.10: The weighted sample $\{(\xi^{N,i}, \omega^{N,i})\}_{1 \le i \le M_N}$ is asymptotically normal for $(\nu, \mathsf{A}, \sigma, \{a_N\})$, and $\frac{d\mu}{d\nu} \in \mathsf{A}$.
 
-Keep in mind that
+By assumption:
 
 - $\mathsf{A}$ is proper
 - $\sigma$ is nonnegative
@@ -122,7 +122,7 @@ and see the numerator converges in distribution, the denominator converges in pr
 
 ## Theorem 9.2.11: proof (3 of 3)
 
-If $f \in \bar{\mathsf{A}}$, then $f\frac{d\mu}{d\nu} \in \mathsf{A}$ (definition of $\tilde{\mathsf{A}}$) and  $f\frac{d\mu}{d\nu} \in \mathsf{A}$ (assumption 9.2.10). Because $\mathsf{A}$ is proper, $h = \frac{d\mu}{d\nu} (f - \mu(f)) \in \mathsf{A}$ (linear combinations!) and so the numerator:
+If $f \in \bar{\mathsf{A}}$, then $f\frac{d\mu}{d\nu} \in \mathsf{A}$ and  $\frac{d\mu}{d\nu} \in \mathsf{A}$ (assumption 9.2.10). Because $\mathsf{A}$ is proper, $h = \frac{d\mu}{d\nu} (f - \mu(f)) \in \mathsf{A}$ (linear combinations!) and so the numerator:
 $$
 a_N \sum_{i=1}^{M_N} \frac{\omega^{N,i}}{\sum_j \omega^{N,j}}\frac{d\mu}{d\nu}(\xi^{N,i})[f(\xi^{N,i}) - \mu(f)]   \overset{\text{D}}{\to}  \text{Normal}\left(0, \bar{\sigma}^2(f)\right)
 $$
@@ -147,7 +147,7 @@ Assumption 9.1.1: $\mu \ll \nu$, and $d\mu/d\nu > 0$ almost surely.
 
 Assumption 9.2.6: $\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}$ is consistent for $(\nu, \mathsf{C})$ (a proper set), and $d\mu/d\nu \in \mathsf{C}$. 
 
-Also, assume $\mu \in \mathbb{R}$ and $f$ is such that $f^2 \frac{d\mu}{d\nu} \in \mathsf{C}$. 
+Also, assume $u \in \mathbb{R}$ and $f$ is such that $f^2 \frac{d\mu}{d\nu} \in \mathsf{C}$. 
 
 Then ...
 
@@ -173,8 +173,7 @@ Verifying condition 1 of 3 of Proposition 9.5.13:
 
 The conditional independent is assumed by the description of Algorithm 9.2.5. 
 
-Also, each $E[f(\xi^{N,i})^2 \mid \mathcal{F}^N]$ should be assumed to be finite more explicitly because all the assumptions are about is what they converge to! The book glosses over this a little.
-
+Also, each $E[f(\xi^{N,i})^2 \mid \mathcal{F}^N]$ is finite because we are assuming $f^2 \frac{d\mu}{d\nu} \in \mathsf{C}$.
 
 
 ## Proposition 9.2.12: proof (2 of 3)
@@ -304,6 +303,6 @@ if $\alpha \ge 1$ and $f \in \tilde{\mathsf{A}}$.
 
 First, let's show $\tilde{\mathsf{A}}$ is proper. This you can do on your own.
 
-The rest of the details are given in \verb|proof_9.2.14.pdf|.
+The rest of the details are given in `proof_9.2.14.pdf`.
 
 Theorem 9.2.15 is just a summary with different notation. For homework, take a look at the rest of the chapter's examples, (ignore the inequalities on tail probabilities).

@@ -58,7 +58,7 @@ Taylor R. Brown
 <h2>Assumption 9.2.10</h2>
 <p>This is reasonable to assume because it is often guaranteed by the “standard” CLT.</p>
 <p>Assumption 9.2.10: The weighted sample <span class="math inline">\(\{(\xi^{N,i}, \omega^{N,i})\}_{1 \le i \le M_N}\)</span> is asymptotically normal for <span class="math inline">\((\nu, \mathsf{A}, \sigma, \{a_N\})\)</span>, and <span class="math inline">\(\frac{d\mu}{d\nu} \in \mathsf{A}\)</span>.</p>
-<p>Keep in mind that</p>
+<p>By assumption:</p>
 <ul>
 <li><span class="math inline">\(\mathsf{A}\)</span> is proper</li>
 <li><span class="math inline">\(\sigma\)</span> is nonnegative</li>
@@ -101,7 +101,7 @@ a_N\left\{ \sum_{i=1}^{M_N} \frac{ \omega^{N,i}\frac{d\mu}{d\nu}(\xi^{N,i})  }{ 
 </div>
 <div id="theorem-9.2.11-proof-3-of-3" class="slide section level2">
 <h2>Theorem 9.2.11: proof (3 of 3)</h2>
-<p>If <span class="math inline">\(f \in \bar{\mathsf{A}}\)</span>, then <span class="math inline">\(f\frac{d\mu}{d\nu} \in \mathsf{A}\)</span> (definition of <span class="math inline">\(\tilde{\mathsf{A}}\)</span>) and <span class="math inline">\(f\frac{d\mu}{d\nu} \in \mathsf{A}\)</span> (assumption 9.2.10). Because <span class="math inline">\(\mathsf{A}\)</span> is proper, <span class="math inline">\(h = \frac{d\mu}{d\nu} (f - \mu(f)) \in \mathsf{A}\)</span> (linear combinations!) and so the numerator: <span class="math display">\[
+<p>If <span class="math inline">\(f \in \bar{\mathsf{A}}\)</span>, then <span class="math inline">\(f\frac{d\mu}{d\nu} \in \mathsf{A}\)</span> and <span class="math inline">\(\frac{d\mu}{d\nu} \in \mathsf{A}\)</span> (assumption 9.2.10). Because <span class="math inline">\(\mathsf{A}\)</span> is proper, <span class="math inline">\(h = \frac{d\mu}{d\nu} (f - \mu(f)) \in \mathsf{A}\)</span> (linear combinations!) and so the numerator: <span class="math display">\[
 a_N \sum_{i=1}^{M_N} \frac{\omega^{N,i}}{\sum_j \omega^{N,j}}\frac{d\mu}{d\nu}(\xi^{N,i})[f(\xi^{N,i}) - \mu(f)]   \overset{\text{D}}{\to}  \text{Normal}\left(0, \bar{\sigma}^2(f)\right)
 \]</span> (be sure to work out the mean/variance!).</p>
 <p>The denominator <span class="math display">\[
@@ -114,7 +114,7 @@ a_N \sum_{i=1}^{M_N} \frac{\omega^{N,i}}{\sum_j \omega^{N,j}}\frac{d\mu}{d\nu}(\
 <p>Assume</p>
 <p>Assumption 9.1.1: <span class="math inline">\(\mu \ll \nu\)</span>, and <span class="math inline">\(d\mu/d\nu &gt; 0\)</span> almost surely.</p>
 <p>Assumption 9.2.6: <span class="math inline">\(\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}\)</span> is consistent for <span class="math inline">\((\nu, \mathsf{C})\)</span> (a proper set), and <span class="math inline">\(d\mu/d\nu \in \mathsf{C}\)</span>.</p>
-<p>Also, assume <span class="math inline">\(\mu \in \mathbb{R}\)</span> and <span class="math inline">\(f\)</span> is such that <span class="math inline">\(f^2 \frac{d\mu}{d\nu} \in \mathsf{C}\)</span>.</p>
+<p>Also, assume <span class="math inline">\(u \in \mathbb{R}\)</span> and <span class="math inline">\(f\)</span> is such that <span class="math inline">\(f^2 \frac{d\mu}{d\nu} \in \mathsf{C}\)</span>.</p>
 <p>Then …</p>
 </div>
 <div id="proposition-9.2.12-1" class="slide section level2">
@@ -133,7 +133,7 @@ E\left[ \exp\left( i u \tilde{M}_N^{-1/2} \sum_{i=1}^{\tilde{M_N}} \{ f(\tilde{\
 <li>The triangular array is conditionally independent given <span class="math inline">\(\{\mathcal{F}^{N}\}\)</span>, and for any <span class="math inline">\(N\)</span>, <span class="math inline">\(i=1,\ldots,M_N\)</span>, we have <span class="math inline">\(E[f(\xi^{N,i})^2 \mid \mathcal{F}^N] &lt; \infty\)</span>,</li>
 </ol>
 <p>The conditional independent is assumed by the description of Algorithm 9.2.5.</p>
-<p>Also, each <span class="math inline">\(E[f(\xi^{N,i})^2 \mid \mathcal{F}^N]\)</span> should be assumed to be finite more explicitly because all the assumptions are about is what they converge to! The book glosses over this a little.</p>
+<p>Also, each <span class="math inline">\(E[f(\xi^{N,i})^2 \mid \mathcal{F}^N]\)</span> is finite because we are assuming <span class="math inline">\(f^2 \frac{d\mu}{d\nu} \in \mathsf{C}\)</span>.</p>
 </div>
 <div id="proposition-9.2.12-proof-2-of-3" class="slide section level2">
 <h2>Proposition 9.2.12: proof (2 of 3)</h2>
@@ -234,7 +234,7 @@ E[f(\tilde{\xi}^{N,i})^2 \mid \mathcal{F}^N] = \sum_{i=1}^{M_N} \frac{ \omega^{N
 <div id="theorem-9.2.14-proof" class="slide section level2">
 <h2>Theorem 9.2.14: proof</h2>
 <p>First, let’s show <span class="math inline">\(\tilde{\mathsf{A}}\)</span> is proper. This you can do on your own.</p>
-<p>The rest of the details are given in .</p>
+<p>The rest of the details are given in <code>proof_9.2.14.pdf</code>.</p>
 <p>Theorem 9.2.15 is just a summary with different notation. For homework, take a look at the rest of the chapter’s examples, (ignore the inequalities on tail probabilities).</p>
 </div>
 
