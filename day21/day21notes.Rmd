@@ -42,7 +42,7 @@ In earlier chapters, we separated everything along the lines of re-weighting and
 
 Want 
 $$
-\mu(f) = \frac{\int \nu(dx) L(x, dy) f(y)}{\int \nu(dx) L(x, dy) }
+\mu(f) = \frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) }
 $$
 
 - sample from $\nu$
@@ -52,7 +52,7 @@ $$
 So we use
 
 $$
-\frac{\int \nu(dx) L(x, dy) f(y)}{\int \nu(dx) L(x, dy) } = \frac{\int \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\int \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) }
+\frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) } = \frac{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) }
 $$
 
 ## Some Notation
@@ -139,7 +139,7 @@ Then $\tilde{\mathsf{C}}$ is proper and $\{ (\tilde{\xi}^{N,i}, \tilde{\omega}^{
 
 Check $\tilde{\mathsf{C}}$ is proper on your own.
 
-The rest of the proof is just applying theorem 9.5.7, and using a trick:
+The rest of the proof is just applying proposition 9.5.7, and using a trick:
 
 \begin{align*}
 L(\xi^{N,i}, f) &= 
@@ -154,7 +154,7 @@ L(\xi^{N,i}, f) &=
 Recall 
 
 $$
-\mu(f)  = \frac{\int \nu(dx) L(x, dy) f(y)}{\int \nu(dx) L(x, dy) } = \frac{\int \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\int \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) } 
+\mu(f)  = \frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) } = \frac{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) } 
 $$
 We want to show 
 
