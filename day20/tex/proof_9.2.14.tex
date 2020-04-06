@@ -148,11 +148,11 @@ a_N A_N
 & \overset{\text{D}}{\to}
 \text{Normal}\left( 
 0,
-\lim_N \frac{a_N^2}{\tilde{M}_N}\text{Var}_{\mu}(f) + \text{Var}_{\mu}(f)
+\lim_N \frac{a_N^2}{\tilde{M}_N}\text{Var}_{\mu}(f) + \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
 \right) \\
 &= \text{Normal}\left( 
 0,
-\alpha \text{Var}_{\mu}(f) +  \text{Var}_{\mu}(f)
+\alpha \text{Var}_{\mu}(f) +  \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
 \right)
 \end{align*}
 
@@ -172,11 +172,11 @@ a_N A_N
 & \overset{\text{D}}{\to}
 \text{Normal}\left( 
 0,
-\text{Var}_{\mu}(f) + \lim_N \frac{\tilde{M}_N}{a_N^2}\text{Var}_{\mu}(f)
+\text{Var}_{\mu}(f) + \lim_N \frac{\tilde{M}_N}{a_N^2}\sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
 \right) \\
 &= \text{Normal}\left( 
 0,
-\text{Var}_{\mu}(f) + \frac{1}{\alpha} \text{Var}_{\mu}(f)
+\text{Var}_{\mu}(f) + \frac{1}{\alpha} \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
 \right).
 \end{align*}
 
