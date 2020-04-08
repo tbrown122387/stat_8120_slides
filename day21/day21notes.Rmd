@@ -42,7 +42,7 @@ In earlier chapters, we separated everything along the lines of re-weighting and
 
 Want 
 $$
-\mu(f) = \frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) }
+\mu(f) = \frac{\nu L(A)}{\nu L (\mathsf{X})} = \frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) }
 $$
 
 - sample from $\nu$
@@ -52,7 +52,7 @@ $$
 So we use
 
 $$
-\frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) } = \frac{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) }
+\frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) } = \frac{\iint \nu(dx) \left[\frac{dL(x,\cdot)}{dR(x, \cdot)}(y)\right]R(x, dy) f(y)}{\iint \nu(dx) \left[\frac{dL(x,\cdot)}{dR(x, \cdot)}(y)\right] R(x, dy) }
 $$
 
 ## Some Notation
@@ -72,7 +72,7 @@ $$
 
 - $\nu$ samples from the previous time period that were used to target the old target
 
-- $\mu = (\nu L)(A)/(\nu L)(\mathsf{X})$ target at next time point
+- $\mu(A) = (\nu L)(A)/(\nu L)(\mathsf{X})$ target at next time point
 
 
 - $\tilde{\xi}^{N,i}$ are no longer resampled particles, but rather the "mutated" particles 
@@ -88,7 +88,7 @@ Assumption 9.3.1: $0 < \int \nu(dx) L(x,\mathsf{X}) < \infty$.
 
 Assumption 9.3.2: $\{(\xi^{N,i},1)\}_{1 \le i \le M_N}$ are consistent for $(\nu, \mathsf{C})$. Also $L(x,\mathsf{X}) \in \mathsf{C}$.
 
-Assumption 9.3.3: $\forall x \in \mathsf{X}$, $L(x, \cdot) \ll R(x, \cdot)$, and there exists a strictly positive RN derivative: $\frac{dL(x,\cdot )}{dR(x, \cdot)}$.
+Assumption 9.3.3: $\forall x \in \mathsf{X}$, $L(x, \cdot) \ll R(x, \cdot)$, and there exists a strictly positive RN derivative: $\frac{dL(x,\cdot )}{dR(x, \cdot)}(\cdot)$
 
 
 ## Mutation!
@@ -124,7 +124,7 @@ Assume
 
 2. Assumption 9.3.2: $\{(\xi^{N,i},1)\}_{1 \le i \le M_N}$ are consistent for $(\nu, \mathsf{C})$. $L(x,\mathsf{X}) \in \mathsf{C}$.
 
-3. Assumption 9.3.3: $\forall x \in \mathsf{X}$, $L(x, \cdot) \ll R(x, \cdot)$, and there exists a strictly positive RN derivative: $\frac{dL(x,\cdot )}{dR(x, \cdot)}$.
+3. Assumption 9.3.3: $\forall x \in \mathsf{X}$, $L(x, \cdot) \ll R(x, \cdot)$, and there exists a strictly positive RN derivative: $\frac{dL(x,\cdot )}{dR(x, \cdot)}(\cdot)$
 
 and define 
 $$
@@ -154,7 +154,7 @@ L(\xi^{N,i}, f) &=
 Recall 
 
 $$
-\mu(f)  = \frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) } = \frac{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) } 
+\mu(f)  = \frac{[\nu L](f) }{[\nu L](\mathsf{X}) } = \frac{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) } 
 $$
 We want to show 
 

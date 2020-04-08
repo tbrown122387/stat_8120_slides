@@ -46,7 +46,7 @@ Taylor R. Brown
 <div id="motivation" class="slide section level2">
 <h2>Motivation</h2>
 <p>Want <span class="math display">\[
-\mu(f) = \frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) }
+\mu(f) = \frac{\nu L(A)}{\nu L (\mathsf{X})} = \frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) }
 \]</span></p>
 <ul>
 <li><p>sample from <span class="math inline">\(\nu\)</span></p></li>
@@ -54,7 +54,7 @@ Taylor R. Brown
 </ul>
 <p>So we use</p>
 <p><span class="math display">\[
-\frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) } = \frac{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) }
+\frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) } = \frac{\iint \nu(dx) \left[\frac{dL(x,\cdot)}{dR(x, \cdot)}(y)\right]R(x, dy) f(y)}{\iint \nu(dx) \left[\frac{dL(x,\cdot)}{dR(x, \cdot)}(y)\right] R(x, dy) }
 \]</span></p>
 </div>
 <div id="some-notation" class="slide section level2">
@@ -70,7 +70,7 @@ Taylor R. Brown
 <h2>Some Notation</h2>
 <ul>
 <li><p><span class="math inline">\(\nu\)</span> samples from the previous time period that were used to target the old target</p></li>
-<li><p><span class="math inline">\(\mu = (\nu L)(A)/(\nu L)(\mathsf{X})\)</span> target at next time point</p></li>
+<li><p><span class="math inline">\(\mu(A) = (\nu L)(A)/(\nu L)(\mathsf{X})\)</span> target at next time point</p></li>
 <li><p><span class="math inline">\(\tilde{\xi}^{N,i}\)</span> are no longer resampled particles, but rather the “mutated” particles</p></li>
 <li><p><span class="math inline">\(\tilde{\xi}^{N,i} \mid \xi^{N,i} \sim R\)</span> (mutated from the old samples using <span class="math inline">\(R\)</span>)</p></li>
 <li><p><span class="math inline">\(\tilde{\xi}^{N,i} \sim \nu R\)</span></p></li>
@@ -80,7 +80,7 @@ Taylor R. Brown
 <h2>Assumptions</h2>
 <p>Assumption 9.3.1: <span class="math inline">\(0 &lt; \int \nu(dx) L(x,\mathsf{X}) &lt; \infty\)</span>.</p>
 <p>Assumption 9.3.2: <span class="math inline">\(\{(\xi^{N,i},1)\}_{1 \le i \le M_N}\)</span> are consistent for <span class="math inline">\((\nu, \mathsf{C})\)</span>. Also <span class="math inline">\(L(x,\mathsf{X}) \in \mathsf{C}\)</span>.</p>
-<p>Assumption 9.3.3: <span class="math inline">\(\forall x \in \mathsf{X}\)</span>, <span class="math inline">\(L(x, \cdot) \ll R(x, \cdot)\)</span>, and there exists a strictly positive RN derivative: <span class="math inline">\(\frac{dL(x,\cdot )}{dR(x, \cdot)}\)</span>.</p>
+<p>Assumption 9.3.3: <span class="math inline">\(\forall x \in \mathsf{X}\)</span>, <span class="math inline">\(L(x, \cdot) \ll R(x, \cdot)\)</span>, and there exists a strictly positive RN derivative: <span class="math inline">\(\frac{dL(x,\cdot )}{dR(x, \cdot)}(\cdot)\)</span></p>
 </div>
 <div id="mutation" class="slide section level2">
 <h2>Mutation!</h2>
@@ -109,7 +109,7 @@ j = \alpha_N(i-1) + 1, \ldots, \alpha_Ni
 <ol style="list-style-type: decimal">
 <li><p>Assumption 9.3.1: <span class="math inline">\(0 &lt; L(x,\mathsf{X}) &lt; \infty\)</span>.</p></li>
 <li><p>Assumption 9.3.2: <span class="math inline">\(\{(\xi^{N,i},1)\}_{1 \le i \le M_N}\)</span> are consistent for <span class="math inline">\((\nu, \mathsf{C})\)</span>. <span class="math inline">\(L(x,\mathsf{X}) \in \mathsf{C}\)</span>.</p></li>
-<li><p>Assumption 9.3.3: <span class="math inline">\(\forall x \in \mathsf{X}\)</span>, <span class="math inline">\(L(x, \cdot) \ll R(x, \cdot)\)</span>, and there exists a strictly positive RN derivative: <span class="math inline">\(\frac{dL(x,\cdot )}{dR(x, \cdot)}\)</span>.</p></li>
+<li><p>Assumption 9.3.3: <span class="math inline">\(\forall x \in \mathsf{X}\)</span>, <span class="math inline">\(L(x, \cdot) \ll R(x, \cdot)\)</span>, and there exists a strictly positive RN derivative: <span class="math inline">\(\frac{dL(x,\cdot )}{dR(x, \cdot)}(\cdot)\)</span></p></li>
 </ol>
 <p>and define <span class="math display">\[
 \tilde{\mathsf{C}} = \left\{ f \in L^1(\mathsf{X}, \mu) : x \mapsto L(x, |f|) \in \mathsf{C}  \right\}.
@@ -131,7 +131,7 @@ L(\xi^{N,i}, f) &amp;=
 <h2>Theorem 9.3.5: proof</h2>
 <p>Recall</p>
 <p><span class="math display">\[
-\mu(f)  = \frac{\iint \nu(dx) L(x, dy) f(y)}{\iint \nu(dx) L(x, dy) } = \frac{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) } 
+\mu(f)  = \frac{[\nu L](f) }{[\nu L](\mathsf{X}) } = \frac{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right]R(x, dy) f(y)}{\iint \nu(dx) \left[\frac{L(x,\cdot)}{R(x, \cdot)}(y)\right] R(x, dy) } 
 \]</span> We want to show</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(\frac{1}{\tilde{M}^N} \sum_{j=1}^{\tilde{M}_N} \tilde{\omega}^{N,j} 1(\tilde{\xi}^{N,j})\overset{\text{p}}{\to} \nu L(\mathsf{X})\)</span></p></li>

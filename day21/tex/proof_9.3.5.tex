@@ -54,7 +54,7 @@ $$
 \tilde{\mathsf{C}} = \left\{ f \in L^1(\mathsf{X}, \mu) : x \mapsto L(x, |f|) \in \mathsf{C}  \right\}.
 $$
 
-\section{Showing Convergence to Zero with 9.5.7}
+\section{Showing Convergence to Zero using Theorem 9.5.7}
 
 We showed the second part of
 $$  
@@ -64,21 +64,26 @@ $$
 + \left\{ \frac{1}{\tilde{M}^N} \sum_{j=1}^{\tilde{M}_N} E\left[ \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) \mid \mathcal{F}^N \right]  \right\}
 $$
 
-converges in probability to $\nu L(f)$ for any $f \in \tilde{\mathsf{C}}$. To show this, we set $V_{N,j} = \frac{1}{\tilde{M}_{N}} \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})$, and check the three conditions of 9.5.7. 
+converges in probability to $\nu L(f)$ for any $f \in \tilde{\mathsf{C}}$. Now we must show the fist part converges to $0$. To show this, we set $V_{N,j} = \frac{1}{\tilde{M}_{N}} \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})$, and check the three conditions of 9.5.7. 
 
 \subsection{First condition of 9.5.7}
 
-The first condition, translated into our notation, is: the triangular array is conditionally independent given $\mathcal{F}^N$, and for any $N$, $i=1,\ldots, \tilde{M}_N$, we have $E[|V_{N,j}| \mid \mathcal{F}^N] < \infty$. 
+The first condition, translated into our notation, is: the triangular array $\{V_{N,j}\}_{1 \le j \le M_N}$ is conditionally independent given $\mathcal{F}^N$, and for any $N$, $j=1,\ldots, \tilde{M}_N$, we have $E[|V_{N,j}| \mid \mathcal{F}^N] < \infty$. 
+\newline
 
-Recall our assumptions:
+% Recall our assumptions of this theorem (9.3.5):
+% 
+% 
+% \begin{enumerate}
+% \item Assumption 9.3.1: $0 < L(x,\mathsf{X}) < \infty$.
+% 
+% \item Assumption 9.3.2: $\{(\xi^{N,i},1)\}_{1 \le i \le M_N}$ are consistent for $(\nu, \mathsf{C})$. $L(x,\mathsf{X}) \in \mathsf{C}$.
+% 
+% \item Assumption 9.3.3: $\forall x \in \mathsf{X}$, $L(x, \cdot) \ll R(x, \cdot)$, and there exists a strictly positive RN derivative: $\frac{dL(x,\cdot )}{dR(x, \cdot)}$.
+% 
+% \end{enumerate}
 
-1. Assumption 9.3.1: $0 < L(x,\mathsf{X}) < \infty$.
-
-2. Assumption 9.3.2: $\{(\xi^{N,i},1)\}_{1 \le i \le M_N}$ are consistent for $(\nu, \mathsf{C})$. $L(x,\mathsf{X}) \in \mathsf{C}$.
-
-3. Assumption 9.3.3: $\forall x \in \mathsf{X}$, $L(x, \cdot) \ll R(x, \cdot)$, and there exists a strictly positive RN derivative: $\frac{dL(x,\cdot )}{dR(x, \cdot)}$.
-
-So, the first condition of 9.5.7 is true because of the description of the algorithm, and because $f \in \tilde{\mathsf{C}}$.
+The first condition of 9.5.7 is true because of the description of the algorithm used for 9.3.5, and because $f \in \tilde{\mathsf{C}}$ by assumption.
 
 \subsection{Second Condition of 9.5.7}
 
@@ -89,9 +94,12 @@ $$
 $$
 is bounded in probability. This is true because it converges in probability. To see this more easily, use the same trick we've been using a few times:
 
-$$
-\sum_{j=1}^{\tilde{M}_N} E[|V_{N,j}| \mid \mathcal{F}^N] = \frac{1}{\tilde{M}_N} \sum_{j=1}^{\tilde{M}_N} L(\xi^{N,i}, |f|) \overset{\text{p}}{\to} \nu L(|f|).
-$$
+\begin{align*}
+\sum_{j=1}^{\tilde{M}_N} E[|V_{N,j}| \mid \mathcal{F}^N] 
+&= \frac{1}{\tilde{M}_{N}} \sum_{j=1}^{\tilde{M}_N} E[| \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \mid \mathcal{F}^N]  \\
+&= \frac{1}{\tilde{M}_{N}} \sum_{j=1}^{\tilde{M}_N} E[ \tilde{\omega}^{N,j}| f(\tilde{\xi}^{N,j})| \mid \mathcal{F}^N]  \tag{Assumption 9.3.3 positive RN deriv.}\\
+&= \frac{1}{\tilde{M}_N} \sum_{j=1}^{\tilde{M}_N} L(\xi^{N,i}, |f|) \overset{\text{p}}{\to} \nu L(|f|).
+\end{align*}
 
 
 \subsection{Third Condition of 9.5.7}
@@ -101,20 +109,20 @@ $$
 \sum_{j=1}^{\tilde{M}_N} E\left[ |V_{N,j}| \mathbf{1}\left( |V_{N,j}| \ge \epsilon \right)  \mid \mathcal{F}^N\right] \overset{\text{p}}{\to} 0.
 $$
 
-Translate a little, and you'll see it's true. First, pick $f \in \tilde{\mathsf{C}}$. Notice that, for any $C$,
+Before, we show the main work, note that, after we pick $f \in \tilde{\mathsf{C}}$,  then for any $C$,
 $$
-L(x,|f| \mathbf{1}_{\{h(x,x') \ge C \}}) = \int L(x, dx')|f|(x') \mathbf{1}_{\{ h(x,x') \ge C \}} \le L(x, |f|).
+L(x,|f| \mathbf{1}_{\{h(x,x') \ge C \}}) = \int L(x, dx')\left|f(x')\right| \mathbf{1}_{\{ h(x,x') \ge C \}} \le L(x, |f|).
 $$
 
-We assume $f \in \tilde{\mathsf{C}}$, so $ L(x, |f|) \in \mathsf{C}$ so the left hand side of the above is in $\mathsf{C}$ as well, by propriety and the above inequality. This is important because we don't need any further assumptions to get convergence of average of expectations that involve indicator random variables.
+This is useful because if we assume $f \in \tilde{\mathsf{C}}$, this will imply that $L(x,|f|) \in \mathsf{C}$, and by propriety, this will also imply that $L(x,|f| \mathbf{1}_{\{h(x,x') \ge C \}}) \in \mathsf{C}$. We need this in the last line of the following work: 
 
-So
+
 \begin{align*}
 \lim_N \sum_{j=1}^{\tilde{M}_N} E\left[ |V_{N,j}| 1_{\{|V_{N,j}| \ge \epsilon \} } \mid \mathcal{F}^N\right] 
 &= \lim_N \sum_{j=1}^{\tilde{M}_N} E\left[ |\tilde{M}_N^{-1} \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| 1_{\{|\tilde{M}_N^{-1} \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge \epsilon \} } \mid \mathcal{F}^N\right] \tag{defn of V}\\
-&= \lim_N \tilde{M}_N^{-1}\sum_{j=1}^{\tilde{M}_N} E\left[ | \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| 1_{\{|\tilde{M}_N^{-1} \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge \epsilon \} } \mid \mathcal{F}^N\right] \tag{algebra} \\
-&\le \lim_N \tilde{M}_N^{-1}\sum_{j=1}^{\tilde{M}_N} E\left[ | \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| 1_{\{| \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \} } \mid \mathcal{F}^N\right] \tag{if $\tilde{M}_N \epsilon \ge C$} \\
-&= \lim_N M_N^{-1}\sum_{i=1}^{M_N} \int L(\xi^{N,i}, d \tilde{\xi}^{N,j}) |f|(\tilde{\xi}^{N,j}) 1_{\{| \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \} }  \tag{defn of expec. and the trick with replacing $i$ and $j$ }\\
+&= \lim_N \tilde{M}_N^{-1}\sum_{j=1}^{\tilde{M}_N} E\left[\tilde{\omega}^{N,j} |  f(\tilde{\xi}^{N,j})| 1_{\{|\tilde{M}_N^{-1} \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge \epsilon \} } \mid \mathcal{F}^N\right] \tag{algebra} \\
+&\le \lim_N \tilde{M}_N^{-1}\sum_{j=1}^{\tilde{M}_N} E\left[ \tilde{\omega}^{N,j}|  f(\tilde{\xi}^{N,j})| 1_{\{| \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \} } \mid \mathcal{F}^N\right] \tag{if $\tilde{M}_N \epsilon \ge C$} \\
+&= \lim_N M_N^{-1}\sum_{i=1}^{M_N} \int L(\xi^{N,i}, d \tilde{\xi}^{N,j}) \left|f(\tilde{\xi}^{N,j})\right| 1_{\{| \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \} }  \tag{defn of expec. and the trick with replacing $i$ and $j$ }\\
 &= \iint \nu(dx) L(x, d x') |f|(x') 1_{\{| \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \} }  \tag{discussion above}\\
 \end{align*}
 
@@ -123,8 +131,8 @@ The last term is bounded above by $\nu L(|f|) <\infty$, so we can use dominated 
 \begin{align*}
 \lim_N \sum_{j=1}^{\tilde{M}_N} E\left[ |V_{N,j}| 1_{\{|V_{N,j}| \ge \epsilon \} } \mid \mathcal{F}^N\right] &=
 \lim_C \lim_N \sum_{j=1}^{\tilde{M}_N} E\left[ |V_{N,j}| 1_{\{|V_{N,j}| \ge \epsilon \} } \mid \mathcal{F}^N\right] \\ 
-&\le \lim_C \iint \nu(dx) L(x, d x') |f|(x') 1_{\{| \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \} }  \tag{above} \\
-&=  \iint \nu(dx) L(x, d x') |f|(x') \lim_C 1_{\{| \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \} }  \tag{DCT}\\
+&\le \lim_C \iint \nu(dx) L(x, d x') \left|f(x')\right| 1_{\{| \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \} }  \tag{above} \\
+&=  \iint \nu(dx) L(x, d x') \left|f(x')\right| \lim_C 1_{\{| \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \} }  \tag{DCT}\\
 &=  0.
 \end{align*}
 
