@@ -27,30 +27,15 @@ Then $\tilde{\mathsf{A}}$ is proper, and $\{ (\tilde{\xi}^{N,j}, \tilde{\omega}^
 
 
 
-\section{propriety}
 
-Let's show $\tilde{\mathsf{A}}$ is proper. Pick any $f, g \in \tilde{\mathsf{A}}$ and $\alpha,\beta \in \mathbb{R}$. Then
-
-\begin{enumerate}
-\item $L(x,f), L(x,g) \in \mathsf{A}$, and 
-\item $x \mapsto \int_{\mathsf{X}} R(x,dx')[h_f(x,x')]^2, x \mapsto \int_{\mathsf{X}} R(x,dx')[h_g(x,x')]^2 \in \mathsf{C}$.
-\end{enumerate}
-Because $\mathsf{A}$ and $\mathsf{C}$ are proper, 
-\begin{enumerate}
-\item $L(x,\alpha f + \beta g) = \alpha L(x,f) + \beta L(x,g) \in \mathsf{A}$, and
-\item (same idea)
-\end{enumerate}
-So $\alpha f + \beta g \in \tilde{\mathsf{A}}$.
-
-Next take $g \in \tilde{\mathsf{A}}$, and $f$ such that $|f|\le |g|$. Same idea, look at them in $\mathsf{A}$ and $\mathsf{C}$, and then show this implies $f \in \tilde{\mathsf{A}}$.
 
 \section{Overall Strategy}
 
-Now we want to show that asymptotic normality part. So we're going to use Slutsky's to show that
-$$
+We already showed that $\tilde{\mathsf{A}}$ is proper in class. Now we want to show that asymptotic normality part. So we're going to use Slutsky's to show that
+\begin{align*}
 \sqrt{M_N} \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \tilde{\omega}^{N,i}\left[ f(\tilde{\xi}^{N,i}) - \nu L(f) \right]
 \bigg/ \frac{1}{\tilde{M}_N} \sum_{j=1}^{\tilde{M}_N} \tilde{\omega}^{N,j}
-$$
+\end{align*}
 converges to a normal distribution. The denominator is consistent, the numerator is asymptotically normal.
 
 Unlike the book, I am not assuming that, WLOG, the mean is $0$.
@@ -60,7 +45,8 @@ The denominator is the easiest part. $L(x, |1|) = L(x,\mathsf{X}) \in \mathsf{C}
 Regarding the numerator, write it as 
 \begin{align*}
 &\sqrt{M_N}\left\{  \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) -  \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} E[ \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right\} \\
-& \hspace{10mm} + \sqrt{M_N} \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \left\{ E[ \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] - \nu L(f) \right\}.
+& \hspace{10mm} + \sqrt{M_N} \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \left\{ E[ \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] - \nu L(f) \right\}\\
+&= \sqrt{M}_N B_N + \sqrt{M}_N A_N.
 \end{align*}
 
 
@@ -80,16 +66,10 @@ Note that this variance is taken with respect to the previous time's measure, an
 The second part of the numerator is 
 
 $$
-\sqrt{M_N}\left\{  \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) -  \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} E[ \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right\}
+\sqrt{\tilde{M}_N}\left\{  \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) -  \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} E[ \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right\} = \sqrt{\tilde{M}_N} B_N
 $$
 
-We're first going to take a look at 
-
-$$
-\sqrt{\tilde{M}_N}\left\{  \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) -  \frac{1`}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} E[ \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right\} = \sqrt{\tilde{M}_N} B_N
-$$
-
-and apply Proposition 9.5.12 to it. We make the substitution $V_{N,j} = \tilde{M}_N^{-1/2} \tilde{\omega}^{N,j} f(\tilde{\omega}^{N,j})$, and verify the assumptions one by one. 
+We're going to apply Proposition 9.5.12 to it. We make the substitution $V_{N,j} = \tilde{M}_N^{-1/2} \tilde{\omega}^{N,j} f(\tilde{\omega}^{N,j})$, and verify the assumptions one by one. 
 \newline
 
 \subsection{First Condition}
@@ -125,7 +105,7 @@ it might be helpful to write that last piece as an expectation:
 $$
 \iint \nu(dx) R(x,dx')\left[ \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') f(x') \right]^2
 =
-\nu R\left\{ \left[ \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') f(x') \right]^2 \right\}
+[\nu \otimes R]\left\{ \left[ \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') f(x') \right]^2 \right\}
 $$
 
 The second part also converges too. This is because 
@@ -140,9 +120,11 @@ $$
 $$
 of Jensen's inequality. The right hand side is in $\mathsf{C}$, and because it is proper, the left hand side is too. This means that 
 
-$$
-\tilde{M}_N^{-1}\sum_{j=1}^{\tilde{M}_N} \{E\left[  \tilde{\omega}^{N,j} f(\tilde{\omega}^{N,j})  \mid \mathcal{F}^N \right]\}^2 \mapsto \nu\left[ \left[ \int R(x,dx') \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') f(x') \right]^2  \right]
-$$
+\begin{align*}
+\tilde{M}_N^{-1}\sum_{j=1}^{\tilde{M}_N} \{E\left[  \tilde{\omega}^{N,j} f(\tilde{\omega}^{N,j})  \mid \mathcal{F}^N \right]\}^2 
+&\overset{\text{p}}{\to} \nu\left[ \left[ \int R(x,dx') \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') f(x') \right]^2  \right] \\
+&= \nu\left(\left[L(x,f) \right]^2\right)
+\end{align*}
 
 
 \subsection{Third Condition}
@@ -150,12 +132,12 @@ $$
 
 The third condition of 9.5.12 is the Lindberg condition: for all $\epsilon > 0$,
 $$
-\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N} [\tilde{\omega}^{N,j}]^2 [f(\tilde{\xi}^{N,j})]^2 \mathbf{1}\left\{ |\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) | \ge \epsilon   \right\}
+\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N} [\tilde{\omega}^{N,j}]^2 [f(\tilde{\xi}^{N,j})]^2 \mathbf{1}\left\{ |\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) | \ge \epsilon\sqrt{\tilde{M}_N}   \right\}
 $$
 
 
 
-This is true, and we're going to use the dominated convergence argument again here. After picking an $\epsilon$, pick an arbitrary $C > 0$ and n  otice that
+This is true, and we're going to use the dominated convergence argument again here. After picking an $\epsilon$, pick an arbitrary $C > 0$ and notice that
 
 \begin{align*}
 & \lim_{\tilde{M}_N \to \infty} \tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N} E[ \{\tilde{\omega}^{N,j}\}^2 \{ f(\tilde{\xi}^{N,j})\}^2 1\left( |\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge \sqrt{\tilde{M}_N} \epsilon \right) \mid \mathcal{F}^N]  \\
@@ -168,13 +150,22 @@ The last line is true because $E[  \{\tilde{\omega}^{N,j}\}^2 \{ f(\tilde{\xi}^{
 
 Following up on that we have 
 \begin{align*}
-&\lim_{M_N \to \infty} \sum_{j=1}^{\tilde{M}_N} E[V_{N,j}^2 1\left( |V_{N,j}| \ge \epsilon \right) \mid \mathcal{F}^N] \\
+0 &\le \lim_{M_N \to \infty} \sum_{j=1}^{\tilde{M}_N} E[V_{N,j}^2 1\left( |V_{N,j}| \ge \epsilon \right) \mid \mathcal{F}^N] \\
 &= \lim_{C \to \infty} \lim_{M_N \to \infty} \sum_{j=1}^{\tilde{M}_N} E[V_{N,j}^2 1\left( |V_{N,j}| \ge \epsilon \right) \mid \mathcal{F}^N] \tag{no $C$ so limit doesn't matter}\\
 &\le \lim_{C \to \infty} \nu\left\{ E[ \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) 1\left( |\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \right) \mid \mathcal{F}^N] \right\} \tag{above work} \\
 &= \nu\left\{ \lim_{C \to \infty} E[ \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) 1\left( |\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})| \ge C \right) \mid \mathcal{F}^N] \right\} \tag{DCT} \\
 &= 0.
 \end{align*}
-Therefore condition iii of 9.5.12 is satisfied, and we have the desired result.
+Therefore condition iii of 9.5.12 is satisfied, and we have the desired result:
+
+
+\begin{align*}
+& \sqrt{\tilde{M}_N}\left\{  \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) -  \frac{1}{\tilde{M}_N} \sum_{i=1}^{\tilde{M}_N} E[ \tilde{\omega}^{N,i} f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right\} \\
+& \overset{\text{D}}{\to}
+\text{Normal}\left( 0, 
+\iint \nu(dx) R(x,dx')\left[ \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') f(x') \right]^2
+-\nu\left(\left[L(x,f) \right]^2\right)\right)
+\end{align*}
 
 
 
@@ -203,13 +194,13 @@ To show their asymptotic *joint* distribution, we have to use the law of total e
 
 The second to last move should seem familiar:
 $$
-M_N^{1/2}(A_N + B_N) = M_N^{1/2}A_N + \frac{1}{\sqrt{\alpha_N}} \tilde{M}_N^{1/2} B_N \overset{\text{D}}{\to} \text{Normal}\left[0, \sigma^2(Lf) + \eta^2(f) \right].
+M_N^{1/2}(A_N + B_N) = M_N^{1/2}A_N + \frac{1}{\sqrt{\alpha_N}} \tilde{M}_N^{1/2} B_N \overset{\text{D}}{\to} \text{Normal}\left[0, \sigma^2(Lf) + \frac{1}{\alpha}\eta^2(f) \right].
 $$
 
 The final move is using Slutsky's:
 
 $$
-\frac{M_N^{1/2}(A_N + B_N)}{\frac{1}{\tilde{M}_N} \sum_{j=1}^{\tilde{M}_N} \tilde{\omega}^{N,j}}  \overset{\text{D}}{\to} \text{Normal}\left[0, \frac{\sigma^2(Lf) + \eta^2(f)}{[\nu L (f) ]^2} \right].
+\frac{M_N^{1/2}(A_N + B_N)}{\frac{1}{\tilde{M}_N} \sum_{j=1}^{\tilde{M}_N} \tilde{\omega}^{N,j}}  \overset{\text{D}}{\to} \text{Normal}\left[0, \frac{\sigma^2(Lf) + \frac{1}{\alpha} \eta^2(f)}{[\nu L (f) ]^2} \right].
 $$
 
 \end{document}

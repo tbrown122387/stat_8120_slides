@@ -99,7 +99,13 @@ Like always, we use propriety in the earlier sets to show propriety in the new s
 
 ## Theorem 9.3.7: proof (just propriety)
 
-Second, $f,g \in \tilde{\mathsf{A}}$, and $\alpha,\beta \in \mathbb{R}$
+Second, $f,g \in \tilde{\mathsf{A}}$, and $\alpha,\beta \in \mathbb{R}$. Our goal is to show that $\alpha f + \beta g \in \tilde{\mathsf{C}}$. This happens if and only if
+
+1. $\mu\left(\left[\alpha f + \beta g \right]^2\right) < \infty$
+
+2. $L(x,\left[\alpha f + \beta g \right] \in \mathsf{A}$
+
+3. $\int R(x,dx') \left[\frac{dL(x,\cdot)}{dR(x,\cdot)}(x')\right]^2\left[\alpha f(x') + \beta g(x') \right]^2 \in \mathsf{C}$
 
 
 
