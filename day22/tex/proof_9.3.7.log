@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2018.10.12)  13 APR 2020 15:07
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2018.10.12)  15 APR 2020 14:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -130,46 +130,48 @@ LaTeX Warning: No \author given.
 [1
 
 ]
-Overfull \hbox (23.85236pt too wide) detected at line 59
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 72--74
+Underfull \hbox (badness 10000) in paragraph at lines 74--76
 
  []
 
 
-Overfull \hbox (19.88727pt too wide) in paragraph at lines 78--79
+Overfull \hbox (19.88727pt too wide) in paragraph at lines 80--81
 \TU/lmr/m/n/10 The triangular array is conditionally independent given $\OMS/cm
 sy/m/n/10 F[]$\TU/lmr/m/n/10 , and for any row/column,
  []
 
 [2]
-Overfull \hbox (7.50143pt too wide) detected at line 103
+Overfull \hbox (6.86429pt too wide) detected at line 105
 [] [] \OML/cmm/m/it/10 E [] [] [] [] ^^W\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 dx\OT
 1/cmr/m/n/10 )\OML/cmm/m/it/10 R\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; dx[]\OT1/c
 mr/m/n/10 ) [][]
  []
 
 [3] [4]
-Overfull \hbox (14.1694pt too wide) in paragraph at lines 178--179
+Overfull \hbox (14.1694pt too wide) in paragraph at lines 183--184
 []$[]\OML/cmm/m/it/10 B[] \OT1/cmr/m/n/10 = [] []$\TU/lmr/m/n/10 . 
  []
 
 
-Overfull \hbox (105.21468pt too wide) detected at line 193
+Overfull \hbox (105.21468pt too wide) detected at line 198
 []
  []
 
-[5] (./proof_9.3.7.aux) ) 
+
+Overfull \hbox (18.0339pt too wide) detected at line 203
+\OML/cmm/m/it/10 M[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A[] \OT1/cmr/m/n/10 + \OM
+L/cmm/m/it/10 B[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 M[]A[] \OT1/cmr/m/n/10 + 
+[][]\OML/cmm/m/it/10 B[] [] [] [] :
+ []
+
+[5] [6] (./proof_9.3.7.aux) ) 
 Here is how much of TeX's memory you used:
  1047 strings out of 493007
  12442 string characters out of 6136718
- 82882 words of memory out of 5000000
+ 83882 words of memory out of 5000000
  5035 multiletter control sequences out of 15000+600000
  11880 words of font info for 54 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  27i,12n,24p,485b,198s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on proof_9.3.7.pdf (5 pages).
+Output written on proof_9.3.7.pdf (6 pages).

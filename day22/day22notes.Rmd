@@ -108,6 +108,6 @@ Second, $f,g \in \tilde{\mathsf{A}}$, and $\alpha,\beta \in \mathbb{R}$. Our goa
 3. $\int R(x,dx') \left[\frac{dL(x,\cdot)}{dR(x,\cdot)}(x')\right]^2\left[\alpha f(x') + \beta g(x') \right]^2 \in \mathsf{C}$
 
 
-
+The rest of the details can be found in `proof_9.3.7.pdf`.
 
 
