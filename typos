@@ -14,3 +14,5 @@ page 340: These two result[s] suffice to finish the proof.
 page 341: I was not able to prove Proposition 9.5.12 with the stated assumptions. However, it only seems to be used in proving 9.5.13, and I was able to prove 9.5.13 directly (using 9.5.9)
 page 288: In Theorem 9.1.2 it should be |f|mu << nu (not |f|mu << |f|nu)
 page 288: In last equation, the right hand side is greater than or equal to (not equal to) the right hand side. Once you put the absolute value sign around f, it makes that rndom variable smaller variance.
+page 316: it reads "For the selection/mutation algorithm, we have to strengthen the assump-
+tion on the transition kernel L." However, we were already assuming this (and more) for the previous algorithm in Assumption 9.3.1.

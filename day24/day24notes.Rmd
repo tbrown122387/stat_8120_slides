@@ -10,14 +10,87 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-## Today
+## Roadmap
 
-...continue going over proof of asymptotic normality
+9.2
 
-```{r, echo=FALSE, out.width="350px"}
+- sampling importance resampling/IS with resampling/factored sampling 
+
+9.3
+
+- **sequential importance sampling with resampling (single-step analysis)**
+
+9.4
+
+- sequential importance sampling with resampling (multi-step analysis)
+
+
+## Overview
+
+Last class we added the last step in this diagram and proved our estimator is consistent.
+
+```{r, echo=FALSE, out.width="400px"}
 knitr::include_graphics("single-step-diagram.png")
 ```
 
 
+Today we will show it is also asymptotically normal :)
 
 
+## Theorem 9.3.12 assumptions and definitions
+
+
+1. Assumption 9.3.1: $0 < L(x,\mathsf{X}) < \infty$.
+
+2. Assumption 9.3.2: $\{(\xi^{N,i},1)\}_{1 \le i \le M_N}$ are consistent for $(\nu, \mathsf{C})$. $L(x,\mathsf{X}) \in \mathsf{C}$.
+
+3. Assumption 9.3.3: $\forall x \in \mathsf{X}$, $L(x, \cdot) \ll R(x, \cdot)$, and there exists a strictly positive RN derivative: $\frac{dL(x,\cdot )}{dR(x, \cdot)}$.
+
+4. Assumption 9.3.6 (new) $\{ (\xi^{N,i} , 1)\}_{1 \le i \le M_N}$ is asymptotically normal for $(\nu, \mathsf{A}, \sigma, \{M_N^{1/2}\})$, where $\mathsf{A}$ is a proper set, and $\sigma$ is a nonnegative function on $\mathsf{A}$.
+
+5. unnamed Assumption (new) $\{\alpha_N\}$ has a possibly-infinite limit $\alpha$.
+
+6. definition:
+$$
+\tilde{\mathsf{A}} = 
+\left\{ 
+f \in L^2(\mathsf{X}, \mu) : 
+x \mapsto L(x,|f|) \in \mathsf{A},
+x \mapsto \int R(x,dx') \left[ \frac{dL(x,\cdot)}{dR(x,\cdot)}(x') f(x')\right]^2 \in \mathsf{C}
+\right\}
+$$
+
+
+## Theorem 9.3.12 consequences
+
+1. $\tilde{\mathsf{A}}$ is proper
+
+2. $\{(\tilde{\xi}^{N,j}, \tilde{\omega}^{N,i} ) \}_{1 \le j \le \tilde{M}_N}$ is asymptotically normal for $(\mu, \tilde{\mathsf{A}}, \tilde{\sigma}, \{M_N^{1/2}\})$ with
+$$
+\tilde{\sigma}(f)  =
+\frac{\sigma^2\left( L[f-\mu(f)] \right) + \alpha^{-1} \eta^2\left(f - \mu(f) \right)}{[\nu L(\mathsf{X})]^2 }
+$$
+
+3. $\{ ( \check{\xi}^{N,i}, 1 )\}_{1 \le i \le \tilde{M}_N}$ is asymptotically normal for $(\mu, \tilde{\mathsf{A}}, \check{\sigma}, \{M_N^{1/2}\})$ with 
+$$
+\check{\sigma}(f) = 
+\text{Var}_{\mu}(f) + \tilde{\sigma}(f) 
+$$
+
+
+## Theorem 9.3.12: proof 
+
+To verify 1 and 2, use 9.3.7. 
+
+9.3.7 was covered in day 22. 
+
+
+## Theorem 9.3.12: proof 
+
+To verify 3, we can use either 9.2.14 or 9.5.13.
+
+- 9.2.14 was covered in `day20notes.html`, and
+
+- 9.5.13 was covered in `day14notes.html`.
+
+We'll choose the former because it's easier, although there is still much to change. For details see `second_half_9.3.12.pdf`
