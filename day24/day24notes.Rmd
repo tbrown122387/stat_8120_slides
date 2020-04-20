@@ -84,6 +84,8 @@ To verify 1 and 2, use 9.3.7.
 
 9.3.7 was covered in day 22. 
 
+***show side-by-side***
+
 
 ## Theorem 9.3.12: proof 
 
@@ -93,4 +95,6 @@ To verify 3, we can use either 9.2.14 or 9.5.13.
 
 - 9.5.13 was covered in `day14notes.html`.
 
-We'll choose the former because it's easier, although there is still much to change. For details see `second_half_9.3.12.pdf`
+We'll choose the latter. Even though it's more difficult, you see all the details again for the second time, which is better than memorizing theorem numbers and converting notation. 
+
+For details see `second_half_9.3.12.pdf`

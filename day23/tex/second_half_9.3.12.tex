@@ -70,50 +70,111 @@ converges in distribution to a mean-zero normal random variable.
 The main trick is splitting it up into two pieces by adding and subtracting conditional expectations, which condition on all the information that is had just before resampling is conducted:
 
 \begin{align*}
-&\sqrt{M_N} \left[ M_N^{-1}\sum_{i=1}^{M_N} \left\{  f(\tilde{\xi}^{N,i}) - \mu(f) \right\}    \right] \\
-&= \sqrt{\tilde{M}_N} \left[ \tilde{M}_N^{-1} \sum_{i=1}^{\tilde{M}_N} \left\{  f(\tilde{\xi}^{N,i}) - E[f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] \right\} + \tilde{M}_N^{-1}\sum_{i=1}^{\tilde{M}_N} \left\{  E[f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] - \mu(f) \right\}    \right] \\
-&= \sqrt{\tilde{M}_N} \left[ B_N + A_N    \right]
+&\sqrt{M_N} \left[ M_N^{-1}\sum_{i=1}^{M_N} \left\{  f(\check{\xi}^{N,i}) - \mu(f) \right\}    \right] \\
+&= \sqrt{M_N} \left[ M_N^{-1} \sum_{i=1}^{M_N} \left\{  f(\check{\xi}^{N,i}) - E[f(\check{\xi}^{N,i}) \mid \check{\mathcal{F}}^N] \right\} + M_N^{-1}\sum_{i=1}^{M_N} \left\{  E[f(\check{\xi}^{N,i}) \mid \check{\mathcal{F}}^N] - \mu(f) \right\}    \right] \\
+&= \sqrt{M_N} \left[ B_N + A_N    \right]
 \end{align*}
 
-The book writes these $A_N$ and $B_N$ just as we do, but to understand the expression of $A_N$, we have to write out the average conditional expectation the long way:
-
-\begin{align*}
-A_N &= \tilde{M}_N^{-1}\sum_{i=1}^{\tilde{M}_N} \left\{  E[f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] - \mu(f) \right\} \\
-&=   E[f(\tilde{\xi}^{N,i}) \mid \mathcal{F}^N] - \mu(f) \tag{identicalness}\\
-&= \left[ \sum_{i=1}^{M_N} \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i})  }{ \sum_j \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j})} f(\xi^{N,i}) \right] - \mu(f) \\
-&=  \sum_{i=1}^{M_N}  \frac{ \omega^{N,i} \frac{d\mu}{d\nu}(\xi^{N,i})  }{ \sum_j \omega^{N,j} \frac{d\mu}{d\nu}(\xi^{N,j})} \left[f(\xi^{N,i})  - \mu(f) \right]
-\end{align*}
-
+The second piece will converge by a consequence that we have already proved. The first will converge by the more interesting line of reasoning.
 
 \section{Handling $A_N$}
 
-Recall our assumptions
+Let's work on the second piece first, just to get it out of the way:
 
-Assumption 9.1.1: $\mu \ll \nu$, and $d\mu/d\nu > 0$ almost surely.
+\begin{align*}
+\sqrt{\tilde{M}_N}A_N &= 
+\sqrt{\tilde{M}_N} M_N^{-1}\sum_{i=1}^{M_N} \left\{  E[f(\check{\xi}^{N,i}) \mid \check{\mathcal{F}}^N] - \mu(f) \right\}   \\
+&=   \sqrt{\tilde{M}_N}\left\{ E[f(\check{\xi}^{N,3}) \mid \check{\mathcal{F}}^N] - \mu(f)\right\} \tag{identicalness}\\
+&= \sqrt{\tilde{M}_N}\left[ \sum_{j=1}^{\tilde{M}_N} \frac{ \frac{dL(\xi^{N,i}, \cdot)}{dR(\xi^{N,i}, \cdot)}(\tilde{\xi}^{N,j})  }{ \sum_{j'} \frac{dL(\xi^{N,i'}, \cdot)}{dR(\xi^{N,i'}, \cdot)}(\tilde{\xi}^{N,j'}) } f( \tilde{\xi}^{N,j})  - \mu(f) \right]
+\end{align*}
 
-Assumption 9.2.6: $\{(\xi^{N,i}, \omega^{N,i} )\}_{1 \le i \le M_N}$ is consistent for $(\nu, \mathsf{C})$ (a proper set), and $d\mu/d\nu \in \mathsf{C}$. 
+Fortunately we have already shown the second consequence in this theorem, so we can use that: $\{(\tilde{\xi}^{N,j}, \tilde{\omega}^{N,i} ) \}_{1 \le j \le \tilde{M}_N}$ is asymptotically normal for $(\mu, \tilde{\mathsf{A}}, \tilde{\sigma}, \{M_N^{1/2}\})$. So we can automatically say this:
 
-Assumption 9.2.10: The weighted sample $\{(\xi^{N,i}, \omega^{N,i})\}_{1 \le i \le M_N}$ is asymptotically normal for $(\nu, \mathsf{A}, \sigma, \{a_N\})$, and $\frac{d\mu}{d\nu} \in \mathsf{A}$.
-
-Last, $a^2_N / \tilde{M}_N \to \alpha$ and 
 $$
-\tilde{\mathsf{A}} \overset{\text{def}}{=} \left\{ f \in L^2(\mathsf{X}, \mu) : |f| \frac{d\mu}{d\nu} \in \mathsf{A}, f^2 \frac{d\mu}{d\nu} \in \mathsf{C} \right\}.
+\sqrt{\tilde{M}_N} A_N \overset{\text{D}}{\to} \text{Normal}(0, \tilde{\sigma}^2(f)).
 $$
-
-Theorem 9.2.11 tells us that 
-$$
-a_NA_N \overset{\text{D}}{\to} \text{Normal}\left[0, \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right) \right]
-$$
-(note $|f|\frac{d\mu}{d\nu} \in \mathsf{A}$ because $\bar{\mathsf{A}} \subset \tilde{\mathsf{A}}$).
-
 
 \section{Bringing in $B_N$}
 
-In this section, we want to show the random vector
+Now we will show 
+$$
+\sqrt{M_N}  M_N^{-1} \sum_{i=1}^{M_N} \left\{  f(\check{\xi}^{N,i}) - E[f(\check{\xi}^{N,i}) \mid \check{\mathcal{F}}^N] \right\}
+$$
+
+converges in distribution to a mean-zero normal distribution. We will use 9.5.13 after having made the following notational conversions:
+
+\begin{enumerate}
+\item $\xi^{N,i}$ into $\check{\xi}^{N,i}$
+\item $\mathcal{F}^N$ into $\check{\mathcal{F}}^N$
+\end{enumerate} 
+
+
+\subsection{verifying 9.5.13.i}
+
+Clearly the triangular array is conditionally independent. This is guaranteed by the description of resampling. Also, 
+$$
+E[f^2(\check{\xi}^{N,i}) \mid \check{\mathcal{F}}^N] 
+= \sum_{j=1}^{\tilde{M}_N} \frac{\frac{dL(\xi^{N,i},\cdot)}{dR(\xi^{N,i},\cdot)}(\tilde{\xi}^{N,j}) }{ \sum_{j'}\frac{dL(\xi^{N,i'},\cdot)}{dR(\xi^{N,i'},\cdot)}(\tilde{\xi}^{N,j'}) }f^2(\tilde{\xi}^{N,i}) 
+$$
+
+$\sum_{j'}\frac{dL(\xi^{N,i'},\cdot)}{dR(\xi^{N,i'},\cdot)}(\tilde{\xi}^{N,j'}) > 0$ by assumption 9.3.3. $f < \infty$ almost surely because $f \in \tilde{\mathsf{A}} \subset L^2(\mathsf{X}, \mu)$, so $f^2$ is finite. Last, $L(x,\mathsf{X}) < \infty$ by assumption 9.3.1, which means 
+$$
+\infty > \nu L(\mathsf{X}) = \iint \nu(dx) R(x,dx') \frac{dL(x,)}{dR(x,)}(x')
+$$
+which means $dL/dR$ is finite almost everywhere, too.
+
+\subsection{verifying 9.5.13.ii}
+
+The average conditional variance must converge to a positive constant. The average conditional variance is the same as the first, by identicalness, and that splits up into two pieces:
+$$
+E[f^2(\check{\xi}^{N,i}) \mid \check{\mathcal{F}}^N] - \left( E[f(\check{\xi}^{N,i}) \mid \check{\mathcal{F}}^N] \right)^2
+$$
+
+Assumptions 9.3.1, 9.3.2 and 9.3.3 guarantee Theorem 9.3.5, which implies
+\begin{align*}
+E[f^2(\check{\xi}^{N,i}) \mid \check{\mathcal{F}}^N] 
+&= \sum_{j=1}^{\tilde{M}_N} \frac{\frac{dL(\xi^{N,i},\cdot)}{dR(\xi^{N,i},\cdot)}(\tilde{\xi}^{N,j}) }{ \sum_{j'}\frac{dL(\xi^{N,i'},\cdot)}{dR(\xi^{N,i'},\cdot)}(\tilde{\xi}^{N,j'}) }f^2(\tilde{\xi}^{N,i}) \\
+&\overset{\text{p}}{\to} \nu L(f^2) / \nu L(\mathsf{X}) = \mu(f^2)
+\end{align*}
+
+and
+
+\begin{align*}
+E[f(\check{\xi}^{N,i}) \mid \check{\mathcal{F}}^N] 
+&= \sum_{j=1}^{\tilde{M}_N} \frac{\frac{dL(\xi^{N,i},\cdot)}{dR(\xi^{N,i},\cdot)}(\tilde{\xi}^{N,j}) }{ \sum_{j'}\frac{dL(\xi^{N,i'},\cdot)}{dR(\xi^{N,i'},\cdot)}(\tilde{\xi}^{N,j'}) }f(\tilde{\xi}^{N,i}) \\
+&\overset{\text{p}}{\to}  \mu(f)
+\end{align*}
+
+And so 
+$$
+\frac{1}{M_N} \left( 
+\sum_{i=1}^{M_N} \text{Var}\left[ 
+f(\check{\xi}^{N,1})
+\mid \check{\mathcal{F}}^N
+\right]
+\right)
+\overset{\text{p}}{\to}
+\sigma^2 > 0.
+$$
+
+\subsection{verifying 9.5.13.iii}
+
+Use a similar dominated convergence argument to show that this is true. 
+
+All three of these conditions, because they now have been verified, guarantee that
+
+$$
+\sqrt{M_N}  B_N \overset{\text{D}}{\to} \text{Normal}(0, \text{Var}_{\mu}(f)).
+$$
+
+
+\section{The asymptotic joint distribution}
+
+The final consequence we want is implied by the following:
 $$
 \begin{bmatrix}
-\sqrt{\tilde{M}_N} B_N \\
-a_N A_N
+\sqrt{M_N} B_N \\
+\sqrt{\tilde{M}_N} A_N
 \end{bmatrix}
 $$
 
@@ -123,107 +184,44 @@ converges in distribution to a multivariate normal distribution. We will show th
 Pick $u,v \in \mathbb{R}$, and look at the bivariate characteristic function. The trick is to iterate expectations:
 
 \begin{align*}
-E\left[\exp\left(i \left\{ u \sqrt{\tilde{M}_N} B_N + v a_N A_N \right\} \right) \right]
-&= E\left[ E\left[ \exp\left(i \left\{ u\sqrt{\tilde{M}_N} B_N + va_N A_N \right\} \right) \bigg\rvert \mathcal{F}^N\right] \right] \\
-&= E\left[ E\left[ \exp\left(i u\sqrt{\tilde{M}_N} B_N \right) \exp\left(i v a_N A_N  \right) \bigg\rvert \mathcal{F}^N\right] \right] \\
-&= E\left[ \exp\left(i v a_N A_N  \right) E\left[ \exp\left(i u \sqrt{\tilde{M}_N} B_N \right)  \bigg\rvert \mathcal{F}^N\right] \right] .
+E\left[\exp\left(i \left\{ u \sqrt{M_N} B_N + v \sqrt{\tilde{M}_N} A_N \right\} \right) \right]
+&= E\left[ E\left[ \exp\left(i \left\{ u \sqrt{M_N} B_N + v \sqrt{\tilde{M}_N} A_N \right\} \right) \bigg\rvert \mathcal{F}^N\right] \right] \\
+&= E\left[ E\left[ \exp\left(i u\sqrt{M_N} B_N \right) \exp\left(i v \sqrt{\tilde{M}_N} A_N  \right) \bigg\rvert \mathcal{F}^N\right] \right] \\
+&= E\left[ \exp\left(i v \sqrt{\tilde{M}_N} A_N  \right) E\left[ \exp\left(i u \sqrt{M_N} B_N \right)  \bigg\rvert \mathcal{F}^N\right] \right] .
 \end{align*}
 
 Then we take the limit as $N \to \infty$
 
 \begin{align*}
-&\lim_{N \to \infty} E\left[\exp\left(i \left\{ u \sqrt{\tilde{M}_N} B_N + v a_N A_N \right\} \right) \right] \\
-&= \lim_{N \to \infty} E\left[ \exp\left(i v a_N A_N  \right) E\left[ \exp\left(i u \sqrt{\tilde{M}_N} B_N \right)  \bigg\rvert \mathcal{F}^N\right] \right] \tag{previous} \\
-&=  E\left[ \lim_{N \to \infty} \exp\left(i v a_N A_N  \right) E\left[ \exp\left(i u \sqrt{\tilde{M}_N} B_N \right)  \bigg\rvert \mathcal{F}^N\right] \right] \tag{DCT} \\
-&=  E\left[ \lim_{N \to \infty} \exp\left(i v a_N A_N  \right) \lim_{N \to \infty}E\left[ \exp\left(i u \sqrt{\tilde{M}_N} B_N \right)  \bigg\rvert \mathcal{F}^N\right] \right]  \tag{limit properties} \\
-&= E\left[ \lim_{N \to \infty} \exp\left(i v a_N A_N  \right) \exp\left[-\frac{u^2 \text{Var}_{\mu}(f) }{2} \right] \right] \tag{9.2.12} \\
-&= \exp\left[-\frac{u^2 \text{Var}_{\mu}(f) }{2} \right]  E\left[ \lim_{N \to \infty} \exp\left(i v a_N A_N  \right) \right] \tag{linearity of $E$} \\
-&= \exp\left[-\frac{u^2 \text{Var}_{\mu}(f) }{2} \right] \lim_{N \to \infty}   E\left[ \exp\left(i v a_N A_N  \right) \right] \tag{DCT} \\
-&= \exp\left[-\frac{u^2 \text{Var}_{\mu}(f) }{2} \right] \exp\left[ - \frac{u^2 \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)}{2} \right] \tag{Theorem 9.2.11}. \\
+&\lim_{N \to \infty} E\left[\exp\left(i \left\{ u \sqrt{M_N} B_N + v \sqrt{\tilde{M}_N} A_N \right\} \right) \right] \\
+&= \lim_{N \to \infty} E\left[ \exp\left(i v \sqrt{\tilde{M}_N} A_N  \right) E\left[ \exp\left(i u \sqrt{M_N} B_N \right)  \bigg\rvert \mathcal{F}^N\right] \right] \tag{previous} \\
+&=  E\left[ \lim_{N \to \infty} \exp\left(i v \sqrt{\tilde{M}_N} A_N  \right) E\left[ \exp\left(i u \sqrt{M_N} B_N \right)  \bigg\rvert \mathcal{F}^N\right] \right] \tag{DCT} \\
+&=  E\left[ \lim_{N \to \infty} \exp\left(i v \sqrt{\tilde{M}_N} A_N  \right) \lim_{N \to \infty}E\left[ \exp\left(i u \sqrt{M_N} B_N \right)  \bigg\rvert \mathcal{F}^N\right] \right]  \tag{limit properties} \\
+&= E\left[ \lim_{N \to \infty} \exp\left(i v \sqrt{\tilde{M}_N} A_N  \right) \exp\left[-\frac{u^2 \text{Var}_{\mu}(f) }{2} \right] \right] \tag{Theorem 9.5.13} \\
+&= \exp\left[-\frac{u^2 \text{Var}_{\mu}(f) }{2} \right]  E\left[ \lim_{N \to \infty} \exp\left(i v \sqrt{\tilde{M}_N} A_N  \right) \right] \tag{linearity of $E$} \\
+&= \exp\left[-\frac{u^2 \text{Var}_{\mu}(f) }{2} \right] \lim_{N \to \infty}   E\left[ \exp\left(i v \sqrt{\tilde{M}_N} A_N  \right) \right] \tag{DCT} \\
+&= \exp\left[-\frac{u^2 \text{Var}_{\mu}(f) }{2} \right] \exp\left[ - \frac{u^2  \tilde{\sigma}^2(f) }{2} \right] \tag{Previous subsection}. \\
 \end{align*}
-
-Two of those steps required separate theorems. We showed Theorem 9.2.11 in the previous section of this document:
-
-$$
-\exp\left[i v a_NA_N \right]  \overset{\text{p}}{\to} \exp\left[ - \frac{u^2 \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)}{2} \right].
-$$
-
-And by Proposition 9.2.12
-
-$$
-E\left[ \exp\left(i u \sqrt{\tilde{M}_N} B_N \right)  \bigg\rvert \mathcal{F}^N\right] \overset{\text{p}}{\to} \exp\left[-\frac{u^2 \text{Var}_{\mu}(f) }{2} \right]
-$$
-
-(note $f^2\frac{d\mu}{d\nu} \in \mathsf{C}$ because of the definition of $\tilde{\mathsf{A}}$ .)
-
 
 \section{Final Step}
 
-Before, we showed
-
-$$
-\begin{bmatrix}
-\sqrt{\tilde{M}_N} B_N \\
-a_N A_N
-\end{bmatrix}
-\overset{\text{D}}{\to}
-\text{Normal}\left( 
-\begin{bmatrix}
-0 \\
-0
-\end{bmatrix},
-\begin{bmatrix}
-\text{Var}_{\mu}(f) & 0 \\
-0 & \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
-\end{bmatrix}
-\right)
-$$
-
-If $\alpha < 1$, then $\frac{a_N^2}{\tilde{M}_N} \to \alpha < 1$, and we can take the following inner product and apply the multivariate delta method:
+Take the following inner product and apply the multivariate delta method:
 
 \begin{align*}
-a_N \left[ B_N + A_N    \right] 
+\sqrt{M_N} \left[ B_N + A_N    \right]
 &= 
 \begin{bmatrix}
-a_N / \sqrt{\tilde{M}_N} & 1  
+1 & \sqrt{M}_N/\sqrt{\tilde{M}_N}
 \end{bmatrix}
 \begin{bmatrix}
-\sqrt{\tilde{M}_N} B_N \\
-a_N A_N
+\sqrt{M_N} B_N \\
+\sqrt{\tilde{M}_N} A_N
 \end{bmatrix} \\
 & \overset{\text{D}}{\to}
 \text{Normal}\left( 
 0,
-\lim_N \frac{a_N^2}{\tilde{M}_N}\text{Var}_{\mu}(f) + \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
-\right) \\
-&= \text{Normal}\left( 
-0,
-\alpha \text{Var}_{\mu}(f) +  \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
-\right)
-\end{align*}
-
-
-If $\alpha \ge 1$ (recall that it's possibly infinite-valued), then $\frac{a_N^2}{\tilde{M}_N} \to \alpha$, so the reciprocal of that goes to $1/\alpha$. We take the following inner product, and apply the multvariate delta method:
-
-\begin{align*}
-\sqrt{\tilde{M}_N} \left[ B_N + A_N    \right] 
-&= 
-\begin{bmatrix}
-1 & \sqrt{\tilde{M}_N}/a_N
-\end{bmatrix}
-\begin{bmatrix}
-\sqrt{\tilde{M}_N} B_N \\
-a_N A_N
-\end{bmatrix} \\
-& \overset{\text{D}}{\to}
-\text{Normal}\left( 
-0,
-\text{Var}_{\mu}(f) + \lim_N \frac{\tilde{M}_N}{a_N^2}\sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
-\right) \\
-&= \text{Normal}\left( 
-0,
-\text{Var}_{\mu}(f) + \frac{1}{\alpha} \sigma^2\left( \frac{d\mu}{d\nu}\left[f - \mu(f) \right] \right)
-\right).
+\text{Var}_{\mu}(f) + \frac{1}{\alpha} \tilde{\sigma}^2\left(f \right)
+\right) 
 \end{align*}
 
 
