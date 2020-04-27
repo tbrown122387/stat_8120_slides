@@ -73,42 +73,42 @@ which means $T_{k-1}^u \left(x,|f| \right) \in L^1(\mathsf{X}, \phi_{\nu,k-1})$.
 First, 
 
 $$
-\sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j} }{\sum_{j'}\tilde{\omega}^{N,j'} } f(\tilde{\xi}^{N,j}) 
-= \frac{ \tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) }{ \tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\tilde{\omega}^{N,j}  }
+\sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j} }{\sum_{j'}\tilde{\omega}_k^{N,j'} } f(\tilde{\xi}_k^{N,j}) 
+= \frac{ \tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\tilde{\omega}_k^{N,j} f(\tilde{\xi}_k^{N,j}) }{ \tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\tilde{\omega}_k^{N,j}  }
 $$
 
 We can rewrite the numerator as 
 $$
-\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\left\{ \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})  -  E\left[ \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) \mid \mathcal{F}_{k-1}^N \right] \right\} + \tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N} E\left[ \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) \mid \mathcal{F}_{k-1}^N \right]
+\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\left\{ \tilde{\omega}_k^{N,j} f(\tilde{\xi}_k^{N,j})  -  E\left[ \tilde{\omega}_k^{N,j} f(\tilde{\xi}_k^{N,j}) \mid \mathcal{F}_{k-1}^N \right] \right\} + \tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N} E\left[ \tilde{\omega}_k^{N,j} f(\tilde{\xi}_k^{N,j}) \mid \mathcal{F}_{k-1}^N \right]
 $$
 
 The second term 
 $$
-\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N} E\left[ \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) \mid \mathcal{F}^N_{k-1} \right] = M_N^{-1} \sum_{j=1}^{M_N} T_{k-1}^u(\xi_{k-1}^{N,i}, f) \overset{\text{p}}{\to} \phi_{\nu,k-1}T^u_{k-1}(f)
+\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N} E\left[ \tilde{\omega}_k^{N,j} f(\tilde{\xi}_k^{N,j}) \mid \mathcal{F}^N_{k-1} \right] = M_N^{-1} \sum_{j=1}^{M_N} T_{k-1}^u(\xi_{k-1}^{N,i}, f) \overset{\text{p}}{\to} \phi_{\nu,k-1}T^u_{k-1}(f)
 $$
 because $T_{k-1}^u \left(x,|f| \right) \in L^1(\mathsf{X}, \phi_{\nu,k-1})$.
 
 The first term 
 $$
-\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\left\{ \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j})  -  E\left[ \tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) \mid \mathcal{F}_{k-1}^N \right] \right\} \overset{\text{p}}{\to} 0
+\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\left\{ \tilde{\omega}_k^{N,j} f(\tilde{\xi}_k^{N,j})  -  E\left[ \tilde{\omega}_k^{N,j} f(\tilde{\xi}_k^{N,j}) \mid \mathcal{F}_{k-1}^N \right] \right\} \overset{\text{p}}{\to} 0
 $$
 by 9.5.7. Therefore
 
 $$
-\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}) \overset{\text{p}}{\to} \phi_{\nu,k-1}T^u_{k-1}(f).
+\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\tilde{\omega}_k^{N,j} f(\tilde{\xi}_k^{N,j}) \overset{\text{p}}{\to} \phi_{\nu,k-1}T^u_{k-1}(f).
 $$
 
 Applying exactly the same reasoning to the function $1$ instead of $f$
 
 $$
-\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\tilde{\omega}^{N,j}  \overset{\text{p}}{\to} \phi_{\nu,k-1}T^u_{k-1}(\mathsf{X}),
+\tilde{M}_N^{-1} \sum_{j=1}^{\tilde{M}_N}\tilde{\omega}_k^{N,j}  \overset{\text{p}}{\to} \phi_{\nu,k-1}T^u_{k-1}(\mathsf{X}),
 $$
 
 so therefore 
 
 
 $$
-\sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j} }{\sum_{j'}\tilde{\omega}^{N,j'} } f(\tilde{\xi}^{N,j}) \overset{\text{p}}{\to} \phi_{\nu,k}(f).
+\sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j} }{\sum_{j'}\tilde{\omega}_k^{N,j'} } f(\tilde{\xi}_k^{N,j}) \overset{\text{p}}{\to} \phi_{\nu,k}(f).
 $$
 
 
@@ -120,23 +120,23 @@ $\{(\xi^{N,i}_{k},  1)\}_{1 \le i \le M_N}$ is consistent for $(\phi_{\nu,k}, L^
 Pick $f \in L^1(\mathsf{X}, \phi_{\nu,k})$ and write the estimator as
 
 $$
-M_N^{-1} \sum_{i=1}^{M_N} \left\{ f(\xi^{N,i}_{k}) - E[ f(\xi^{N,i}_{k})  \mid \tilde{\mathcal{F}}^k] \right\} + M_N^{-1} \sum_{i=1}^{M_N} E[ f(\xi^{N,i}_{k})  \mid \tilde{\mathcal{F}}^k] .
+M_N^{-1} \sum_{i=1}^{M_N} \left\{ f(\xi^{N,i}_{k}) - E[ f(\xi^{N,i}_{k})  \mid \tilde{\mathcal{F}}_k^N] \right\} + M_N^{-1} \sum_{i=1}^{M_N} E[ f(\xi^{N,i}_{k})  \mid \tilde{\mathcal{F}}_k^N] .
 $$
 
 The second term
 
 $$
-M_N^{-1} \sum_{i=1}^{M_N} E[ f(\xi^{N,i}_{k})  \mid \tilde{\mathcal{F}}^k] = E[ f(\xi^{N,1}_{k})  \mid \tilde{\mathcal{F}}^k]
+M_N^{-1} \sum_{i=1}^{M_N} E[ f(\xi^{N,i}_{k})  \mid \tilde{\mathcal{F}}_k^N] = E[ f(\xi^{N,1}_{k})  \mid \tilde{\mathcal{F}}_k^N]
 $$
 due to the multinomial sampling being done conditionally iid. That term can be written as
 
 $$
-E[ f(\xi^{N,1}_{k})  \mid \tilde{\mathcal{F}}^k] =\sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j} }{\sum_{j'}\tilde{\omega}^{N,j'} } f(\tilde{\xi}^{N,j}) 
+E[ f(\xi^{N,1}_{k})  \mid \tilde{\mathcal{F}}_k^N] =\sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j} }{\sum_{j'}\tilde{\omega}_k^{N,j'} } f(\tilde{\xi}_k^{N,j}) 
 $$
 which is consistent using the previous section's reasoning. The first part 
 
 $$
-M_N^{-1} \sum_{i=1}^{M_N} \left\{ f(\xi^{N,i}_{k}) - E[ f(\xi^{N,i}_{k})  \mid \tilde{\mathcal{F}}^k] \right\}
+M_N^{-1} \sum_{i=1}^{M_N} \left\{ f(\xi^{N,i}_{k}) - E[ f(\xi^{N,i}_{k})  \mid \tilde{\mathcal{F}}_k^N] \right\}
 $$
 converges to $0$ using 9.5.7.
 
@@ -157,22 +157,22 @@ $\{(\xi^{N,i}_k,  1)\}_{1 \le i \le M_N}$ is asymptotically normal for  $(\phi_{
 
 We want to show that 
 $$
-\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\sum_{j'} \tilde{\omega}^{N,j'}}f(\tilde{\xi}^{N,j}_k) 
+\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j}}{\sum_{j'} \tilde{\omega}_k^{N,j'}}f(\tilde{\xi}^{N,j}_k) 
 =
- \frac{ \tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) }{ \frac{\sum_{j'} \tilde{\omega}^{N,j'}}{\tilde{M}_N} }
+ \frac{ \tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j}}{\tilde{M}_N }f(\tilde{\xi}_k^{N,j}) }{ \frac{\sum_{j'} \tilde{\omega}_k^{N,j'}}{\tilde{M}_N} }
 $$
 is asymptotically normal first. Rewrite the numerator as
 
 $$
-\tilde{M}_N^{1/2}  \sum_{j=1}^{\tilde{M}_N} \left\{  \frac{ \tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) - E\left[ \frac{ \tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right] \right\}
-+ \tilde{M}_N^{1/2}\frac{1}{\tilde{M}_N}\sum_{j=1}^{\tilde{M}_N}E\left[\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right]
+\tilde{M}_N^{1/2}  \sum_{j=1}^{\tilde{M}_N} \left\{  \frac{ \tilde{\omega}_k^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) - E\left[ \frac{ \tilde{\omega}_k^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) \bigg\rvert \mathcal{F}^N_{k-1} \right] \right\}
++ \tilde{M}_N^{1/2}\frac{1}{\tilde{M}_N}\sum_{j=1}^{\tilde{M}_N}E\left[\tilde{\omega}_k^{N,j} f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right]
 $$
 
 The second piece 
 $$
-\tilde{M}_N^{1/2}\frac{1}{\tilde{M}_N}\sum_{j=1}^{\tilde{M}_N}E\left[\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right] = \tilde{M}_N^{1/2}\frac{1}{M_N}\sum_{j=1}^{M_N}  T^u_{k-1}(\xi_{k-1}^{N,i}, f) 
+\tilde{M}_N^{1/2}\frac{1}{\tilde{M}_N}\sum_{j=1}^{\tilde{M}_N}E\left[\tilde{\omega}_k^{N,j} f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right] = \tilde{M}_N^{1/2}\frac{1}{M_N}\sum_{j=1}^{M_N}  T^u_{k-1}(\xi_{k-1}^{N,i}, f) 
 $$
-this quantity isn't asymptotically normal, but 
+this quantity isn't asymptotically normal, but the rescaled version
 
 $$
 M_N^{1/2}\frac{1}{M_N}\sum_{j=1}^{M_N}  T^u_{k-1}(\xi_{k-1}^{N,i}, f) 
@@ -185,29 +185,29 @@ $$
 
 The first piece
 $$
-\tilde{M}_N^{1/2}  \sum_{j=1}^{\tilde{M}_N} \left\{  \frac{ \tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) - E\left[ \frac{ \tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right] \right\} \overset{\text{D}}{\to} \text{Normal}\left(0, \eta^2_{k-1}\left[ \left( f - \phi_{\nu,k}(f) \right)^2  \right] \right)
+\tilde{M}_N^{1/2}  \sum_{j=1}^{\tilde{M}_N} \left\{  \frac{ \tilde{\omega}_k^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) - E\left[ \frac{ \tilde{\omega}_k^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right] \right\} \overset{\text{D}}{\to} \text{Normal}\left(0, \eta^2_{k-1}\left[ \left( f - \phi_{\nu,k}(f) \right)^2  \right] \right)
 $$
 using Proposition 9.5.12.
 
 Next, we look at the joint asymptotic distribution of these two variables as a $2 \times 1$ random vector, and use a dominated convergence theorem argument to show that they're are jointly independently normal. The delta method shows that the the numerator of 
 $$
-\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\sum_{j'} \tilde{\omega}^{N,j'}}f(\tilde{\xi}^{N,j}_k) 
+\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j}}{\sum_{j'} \tilde{\omega}_k^{N,j'}}f(\tilde{\xi}^{N,j}_k) 
 =
- \frac{ \tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) }{ \frac{\sum_{j'} \tilde{\omega}^{N,j'}}{\tilde{M}_N} }
+ \frac{ \tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) }{ \frac{\sum_{j'} \tilde{\omega}_k^{N,j'}}{\tilde{M}_N} }
 $$
 is normal.
 
 The denominator is consistent. Rewrite it as 
 
 $$
- \tilde{M}_N^{-1}\sum_{j'}\left\{ \tilde{\omega}^{N,j'}-E[\tilde{\omega}^{N,j'}\mid \mathcal{F}^N_{k-1}] \right\} + \tilde{M}_N^{-1}\sum_{j'}E[\tilde{\omega}^{N,j'}\mid \mathcal{F}^N_{k-1}]
+ \tilde{M}_N^{-1}\sum_{j'}\left\{ \tilde{\omega}_k^{N,j'}-E[\tilde{\omega}_k^{N,j'}\mid \mathcal{F}^N_{k-1}] \right\} + \tilde{M}_N^{-1}\sum_{j'}E[\tilde{\omega}_k^{N,j'}\mid \mathcal{F}^N_{k-1}]
 $$
-The second piece converges to $\phi_{\nu, k-1}T_{k-1}^u( \mathsf{X})$ because we showed that $T_{k-1}^u(x, \mathsf{X}) \in L^1(\mathsf{X}, \phi_{\nu,k-1})$. The first piece converges due to Proposition 9.5.7.
+The second piece converges to $\phi_{\nu, k-1}T_{k-1}^u( \mathsf{X})$ because we showed that $T_{k-1}^u(x, \mathsf{X}) \in L^1(\mathsf{X}, \phi_{\nu,k-1})$. The first piece converges to $0$ due to Proposition 9.5.7.
 
 Therefore, by Slutsky's theorem, 
 
 $$
-\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\sum_{j'} \tilde{\omega}^{N,j'}}f(\tilde{\xi}^{N,j}_k)  \overset{\text{D}}{\to} \text{Normal}\left( \phi_{\nu,k}(f) , \frac{\sigma^2_{k-1}\left[ T_{k-1}^u \left( f - \phi_{\nu,k}(f) \right) \right] + \alpha^{-1}\eta^2_{k-1}\left[ \left( f - \phi_{\nu,k}(f) \right)^2  \right]}{\left(\phi_{\nu,k-1}T^u_{k-1}(\mathsf{X}) \right)^2}\right)
+\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j}}{\sum_{j'} \tilde{\omega}_k^{N,j'}}f(\tilde{\xi}^{N,j}_k)  \overset{\text{D}}{\to} \text{Normal}\left( \phi_{\nu,k}(f) , \frac{\sigma^2_{k-1}\left[ T_{k-1}^u \left( f - \phi_{\nu,k}(f) \right) \right] + \alpha^{-1}\eta^2_{k-1}\left[ \left( f - \phi_{\nu,k}(f) \right)^2  \right]}{\left(\phi_{\nu,k-1}T^u_{k-1}(\mathsf{X}) \right)^2}\right)
 $$
 
 
@@ -229,7 +229,7 @@ $$
 due to the resampling being done conditionally independently and identically, and then
 
 $$
-M_N^{1/2}  E\left[ f(\xi^{N,1}_k) \mid \tilde{\mathcal{F}}^N_{k-1} \right] = M_N^{1/2}\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\sum_{j'} \tilde{\omega}^{N,j'}}f(\tilde{\xi}^{N,j}_k)
+M_N^{1/2}  E\left[ f(\xi^{N,1}_k) \mid \tilde{\mathcal{F}}^N_{k-1} \right] = M_N^{1/2}\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j}}{\sum_{j'} \tilde{\omega}_k^{N,j'}}f(\tilde{\xi}^{N,j}_k)
 $$
 
 We showed this converges to a normal in the previous section. The first part of the sum
@@ -238,5 +238,13 @@ $$
 M_N^{1/2}\left\{M_N^{-1} \sum_{i=1}^{M_N} f(\xi^{N,i}_k) - E\left[ f(\xi^{N,i}_k) \mid \tilde{\mathcal{F}}^N_{k} \right]   \right\}
 $$
 
-converges by Proposition 9.5.12. Jointly, the two summands are asymptotically indepdently normal, and using the delta method, we can prove the final result.
+converges by Proposition 9.5.12. It's asymptotic variance is 
+$$
+\text{plim}_{N \to \infty}  \sum_{i=1}^{M_N}\frac{ \text{Var}\left[ f(\xi^{N,i}_k) \mid \tilde{\mathcal{F}}^N_{k} \right]}{ M_N^{-1} } = \text{Var}_{\phi_{\nu,k}}(f)
+$$
+
+
+Jointly, we can use a dominated convergence theorem argument to show the two summands are asymptotically indepdently normal. Finally, we use the delta method, we can prove the final result.
+
+
 
