@@ -1,5 +1,5 @@
 ---
-title: "proof_9.4.5"
+title: "SISR Proof Sketch"
 author: "taylor"
 date: "April 26, 2020"
 output: pdf_document
@@ -142,7 +142,7 @@ converges to $0$ using 9.5.7.
 
 
 
-# Proving Part 1: Consistency
+# Proving Part 2: Asymptotic Normality
 
 
 Assume the above result, the same starting assumptions, and that 
@@ -153,5 +153,90 @@ We want to show that
 $\{(\xi^{N,i}_k,  1)\}_{1 \le i \le M_N}$ is asymptotically normal for  $(\phi_{\nu,k}, L^2(\mathsf{X}, \phi_{\nu,k}), \sigma_k, \{M_N^{1/2}\})$.
 
 
+## Step 1: Mutation
 
+We want to show that 
+$$
+\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\sum_{j'} \tilde{\omega}^{N,j'}}f(\tilde{\xi}^{N,j}_k) 
+=
+ \frac{ \tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) }{ \frac{\sum_{j'} \tilde{\omega}^{N,j'}}{\tilde{M}_N} }
+$$
+is asymptotically normal first. Rewrite the numerator as
+
+$$
+\tilde{M}_N^{1/2}  \sum_{j=1}^{\tilde{M}_N} \left\{  \frac{ \tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) - E\left[ \frac{ \tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right] \right\}
++ \tilde{M}_N^{1/2}\frac{1}{\tilde{M}_N}\sum_{j=1}^{\tilde{M}_N}E\left[\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right]
+$$
+
+The second piece 
+$$
+\tilde{M}_N^{1/2}\frac{1}{\tilde{M}_N}\sum_{j=1}^{\tilde{M}_N}E\left[\tilde{\omega}^{N,j} f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right] = \tilde{M}_N^{1/2}\frac{1}{M_N}\sum_{j=1}^{M_N}  T^u_{k-1}(\xi_{k-1}^{N,i}, f) 
+$$
+this quantity isn't asymptotically normal, but 
+
+$$
+M_N^{1/2}\frac{1}{M_N}\sum_{j=1}^{M_N}  T^u_{k-1}(\xi_{k-1}^{N,i}, f) 
+$$
+is as soon as we show $T^u_{k-1}(\xi_{k-1}^{N,i}, f)  \in L^2(\mathsf{X}, \phi_{\nu,k-1})$. This is nonobvious, and the book has a few interesting lines showing why it's true. The asymptotic variance of this part is 
+$$
+\sigma^2_{k-1}\left[ T_{k-1}^u \left( f - \phi_{\nu,k}(f) \right) \right].
+$$
+
+
+The first piece
+$$
+\tilde{M}_N^{1/2}  \sum_{j=1}^{\tilde{M}_N} \left\{  \frac{ \tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) - E\left[ \frac{ \tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) \mid \mathcal{F}^N_{k-1} \right] \right\} \overset{\text{D}}{\to} \text{Normal}\left(0, \eta^2_{k-1}\left[ \left( f - \phi_{\nu,k}(f) \right)^2  \right] \right)
+$$
+using Proposition 9.5.12.
+
+Next, we look at the joint asymptotic distribution of these two variables as a $2 \times 1$ random vector, and use a dominated convergence theorem argument to show that they're are jointly independently normal. The delta method shows that the the numerator of 
+$$
+\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\sum_{j'} \tilde{\omega}^{N,j'}}f(\tilde{\xi}^{N,j}_k) 
+=
+ \frac{ \tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\tilde{M}_N }f(\tilde{\xi}^{N,j}_k) }{ \frac{\sum_{j'} \tilde{\omega}^{N,j'}}{\tilde{M}_N} }
+$$
+is normal.
+
+The denominator is consistent. Rewrite it as 
+
+$$
+ \tilde{M}_N^{-1}\sum_{j'}\left\{ \tilde{\omega}^{N,j'}-E[\tilde{\omega}^{N,j'}\mid \mathcal{F}^N_{k-1}] \right\} + \tilde{M}_N^{-1}\sum_{j'}E[\tilde{\omega}^{N,j'}\mid \mathcal{F}^N_{k-1}]
+$$
+The second piece converges to $\phi_{\nu, k-1}T_{k-1}^u( \mathsf{X})$ because we showed that $T_{k-1}^u(x, \mathsf{X}) \in L^1(\mathsf{X}, \phi_{\nu,k-1})$. The first piece converges due to Proposition 9.5.7.
+
+Therefore, by Slutsky's theorem, 
+
+$$
+\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\sum_{j'} \tilde{\omega}^{N,j'}}f(\tilde{\xi}^{N,j}_k)  \overset{\text{D}}{\to} \text{Normal}\left( \phi_{\nu,k}(f) , \frac{\sigma^2_{k-1}\left[ T_{k-1}^u \left( f - \phi_{\nu,k}(f) \right) \right] + \alpha^{-1}\eta^2_{k-1}\left[ \left( f - \phi_{\nu,k}(f) \right)^2  \right]}{\left(\phi_{\nu,k-1}T^u_{k-1}(\mathsf{X}) \right)^2}\right)
+$$
+
+
+## Step 2: Selection
+
+Pick $f \in L^2(\mathsf{X}, \phi_{\nu,k})$ and write the target as 
+
+$$
+M_N^{1/2}\left\{M_N^{-1} \sum_{i=1}^{M_N} f(\xi^{N,i}_k) - E\left[ f(\xi^{N,i}_k) \mid \tilde{\mathcal{F}}^N_{k} \right]   \right\}
++
+M_N^{1/2}\left\{M_N^{-1} \sum_{i=1}^{M_N} E\left[ f(\xi^{N,i}_k) \mid \tilde{\mathcal{F}}^N_{k} \right]   \right\}
+$$
+
+Focusing on the second piece first:
+
+$$
+M_N^{1/2} M_N^{-1} \sum_{i=1}^{M_N} E\left[ f(\xi^{N,i}_k) \mid \tilde{\mathcal{F}}^N_{k-1} \right] = M_N^{1/2}  E\left[ f(\xi^{N,1}_k) \mid \tilde{\mathcal{F}}^N_{k-1} \right] 
+$$
+due to the resampling being done conditionally independently and identically, and then
+
+$$
+M_N^{1/2}  E\left[ f(\xi^{N,1}_k) \mid \tilde{\mathcal{F}}^N_{k-1} \right] = M_N^{1/2}\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}^{N,j}}{\sum_{j'} \tilde{\omega}^{N,j'}}f(\tilde{\xi}^{N,j}_k)
+$$
+
+We showed this converges to a normal in the previous section. The first part of the sum
+
+$$
+M_N^{1/2}\left\{M_N^{-1} \sum_{i=1}^{M_N} f(\xi^{N,i}_k) - E\left[ f(\xi^{N,i}_k) \mid \tilde{\mathcal{F}}^N_{k} \right]   \right\}
+$$
+
+converges by Proposition 9.5.12. Jointly, the two summands are asymptotically indepdently normal, and using the delta method, we can prove the final result.
 
