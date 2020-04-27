@@ -224,12 +224,12 @@ $$
 Focusing on the second piece first:
 
 $$
-M_N^{1/2} M_N^{-1} \sum_{i=1}^{M_N} E\left[ f(\xi^{N,i}_k) \mid \tilde{\mathcal{F}}^N_{k-1} \right] = M_N^{1/2}  E\left[ f(\xi^{N,1}_k) \mid \tilde{\mathcal{F}}^N_{k-1} \right] 
+M_N^{1/2} M_N^{-1} \sum_{i=1}^{M_N} E\left[ f(\xi^{N,i}_k) \mid \tilde{\mathcal{F}}^N_{k} \right] = M_N^{1/2}  E\left[ f(\xi^{N,1}_k) \mid \tilde{\mathcal{F}}^N_{k} \right] 
 $$
 due to the resampling being done conditionally independently and identically, and then
 
 $$
-M_N^{1/2}  E\left[ f(\xi^{N,1}_k) \mid \tilde{\mathcal{F}}^N_{k-1} \right] = M_N^{1/2}\tilde{M}_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j}}{\sum_{j'} \tilde{\omega}_k^{N,j'}}f(\tilde{\xi}^{N,j}_k)
+M_N^{1/2}  E\left[ f(\xi^{N,1}_k) \mid \tilde{\mathcal{F}}^N_{k-1} \right] = M_N^{1/2} \sum_{j=1}^{\tilde{M}_N} \frac{\tilde{\omega}_k^{N,j}}{\sum_{j'} \tilde{\omega}_k^{N,j'}}f(\tilde{\xi}^{N,j}_k)
 $$
 
 We showed this converges to a normal in the previous section. The first part of the sum
